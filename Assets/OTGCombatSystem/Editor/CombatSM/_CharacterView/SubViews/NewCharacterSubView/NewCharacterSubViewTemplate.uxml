@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+  <engine:VisualElement name="new-character-subview-main">
+    <editor:Toolbar name="new-character-toolbar">
+    
+    </editor:Toolbar>
+    <engine:VisualElement name="new-character-workflow-slides">
+
+    </engine:VisualElement>
+    <engine:Button name="new-character-next-button" text="Next"/>
+    
+  </engine:VisualElement>
+</engine:UXML>

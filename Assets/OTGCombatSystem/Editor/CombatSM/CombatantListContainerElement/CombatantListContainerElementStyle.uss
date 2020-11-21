@@ -1,0 +1,26 @@
+﻿#combatant-list-region
+{
+    display: flex;
+	
+	flex-direction: column;
+	flex: 1;
+	width: auto;
+
+}
+#combatant-list
+{
+	display: flex;
+	-unity-text-align: middle-center;
+	flex: 1;
+	width: auto;
+	
+}
+#button-box
+{
+	display: flex;
+	flex: .1;
+	flex-direction: row;
+	width: auto;
+	border-width: 1px;
+	border-color: rgba(0, 0, 0,1);
+}

@@ -1,0 +1,28 @@
+﻿#new-character-summary-slide
+{
+    display: flex;
+    flex-direction: row;
+}
+#character-visualization-area
+{
+    flex: .5;
+}
+#character-details-area
+{
+    flex: .5;
+    display: flex;
+    flex-direction: column;
+}
+.character-details-box
+{
+    display: flex;
+    flex-direction: row;
+}
+.character-details-label
+{
+    flex: .5;
+}
+.character-details-string 
+{
+    flex: .5;
+}

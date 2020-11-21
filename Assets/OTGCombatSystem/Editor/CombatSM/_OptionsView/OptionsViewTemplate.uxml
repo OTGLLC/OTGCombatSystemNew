@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+  <engine:VisualElement name="main-option-view-container">
+    <editor:Toolbar name="actions-path-toolbar" class="path-toolbar">
+      <engine:Image name="path-folder-icon" class ="folder-icon"/>
+      <engine:TextField name="action-path-field-area" class ="path-field" label="Actions"/>
+      <editor:ToolbarButton name="open-actions-file-picker" class="file-picker" text="Open"/>
+    </editor:Toolbar>
+    <editor:Toolbar name="transitions-path-toolbar" class="path-toolbar">
+      <engine:Image name="transitions-path-folder-icon" class ="folder-icon"/>
+      <engine:TextField name="transitions-path-field-area" class ="path-field" label="Transitions"/>
+      <editor:ToolbarButton name="open-transitions-file-picker" class="file-picker" text="Open"/>
+    </editor:Toolbar>
+    <editor:Toolbar name="character-path-toolbar" class="path-toolbar">
+      <engine:Image name="character-path-folder-icon" class ="folder-icon"/>
+      <engine:TextField name="character-path-field-area" class ="path-field" label="CharacterData"/>
+      <editor:ToolbarButton name="open-character-file-picker" class="file-picker" text="Open"/>
+    </editor:Toolbar>
+  </engine:VisualElement>
+    
+</engine:UXML>

@@ -1,0 +1,59 @@
+﻿#main-state-container
+{
+	display: flex;
+	flex-direction: row;
+}
+
+#state-details-area
+{
+	display: flex;
+	flex: .5;
+	width: auto;
+	
+}
+#state-work-container
+{
+	display: flex;
+	flex: .5;
+	flex-direction: column;
+	width: auto;
+}
+.available-container
+{
+	display: flex;
+	flex-direction: column;
+	flex: .5;
+	width: auto;
+}
+.menu-container
+{
+	display: flex;
+	flex-direction: row;
+	min-height: 10px;
+	flex: .05;
+}
+.enum-filter-label
+{
+	flex: .8;
+}
+.available-refresh-button
+{
+	flex: .1;
+}
+.available-label
+{
+	min-height: 10px;
+}
+.available-box
+{
+	flex: .95;
+	width: auto;
+}
+#actions-list
+{
+	display: flex;
+	-unity-text-align: middle-center;
+	flex-grow: 1;
+	width: auto;
+	height: auto;
+}

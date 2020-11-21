@@ -1,0 +1,51 @@
+﻿.header
+{
+	-unity-font-style: bold;
+	font-size: 20px;
+}
+
+#main-container
+{
+	display: flex;
+	flex-direction: column;
+}
+#menu-container
+{	flex: .05;
+	display: flex;
+	flex-direction: row;
+}
+#main-menu-bar
+{
+	display: flex;
+	flex: .95;
+	flex-direction: row;
+	
+}
+#main-work-view
+{	
+	flex: .95;
+	border-width: 1px;
+	border-color: rgba(0,0,0,1);
+
+}
+.main-logo
+{
+     
+	flex: .1;
+	max-height: 50px;
+	max-width: 50px;
+}
+.options-button
+{
+	flex: .05;
+	max-height: 50px;
+	max-width: 50px;
+}
+.options-button .img
+{
+	position: relative;
+	--unity-image: resource("Assets/OTGCombatSystem/Editor/EditorResources/OptionsButton.png");
+	max-height: 30px;
+	max-width: 30px;
+}
+

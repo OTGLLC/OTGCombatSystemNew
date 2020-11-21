@@ -1,0 +1,58 @@
+﻿#main-view-container
+{
+    
+    display: flex;
+    flex-direction: row;
+
+}
+#left-area
+{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    border-width: .1px;
+    border-color: black;
+    
+}
+#right-area
+{
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+
+
+}
+#sub-view-selection
+{
+    align-items: center;
+}
+#workflow-area
+{
+    flex-grow: 1;
+}
+#left-area-title-container
+{
+    display: flex;
+    flex-direction: row;
+    flex: .03;
+    width: auto;
+   
+}
+#character-toolbar
+{
+    display: flex;
+    width: 199px;
+}
+#scene-char-label
+{
+    flex: .85;
+    
+}
+#new-char-button
+{
+    flex: .15;
+    
+}
+#character-list {
+    flex: .97;
+}

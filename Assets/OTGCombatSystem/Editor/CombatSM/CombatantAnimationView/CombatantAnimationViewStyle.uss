@@ -1,0 +1,35 @@
+﻿#main-anim-container
+{
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	height: auto;
+	
+	background-color: rgba(255,255,255,1);
+}
+#anim-preview-container
+{
+	display: flex;
+	flex-direction: row;
+	flex: .5;
+
+	background-color: rgba(200,100,100,1);
+}
+#anim-window
+{
+	display: flex;
+	flex: .5;
+	background-color: rgba(25,25,25,1);
+}
+#anim-data-area
+{
+	display: flex;
+	flex: .5;
+	background-color: rgba(75,75,25,1);
+}
+#anim-event-area
+{
+	display: flex;
+	flex: .5;
+	background-color: rgba(50,100,100,1);
+}

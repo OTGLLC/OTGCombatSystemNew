@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd"
+>
+  <engine:VisualElement name="main-container">
+    <engine:VisualElement name ="menu-container">
+      <engine:VisualElement name="main-menu-bar">
+        <engine:Image name="main-logo" class ="main-logo"/>
+        <engine:Button name ="main-button-character" text="Character View" class="main-button"/>
+        <engine:Button name ="main-button-events" text="Event Viewer" class ="main-button"/>
+      </engine:VisualElement>
+      <engine:Button name ="main-button-options" class="options-button">
+        <engine:Image class="img"/>
+      </engine:Button>
+    </engine:VisualElement>
+   
+    <engine:VisualElement name="main-work-view">
+      
+    </engine:VisualElement>
+   
+  </engine:VisualElement>
+  
+ 
+</engine:UXML>

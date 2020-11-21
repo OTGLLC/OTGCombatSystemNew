@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+
+  <engine:VisualElement name ="new-character-summary-slide">
+    <engine:VisualElement name="character-visualization-area">
+      
+    </engine:VisualElement>
+    
+    <engine:VisualElement name="character-details-area">
+      <engine:Box name="name-box" class="character-details-box">
+        <engine:Label name="name-label" class="character-details-label" text ="Character Name:"/>
+        <engine:Label name ="name-string" class ="character-details-string" text ="asdfghg efhkjhsdf"/>
+      </engine:Box>
+      <engine:Box name="character-type-box" class="character-details-box">
+        <engine:Label name="type-label" class="character-details-label" text ="Character Type:"/>
+        <engine:Label name ="type-string" class ="character-details-string" text ="asdfghg efhkjhsdf"/>
+      </engine:Box>
+    </engine:VisualElement>
+   
+  </engine:VisualElement>
+</engine:UXML>

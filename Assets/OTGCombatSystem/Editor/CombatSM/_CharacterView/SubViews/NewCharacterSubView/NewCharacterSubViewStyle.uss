@@ -1,0 +1,17 @@
+﻿#character-subview-main
+{
+    display: flex;
+    flex-direction: column;
+
+}
+#new-character-toolbar
+{
+    flex: .1;
+    max-height: 20px;
+
+}
+#new-character-workflow-slides
+{
+    flex: .9;
+   
+}
