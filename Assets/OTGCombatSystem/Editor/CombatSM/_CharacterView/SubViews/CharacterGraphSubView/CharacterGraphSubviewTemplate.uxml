@@ -6,6 +6,6 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
   <engine:VisualElement name="character-graph-subview-main">
-    <engine:Label text="This is the graph sub view"/>
+    
   </engine:VisualElement>
 </engine:UXML>

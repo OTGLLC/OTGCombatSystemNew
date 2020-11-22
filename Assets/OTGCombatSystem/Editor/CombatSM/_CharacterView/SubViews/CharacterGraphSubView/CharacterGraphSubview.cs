@@ -8,13 +8,13 @@ namespace OTG.CombatSM.EditorTools
 {
     public class CharacterGraphSubview : CharacterSubViewBase
     {
-        private JunkGraph m_jGraph;
+        private CharacterStateGraph m_stateGraph;
 
         #region abstract implementatiosn
         public CharacterGraphSubview()
         {
-            m_jGraph = new JunkGraph();
-            ContainerElement.Q<VisualElement>("character-graph-subview-main").Add(m_jGraph);
+            
+            //ContainerElement.Q<VisualElement>("character-graph-subview-main").Add(m_jGraph);
         }
         protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
         {
@@ -26,11 +26,17 @@ namespace OTG.CombatSM.EditorTools
         }
         protected override void HandleOnViewFocused()
         {
-
+            m_stateGraph = new CharacterStateGraph()
+            {
+                name = "State Graph"
+            };
+            m_stateGraph.StretchToParentSize();
+            ContainerElement.Q<VisualElement>("character-graph-subview-main").Add(m_stateGraph);
         }
         protected override void HandleViewLostFocus()
         {
-            
+            ContainerElement.Q<VisualElement>("character-graph-subview-main").Remove(m_stateGraph);
+            m_stateGraph = null;
         }
         protected override void HandleOnHierarchyChanged()
         {
@@ -44,9 +50,6 @@ namespace OTG.CombatSM.EditorTools
         }
         #endregion
     }
-    public class JunkGraph:GraphView
-    {
-
-    }
+   
 }
 
