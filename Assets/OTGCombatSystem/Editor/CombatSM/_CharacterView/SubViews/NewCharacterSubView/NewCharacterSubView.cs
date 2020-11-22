@@ -66,6 +66,10 @@ namespace OTG.CombatSM.EditorTools
 
             UnbindNextButton();
         }
+        protected override void HandleOnHierarchyChanged()
+        {
+
+        }
         protected override void SetStrings()
         {
             m_stylePath = "Assets/OTGCombatSystem/Editor/CombatSM/_CharacterView/SubViews/NewCharacterSubView/NewCharacterSubViewStyle.uss";

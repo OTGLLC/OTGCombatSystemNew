@@ -30,6 +30,10 @@ namespace OTG.CombatSM.EditorTools
         {
             
         }
+        protected override void HandleOnHierarchyChanged()
+        {
+
+        }
         #endregion
     }
 

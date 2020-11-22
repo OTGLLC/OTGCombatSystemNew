@@ -33,6 +33,10 @@ public abstract class CombatSMBaseView : VisualElement
     {
         HandleOnProjectUpdate();
     }
+    public void OnOnHierarchyChanged()
+    {
+        HandleOnHierarchyChanged();
+    }
     public void OnViewFocused()
     {
         HandleOnViewFocused();
@@ -56,5 +60,6 @@ public abstract class CombatSMBaseView : VisualElement
     protected abstract void HandleOnProjectUpdate();
     protected abstract void HandleOnViewFocused();
     protected abstract void HandleViewLostFocus();
+    protected abstract void HandleOnHierarchyChanged();
     #endregion
 }

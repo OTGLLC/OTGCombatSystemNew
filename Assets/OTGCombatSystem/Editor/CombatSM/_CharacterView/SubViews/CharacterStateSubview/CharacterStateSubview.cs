@@ -24,6 +24,10 @@ namespace OTG.CombatSM.EditorTools
         {
             throw new System.NotImplementedException();
         }
+        protected override void HandleOnHierarchyChanged()
+        {
+            throw new System.NotImplementedException();
+        }
         protected override void SetStrings()
         {
             m_stylePath = "Assets/OTGCombatSystem/Editor/CombatSM/_CharacterView/SubViews/CharacterStateSubview/CharacterStateSubviewStyle.uss";

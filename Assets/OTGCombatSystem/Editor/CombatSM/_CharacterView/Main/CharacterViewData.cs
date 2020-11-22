@@ -20,6 +20,8 @@ namespace OTG.CombatSM.EditorTools
         }
         public void GetAllCharactersInScene()
         {
+            CharactersInScene.Clear();
+
             OTGCombatSMC[] chars = Object.FindObjectsOfType<OTGCombatSMC>();
 
             for(int i = 0; i < chars.Length; i++)

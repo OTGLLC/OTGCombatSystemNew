@@ -45,11 +45,15 @@ namespace OTG.CombatSM.EditorTools
             UnSubscribeAllCallbacks();
             UnBindPathTextField();
         }
+        protected override void HandleOnHierarchyChanged()
+        {
+
+        }
         #endregion
 
         #region Utility
-        
-       
+
+
         #endregion
 
         #region Callbacks

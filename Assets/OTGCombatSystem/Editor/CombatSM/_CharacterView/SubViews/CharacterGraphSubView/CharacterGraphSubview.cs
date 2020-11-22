@@ -11,11 +11,11 @@ namespace OTG.CombatSM.EditorTools
 
         protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
         {
-            throw new System.NotImplementedException();
+           
         }
         protected override void HandleOnProjectUpdate()
         {
-            throw new System.NotImplementedException();
+         
         }
         protected override void HandleOnViewFocused()
         {
@@ -23,7 +23,11 @@ namespace OTG.CombatSM.EditorTools
         }
         protected override void HandleViewLostFocus()
         {
-            throw new System.NotImplementedException();
+            
+        }
+        protected override void HandleOnHierarchyChanged()
+        {
+
         }
         protected override void SetStrings()
         {

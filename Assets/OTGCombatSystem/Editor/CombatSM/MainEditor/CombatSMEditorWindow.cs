@@ -49,18 +49,11 @@ namespace OTG.CombatSM.EditorTools
         }
         private void OnHierarchyChange()
         {
-            
-            CreateCombatantList();
+            m_currentView.OnOnHierarchyChanged();
         }
         private void OnProjectChange()
         {
-            //if (m_combatantViewData != null)
-            //{
-            //    m_combatantViewData.PopulateActions();
-            //    m_combatantViewData.PopulateTransitions();
-                
-            //}
-            //AllViewsHandleProjectUpdate();   
+            m_currentView.OnProjectUpdated();
         }
         private void OnDisable()
         {
@@ -101,137 +94,11 @@ namespace OTG.CombatSM.EditorTools
 
             m_currentView.UpdateViewHeight(position.height);
         }
-     
         private void CleanupData()
         {
            
         }
-
        
-
-
-
-
-
-
-
-
-
-
-        private void CreateCombatantList()
-        {
-           
-            //OTGCombatSMC[]  combatantsInScene = FindObjectsOfType<OTGCombatSMC>();
-
-
-            //m_combatantList = rootVisualElement.Query<ListView>("combatant-list").First();
-            //m_combatantList.makeItem = () => new Label();
-          
-            //m_combatantList.bindItem = (element, i) => (element as Label).text = combatantsInScene[i].name;
-            //m_combatantList.itemsSource = combatantsInScene;
-            //m_combatantList.itemHeight = 16;
-            //m_combatantList.selectionType = SelectionType.Single;
-
-            //m_combatantList.onSelectionChange += (enumerable) =>
-            //{
-            //    foreach (Object candidate in enumerable)
-            //    {
-            //        OTGCombatSMC combatant = candidate as OTGCombatSMC;
-
-            //        //CompileDataForCombatantViews(combatant);
-            //        //CreateStateList();
-            //    }
-            //};
-
-        }
-        private void CreateStateList()
-        {
-            //m_stateList = rootVisualElement.Query<ListView>("combat-state-list").First();
-            //m_stateList.makeItem = () => new Label();
-            //m_stateList.bindItem = (element, i) => (element as Label).text = m_combatantViewData.AvailableStates[i].name;
-
-            //m_stateList.itemsSource = m_combatantViewData.AvailableStates;
-            //m_stateList.itemHeight = 16;
-            //m_stateList.selectionType = SelectionType.Single;
-
-            //m_stateList.onSelectionChange += (enumerable) =>
-            //{
-            //    foreach (Object stateCandidate in enumerable)
-            //    {
-            //        OTGCombatState state = stateCandidate as OTGCombatState;
-            //        m_combatantViewData.SetSelectedCombatState(state);
-
-            //        SetSelectedCombatStateOnViews();
-            //    }
-            //};
-        }
-       
-        
-       // private void ChangeView(CombatantBaseView _newView)
-       // {
-       //     rootVisualElement.Q<VisualElement>("right-details").Remove(m_currentView.ContainerElement);
-       //     m_currentView = _newView;
-       //     rootVisualElement.Q<VisualElement>("right-details").Add(m_currentView.ContainerElement);
-       // }
-       // private void SetCurrentView(CombatantBaseView _selectedView)
-       // {
-       //     m_currentView = _selectedView;
-          
-       // }
-       // private void CompileDataForCombatantViews(OTGCombatSMC _selectedCombatant)
-       // {
-       //     m_combatantViewData.SetViewData(_selectedCombatant,m_animationView);
-       // }
-       // private void SetSelectedCombatStateOnViews()
-       // {
-       //     m_animationView.OnSelectionMade(m_combatantViewData);
-       //     m_combatantStateView.OnSelectionMade(m_combatantViewData);
-       // }
-       // private void BindAllButtons()
-       // {
-       //     BindButton("anim-details-button", () => {
-       //         ChangeView(m_animationView);
-       //     });
-       //     BindButton("state-details-button", () =>
-       //     {
-       //         ChangeView(m_combatantStateView);
-       //     });
-       //     BindButton("character-details-button", () =>
-       //     {
-       //         ChangeView(m_combatantView);
-       //     });
-       // }
-       // private void BindButton(string _buttonName,System.Action _clickAction)
-       // {
-       //     rootVisualElement.Q<Button>(_buttonName).clickable.clicked += _clickAction;
-       // }
-       // private void RegisterAllViews()
-       // {
-       //     m_allViews = new List<CombatantBaseView>();
-       //     m_animationView = new CombatantAnimationView();
-       //     m_combatantStateView = new CombatantStateView();
-       //     m_combatantView = new CombatantView();
-
-       //     m_allViews.Add(m_animationView);
-       //     m_allViews.Add(m_combatantStateView);
-       //     m_allViews.Add(m_combatantView);
-       // }
-       //private void UnregisterAllViews()
-       // {
-       //     m_allViews.Clear();
-       //     m_allViews = null;
-       //     m_animationView = null;
-       //     m_combatantStateView = null;
-       //     m_combatantView = null;
-       // }
-        private void AllViewsHandleProjectUpdate()
-        {
-            
-            //for(int i = 0; i < m_allViews.Count; i++)
-            //{
-            //    m_allViews[i].OnProjectUpdated();
-            //}
-        }
         #endregion
 
         #region Views

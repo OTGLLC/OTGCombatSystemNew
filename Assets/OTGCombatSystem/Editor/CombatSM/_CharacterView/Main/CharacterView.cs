@@ -114,7 +114,13 @@ namespace OTG.CombatSM.EditorTools
         }
         protected override void HandleOnProjectUpdate()
         {
-            throw new System.NotImplementedException();
+            GetAllCharactersInScene();
+            ShowListView();
+        }
+        protected override void HandleOnHierarchyChanged()
+        {
+            GetAllCharactersInScene();
+            ShowListView();
         }
         protected override void SetStrings()
         {
