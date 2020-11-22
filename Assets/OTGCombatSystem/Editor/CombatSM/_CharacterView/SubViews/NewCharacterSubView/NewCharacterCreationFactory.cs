@@ -20,6 +20,8 @@ namespace OTG.CombatSM.EditorTools
             AttachCombatSMC();
             CreateAndAttachHandlerDataGroup(_data,_config);
             CreateInitialState(_data, _config);
+            ApplyCharacterType(_data);
+            ApplyCharacterModel(_data);
             FocusOnAddedCharacter();
         }
 
@@ -51,7 +53,7 @@ namespace OTG.CombatSM.EditorTools
             AssetDatabase.CreateFolder(_config.CharacterPathRoot, _data.CharacterName);
             AssetDatabase.CreateFolder(rootCharfolder,"Configurations");
             AssetDatabase.CreateFolder(rootCharfolder, "Prefabs");
-            AssetDatabase.CreateFolder(rootCharfolder, _data.CharacterName+"_States");
+            AssetDatabase.CreateFolder(rootCharfolder,"States");
 
         }
         private void CreateAndAttachHandlerDataGroup(NewCharacterCreationData _data, EditorConfig _config)
@@ -59,9 +61,8 @@ namespace OTG.CombatSM.EditorTools
             HandlerDataGroup dataGrp = ScriptableObject.CreateInstance<HandlerDataGroup>();
             dataGrp.name = _data.CharacterName + "_HanderDataGroup";
 
-            string path = OTGEditorUtility.GetCharacterConfigurationsFolder(_data.CharacterName, _config.CharacterPathRoot) + dataGrp.name+".asset";
-
-            AssetDatabase.CreateAsset(dataGrp, path);
+            string path = OTGEditorUtility.GetCharacterConfigurationsFolder(_data.CharacterName, _config.CharacterPathRoot);
+                        AssetDatabase.CreateAsset(dataGrp, path + dataGrp.name + ".asset");
 
             m_characterSMCObj.FindProperty("m_handlerDataGroup").objectReferenceValue = dataGrp;
             m_characterSMCObj.ApplyModifiedProperties();
@@ -69,7 +70,27 @@ namespace OTG.CombatSM.EditorTools
         private void CreateInitialState(NewCharacterCreationData _data, EditorConfig _config)
         {
             OTGCombatState initialState = ScriptableObject.CreateInstance<OTGCombatState>();
-            
+            initialState.name = OTGEditorUtility.GetCombatStateName(_data.CharacterName, "Inititial");
+
+            string stateFolder = OTGEditorUtility.GetCharacterStateFolder(_data.CharacterName, _config.CharacterPathRoot);
+            string initialStateGUID = AssetDatabase.CreateFolder(stateFolder, "InitialState");
+            string initialStatePath = AssetDatabase.GUIDToAssetPath(initialStateGUID);
+            AssetDatabase.CreateAsset(initialState, initialStatePath + "/" +initialState.name + ".asset");
+
+            m_characterSMCObj.FindProperty("m_startingState").objectReferenceValue = initialState;
+            m_characterSMCObj.ApplyModifiedProperties();
+
+        }
+        private void ApplyCharacterType(NewCharacterCreationData _data)
+        {
+            m_characterSMCObj.FindProperty("m_combatantType").enumValueIndex = (int)_data.CharacterType;
+            m_characterSMCObj.ApplyModifiedProperties();
+        }
+        private void ApplyCharacterModel(NewCharacterCreationData _data)
+        {
+            GameObject characterModel = (GameObject)PrefabUtility.InstantiatePrefab(_data.CharacterObject);
+             
+            characterModel.transform.SetParent(m_characterGameObject.transform);
         }
         #endregion
 

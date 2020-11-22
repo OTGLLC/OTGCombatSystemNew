@@ -1,1 +1,39 @@
-﻿VisualElement {}
+﻿#new-character-model-slide
+{
+	display: flex;
+	flex-direction: row;
+}
+#character-model-drop-container
+{
+	display: flex;
+	flex-direction: column;
+	flex: .5;
+}
+#character-model-drop-label-area
+{
+	flex: .1;
+	max-height: 20px;
+}
+#character-model-drop-area
+{
+	flex: .9;
+	background-color : rgba(100,50,150,1);
+}
+#character-model-viewer
+{
+	flex: .5;
+}
+#model-viewer-label-area
+{
+	display: flex;
+	flex-direction: row;
+	max-height: 20px;
+}
+#model-name-label
+{
+	flex: .5;
+}
+#model-name-string
+{
+	flex: .5;
+}

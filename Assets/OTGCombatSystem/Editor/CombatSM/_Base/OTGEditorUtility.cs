@@ -23,19 +23,23 @@ namespace OTG.CombatSM.EditorTools
         }
         public static string GetCharacterStateFolder(string _characterName, string _rootFolder)
         {
-            return _rootFolder + "/" + _characterName+"/"+_characterName+"_States/";
+            return _rootFolder + "/" + _characterName+"/"+"States";
         }
         public static string GetCharacterConfigurationsFolder(string _characterName, string _rootFolder)
         {
             return _rootFolder + "/" + _characterName + "/" + "Configurations/";
 
-
         }
         public static string GetCharacterPrefabsFolder(string _characterName, string _rootFolder)
         {
-            return _rootFolder + "/" + _characterName + "/" + "Prefabs/";
+            return _rootFolder + "/" + _characterName + "/" + "Prefabs";
 
 
+        }
+        public static string GetCombatStateName(string _characterName, string _stateType)
+        {
+            string nameFormat = "{0}_{1}_CombatState";
+            return string.Format(nameFormat, _characterName, _stateType);
         }
     }
 

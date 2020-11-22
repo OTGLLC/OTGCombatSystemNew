@@ -6,6 +6,17 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../../../UIElementsSchema/UIElements.xsd"
 >
   <engine:VisualElement name="new-character-model-slide">
-    <engine:Label text ="Pick character model"/>
+	  <engine:VisualElement name ="character-model-drop-container">
+		  <engine:Box name="character-model-drop-label-area">
+			  <engine:Label name="character-model-drop-area-label" text="Drop a model here"/>
+		  </engine:Box>
+		  <engine:VisualElement name="character-model-drop-area"/>
+	  </engine:VisualElement>
+	  <engine:VisualElement name="character-model-viewer">
+		  <engine:Box name ="model-viewer-label-area">
+			  <engine:Label name="model-name-label" text="Model Name"/>
+			  <engine:Label name="model-name-string"/>
+		  </engine:Box>
+	  </engine:VisualElement>
   </engine:VisualElement>
 </engine:UXML>

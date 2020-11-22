@@ -175,7 +175,7 @@ namespace OTG.CombatSM.EditorTools
     {
         public string CharacterName;
         public e_CombatantType CharacterType;
-
+        public UnityEngine.Object CharacterObject;
     }
     public class BreadcrumbData
     {
