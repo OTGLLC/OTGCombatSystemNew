@@ -6,6 +6,28 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
   <engine:VisualElement name="character-state-subview-main">
-    <engine:Label text="This is the state sub view"/>
+	  <engine:Box name="state-details-area"/>
+	  <engine:Box name="state-work-container">
+		  <engine:Box name="available-actions-container" class="available-container">
+			  <engine:Label name="available-actions-label" text="Available Actions" class ="available-label"/>
+			  <engine:Box name="actions-menu-container" class ="menu-container">
+				  <editor:EnumField label="Action Type" name ="action-filter" type="OTG.CombatSM.Core.E_ActionType, Assembly-CSharp" class="enum-filter-label"/>
+				  <engine:Button name="refresh-actions-button" class ="available-refresh-button"/>
+			  </engine:Box>
+			  <engine:Box name ="available-actions" class="available-box">
+				  <engine:ListView name="actions-list"/>
+			  </engine:Box>
+		  </engine:Box>
+		  <engine:Box name="available-transitions-container" class="available-container">
+			  <engine:Label name="available-transitions-label" text="Available Transitions" class ="available-label"/>
+			  <engine:Box name="transitions-menu-container" class ="menu-container">
+				  <editor:EnumField label="Transition Type" name ="transition-filter" type="OTG.CombatSM.Core.E_TransitionDecisionType, Assembly-CSharp" class="enum-filter-label"/>
+				  <engine:Button name="refresh-transitions-button" class ="available-refresh-button"/>
+			  </engine:Box>
+			  <engine:Box name ="available-transitions" class="available-box">
+				  <engine:ListView name="transitions-list"/>
+			  </engine:Box>
+		  </engine:Box>
+	  </engine:Box>
   </engine:VisualElement>
 </engine:UXML>

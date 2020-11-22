@@ -1,14 +1,21 @@
 ﻿
 using UnityEngine;
 using OTG.CombatSM.Core;
-
+using UnityEditor.Experimental.GraphView;
+using UnityEngine.UIElements;
 
 namespace OTG.CombatSM.EditorTools
 {
     public class CharacterGraphSubview : CharacterSubViewBase
     {
-        #region abstract implementatiosn
+        private JunkGraph m_jGraph;
 
+        #region abstract implementatiosn
+        public CharacterGraphSubview()
+        {
+            m_jGraph = new JunkGraph();
+            ContainerElement.Q<VisualElement>("character-graph-subview-main").Add(m_jGraph);
+        }
         protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
         {
            
@@ -37,6 +44,9 @@ namespace OTG.CombatSM.EditorTools
         }
         #endregion
     }
+    public class JunkGraph:GraphView
+    {
 
+    }
 }
 
