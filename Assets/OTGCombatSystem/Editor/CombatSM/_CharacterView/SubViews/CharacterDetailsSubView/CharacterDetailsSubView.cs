@@ -10,8 +10,8 @@ namespace OTG.CombatSM.EditorTools
 
 
         #region abstract implementatiosn
-        
-        protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
+        public CharacterDetailsSubView(CharacterViewData _charViewData) : base(_charViewData) { }
+        protected override void HandleCharacterSelection()
         {
            
         }

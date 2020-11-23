@@ -8,14 +8,14 @@ namespace OTG.CombatSM.EditorTools
 {
     public abstract class CharacterSubViewBase : CombatSMBaseView
     {
-
-        public CharacterSubViewBase() : base() { }
-        public void OnCharacterSelected(OTGCombatSMC _selectedCharacter)
+        protected CharacterViewData m_charViewData;
+        public CharacterSubViewBase(CharacterViewData _charViewData) : base() { m_charViewData = _charViewData; }
+        public void OnCharacterSelected()
         {
-            HandleCharacterSelection(_selectedCharacter);
+            HandleCharacterSelection();
         }
 
-        protected abstract void HandleCharacterSelection(OTGCombatSMC _selectedCharacter);
+        protected abstract void HandleCharacterSelection();
     }
 
 }

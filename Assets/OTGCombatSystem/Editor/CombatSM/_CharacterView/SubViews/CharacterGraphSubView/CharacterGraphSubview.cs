@@ -11,15 +11,13 @@ namespace OTG.CombatSM.EditorTools
         private CharacterStateGraph m_stateGraph;
 
         #region abstract implementatiosn
-        public CharacterGraphSubview()
+        public CharacterGraphSubview(CharacterViewData _charViewData) : base(_charViewData) { }
+        protected override void HandleCharacterSelection()
         {
-            
-           
-        }
-        protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
-        {
-            
-            m_stateGraph.OnCharacterSelected(_selectedCharacter);
+            CleanupGraph();
+            CreateNewGraph();
+
+            m_stateGraph.OnCharacterSelected();
         }
         protected override void HandleOnProjectUpdate()
         {
@@ -27,22 +25,16 @@ namespace OTG.CombatSM.EditorTools
         }
         protected override void HandleOnViewFocused()
         {
-            m_stateGraph = new CharacterStateGraph()
-            {
-                name = "State Graph"
-            };
-            
-            m_stateGraph.StretchToParentSize();
-            ContainerElement.Q<VisualElement>("graph-area").Add(m_stateGraph);
+            CleanupGraph();
+            CreateNewGraph();
         }
         protected override void HandleViewLostFocus()
         {
-            ContainerElement.Q<VisualElement>("character-graph-subview-main").Remove(m_stateGraph);
-            m_stateGraph = null;
+            CleanupGraph();
         }
         protected override void HandleOnHierarchyChanged()
         {
-
+            
         }
         protected override void SetStrings()
         {
@@ -51,7 +43,29 @@ namespace OTG.CombatSM.EditorTools
             ContainerStyleName = "character-graph-subview-main";
         }
         #endregion
+
+        #region Utility
+        private void CreateNewGraph()
+        {
+            m_stateGraph = new CharacterStateGraph(m_charViewData)
+            {
+                name = "State Graph"
+            };
+
+            m_stateGraph.StretchToParentSize();
+            ContainerElement.Q<VisualElement>("graph-area").Add(m_stateGraph);
+        }
+        private void CleanupGraph()
+        {
+            if (m_stateGraph == null)
+                return;
+
+            m_stateGraph.OnGraphHidden();
+            ContainerElement.Q<VisualElement>("graph-area").Remove(m_stateGraph);
+            m_stateGraph = null;
+        }
+        #endregion
     }
-   
+
 }
 

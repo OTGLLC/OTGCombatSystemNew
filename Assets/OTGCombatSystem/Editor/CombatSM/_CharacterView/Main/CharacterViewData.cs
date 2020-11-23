@@ -10,7 +10,7 @@ namespace OTG.CombatSM.EditorTools
     {
         #region Properties
         public List<OTGCombatSMC> CharactersInScene { get; private set; }
-
+        public OTGCombatSMC SelectedCharacter { get; set; }
         #endregion
 
         #region Public API

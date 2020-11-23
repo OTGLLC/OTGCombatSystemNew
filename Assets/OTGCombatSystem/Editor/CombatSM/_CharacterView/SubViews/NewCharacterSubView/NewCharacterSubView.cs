@@ -33,7 +33,7 @@ namespace OTG.CombatSM.EditorTools
         #endregion
 
         #region abstract implementatiosn
-        public NewCharacterSubView(EditorConfig _config) : base()
+        public NewCharacterSubView(EditorConfig _config, CharacterViewData _viewData) : base(_viewData)
         {
             m_editorConfig = _config;
             m_creationData = new NewCharacterCreationData();
@@ -47,7 +47,7 @@ namespace OTG.CombatSM.EditorTools
             base.UpdateViewHeight(_height);
             UpdateCurrentSlideHeight(_height);
         }
-        protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
+        protected override void HandleCharacterSelection()
         {
            
         }

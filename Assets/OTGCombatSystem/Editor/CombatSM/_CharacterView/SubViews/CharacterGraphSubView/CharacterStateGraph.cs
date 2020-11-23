@@ -1,10 +1,12 @@
 ﻿
+using UnityEditor;
 using UnityEngine;
 using UnityEditor.UIElements;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using System;
 using OTG.CombatSM.Core;
+using System.Collections.Generic;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -14,36 +16,96 @@ namespace OTG.CombatSM.EditorTools
 
         #region Fields
         private CharcaterStateGraphData m_graphData;
+        private CharacterViewData m_charViewData;
         #endregion
 
 
         #region Public API
-        public CharacterStateGraph()
+        public CharacterStateGraph(CharacterViewData _charViewData)
         {
+            m_charViewData = _charViewData;
             m_graphData = new CharcaterStateGraphData();
-            this.AddManipulator(new ContentDragger());
-            this.AddManipulator(new SelectionDragger());
-            this.AddManipulator(new RectangleSelector());
 
-            GridBackground grid = new GridBackground();
-            
-            Insert(0, grid);
-            grid.StretchToParentSize();
-            
-            //AddElement(GenerateEntryPointNode());
-            //Clear();
+            AddManipulators();
+            ConstructGridBackground();
+
         }
-        public void OnCharacterSelected(OTGCombatSMC _selectedCharacter)
+        public void OnCharacterSelected()
         {
-            m_graphData.PopulateExistingStateData(_selectedCharacter);
-            Add(GenerateEntryPointNode());
+            
+            m_graphData.PopulateExistingStateData(m_charViewData.SelectedCharacter);
+            CreateStartingNodeGraph();
         }
         public void OnGraphHidden()
         {
+            Clear();
             m_graphData.Cleanup();
         }
         #endregion
 
+        #region Utility
+        private void AddManipulators()
+        {
+            this.AddManipulator(new ContentDragger());
+            this.AddManipulator(new SelectionDragger());
+            this.AddManipulator(new RectangleSelector());
+        }
+        private void ConstructGridBackground()
+        {
+            GridBackground grid = new GridBackground();
+            grid.styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/OTGCombatSystem/Editor/CombatSM/_CharacterView/SubViews/CharacterGraphSubView/CharacterGraphGridStyle.uss"));
+
+            Insert(0, grid);
+            grid.StretchToParentSize();
+        }
+        private void CreateStartingNodeGraph()
+        {
+            GenerateNodes(m_graphData.StateDataNodeRoot, 0);
+
+        }
+        #endregion
+
+        private void GenerateNodes(StateDataNode _stateNode, int _level, Port _outPort = null)
+        {
+            CharacterStateNode n = GenerateNode(_stateNode);
+            AddElement(n);
+
+            Port inPort = GeneratePort(n, Direction.Input);
+            n.inputContainer.Add(inPort);
+            //if (_outPort != null)
+            //{
+            //    _outPort.ConnectTo(inPort);
+            //}
+
+
+
+            foreach(KeyValuePair<string,StateDataNode> pair in _stateNode.NextStates)
+            {
+                Port portOut = GeneratePort(n, Direction.Output);
+                n.outputContainer.Add(portOut);
+
+                GenerateNodes(pair.Value, _level + 1, portOut);
+            }
+
+            n.RefreshPorts();
+        }
+
+        private CharacterStateNode GenerateNode(StateDataNode _data)
+        {
+            var node = new CharacterStateNode()
+            {
+                title = _data.StateObj.targetObject.name,
+                
+                EntryPoint = true,
+            };
+
+          
+            node.SetPosition(new Rect(100, 200, 100, 150));
+            node.RefreshExpandedState();
+            node.RefreshPorts();
+
+            return node;
+        }
         private CharacterStateNode GenerateEntryPointNode()
         {
             var node = new CharacterStateNode()

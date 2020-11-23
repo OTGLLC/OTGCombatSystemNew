@@ -7,8 +7,8 @@ namespace OTG.CombatSM.EditorTools
     public class CharacterStateSubview : CharacterSubViewBase
     {
         #region abstract implementatiosn
-
-        protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
+        public CharacterStateSubview(CharacterViewData _charViewData) : base(_charViewData) { }
+        protected override void HandleCharacterSelection()
         {
             throw new System.NotImplementedException();
         }

@@ -70,16 +70,17 @@ namespace OTG.CombatSM.EditorTools
                 {
                     OTGCombatSMC combatant = candidate as OTGCombatSMC;
 
-                    m_currentSubView.OnCharacterSelected(combatant);
+                    m_viewData.SelectedCharacter = combatant;
+                    m_currentSubView.OnCharacterSelected();
                 }
             };
         }
         private void CreateViews(EditorConfig _editorConfig)
         {
-            m_newCharacterSubView = new NewCharacterSubView(_editorConfig);
-            m_charDetailsSubView = new CharacterDetailsSubView();
-            m_characterGraphSubView = new CharacterGraphSubview();
-            m_characterStateSubView = new CharacterStateSubview();
+            m_newCharacterSubView = new NewCharacterSubView(_editorConfig, m_viewData);
+            m_charDetailsSubView = new CharacterDetailsSubView(m_viewData);
+            m_characterGraphSubView = new CharacterGraphSubview(m_viewData);
+            m_characterStateSubView = new CharacterStateSubview(m_viewData);
         }
         private void SwitchSubViews(CharacterSubViewBase _newView)
         {

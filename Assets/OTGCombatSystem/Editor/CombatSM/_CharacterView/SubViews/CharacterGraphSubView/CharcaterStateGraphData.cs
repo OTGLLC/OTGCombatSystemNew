@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using OTG.CombatSM.Core;
+using UnityEngine;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -15,7 +16,8 @@ namespace OTG.CombatSM.EditorTools
 
         #region Properties
         public SerializedObject InitialCombatState { get; private set; }
-        public CombatStateData InitialCombatStateData { get; private set; }
+       public StateDataNode StateDataNodeRoot { get; private set; }
+       
         #endregion
 
 
@@ -52,17 +54,64 @@ namespace OTG.CombatSM.EditorTools
         }
         private void GetInitialCombatState()
         {
+            Object obj = m_rootCharacter.FindProperty("m_startingState").objectReferenceValue;
             InitialCombatState = new SerializedObject(m_rootCharacter.FindProperty("m_startingState").objectReferenceValue);
+            StateDataNodeRoot = new StateDataNode();
+
+            GetAvailableTransitions(InitialCombatState,StateDataNodeRoot);
+        }
+        private void GetAvailableTransitions(SerializedObject _state, StateDataNode _n)
+        {
+            if (_state == null)
+                return;
+
+            _n.StateObj = _state;
+
+            int transitionCount = _state.FindProperty("m_stateTransitions").arraySize;
+
+            for(int i = 0; i < transitionCount; i++)
+            {
+                SerializedProperty transition = _state.FindProperty("m_stateTransitions").GetArrayElementAtIndex(i);
+                
+                SerializedObject nextState = new SerializedObject(transition.FindPropertyRelative("m_nextState").objectReferenceValue);
+
+                string ID = _state.targetObject.name + "-to-" + nextState.targetObject.name;
+
+                if(!_n.NextStates.ContainsKey(ID))
+                {
+                    StateDataNode n = new StateDataNode();
+                    _n.NextStates.Add(ID, n);
+                    GetAvailableTransitions(nextState, n);
+                }
+
+                int decisionCount = transition.FindPropertyRelative("m_decisions").arraySize;
+                for(int j = 0; j < decisionCount; j++)
+                {
+                    SerializedProperty decision = transition.FindPropertyRelative("m_decisions").GetArrayElementAtIndex(j);
+                    _n.Decisions.Add(decision.name);   
+                }
+                
+            }
+
+            
         }
         #endregion
-    }
-    public class CombatStateData
-    {
-        public List<TransitionConnections> TransitionsFromThisState;
-    }
-    public struct TransitionConnections
-    {
 
     }
+   
+    public class StateDataNode
+    {
+        public SerializedObject StateObj;
+        public List<string> Decisions;
+        public Dictionary<string, StateDataNode> NextStates;
 
+        public StateDataNode()
+        {
+            StateObj = null;
+            Decisions = new List<string>();
+            NextStates = new Dictionary<string, StateDataNode>();
+        }
+    }
+
+   
 }

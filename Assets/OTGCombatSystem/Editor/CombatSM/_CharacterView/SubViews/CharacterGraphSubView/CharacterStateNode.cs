@@ -4,6 +4,7 @@ using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using UnityEditor;
+using System;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -19,13 +20,18 @@ namespace OTG.CombatSM.EditorTools
         #region Public API
         public CharacterStateNode()
         {
-            
+            GUID = Guid.NewGuid().ToString();
+            InitializeStyleSheet();
 
         }
         #endregion
 
         #region Utility
-      
+      private void InitializeStyleSheet()
+        {
+            styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/OTGCombatSystem/Editor/CombatSM/_CharacterView/SubViews/CharacterGraphSubView/CharacterStateNodeStyle.uss"));
+        }
+        
         #endregion
 
 
