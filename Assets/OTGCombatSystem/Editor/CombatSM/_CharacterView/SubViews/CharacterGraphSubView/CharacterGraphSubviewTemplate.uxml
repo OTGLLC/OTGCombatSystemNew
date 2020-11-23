@@ -6,7 +6,21 @@
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
   <engine:VisualElement name="character-graph-subview-main">
-    <engine:Label text="This is the graph sub view"/>
-	  
+    <engine:VisualElement name="state-details-area"/>
+	<engine:VisualElement name="graph-containter">
+		<editor:Toolbar name="graph-toolbar">
+			<editor:ToolbarButton name="new-state-button" text="New State"/>
+		</editor:Toolbar>
+		<engine:VisualElement name ="graph-area"/>
+		<engine:VisualElement name ="action-transition-container">
+			<engine:Box name="action-area">
+		      
+			</engine:Box>
+			<engine:Box name="transition-area">
+				
+			</engine:Box>
+		</engine:VisualElement>
+	</engine:VisualElement>
+	
   </engine:VisualElement>
 </engine:UXML>

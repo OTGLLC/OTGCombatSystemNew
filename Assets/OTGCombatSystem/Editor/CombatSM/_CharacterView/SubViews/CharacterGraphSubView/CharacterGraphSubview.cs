@@ -18,6 +18,7 @@ namespace OTG.CombatSM.EditorTools
         }
         protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
         {
+            
             m_stateGraph.OnCharacterSelected(_selectedCharacter);
         }
         protected override void HandleOnProjectUpdate()
@@ -30,8 +31,9 @@ namespace OTG.CombatSM.EditorTools
             {
                 name = "State Graph"
             };
+            
             m_stateGraph.StretchToParentSize();
-            ContainerElement.Q<VisualElement>("character-graph-subview-main").Add(m_stateGraph);
+            ContainerElement.Q<VisualElement>("graph-area").Add(m_stateGraph);
         }
         protected override void HandleViewLostFocus()
         {

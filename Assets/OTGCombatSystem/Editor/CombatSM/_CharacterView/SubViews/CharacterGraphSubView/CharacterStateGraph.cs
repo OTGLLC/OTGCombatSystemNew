@@ -25,6 +25,10 @@ namespace OTG.CombatSM.EditorTools
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
 
+            GridBackground grid = new GridBackground();
+            
+            Insert(0, grid);
+            grid.StretchToParentSize();
             
             //AddElement(GenerateEntryPointNode());
             //Clear();
@@ -32,6 +36,7 @@ namespace OTG.CombatSM.EditorTools
         public void OnCharacterSelected(OTGCombatSMC _selectedCharacter)
         {
             m_graphData.PopulateExistingStateData(_selectedCharacter);
+            Add(GenerateEntryPointNode());
         }
         public void OnGraphHidden()
         {
