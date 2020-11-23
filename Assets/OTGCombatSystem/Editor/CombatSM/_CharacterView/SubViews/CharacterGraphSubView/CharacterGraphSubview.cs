@@ -14,11 +14,11 @@ namespace OTG.CombatSM.EditorTools
         public CharacterGraphSubview()
         {
             
-            //ContainerElement.Q<VisualElement>("character-graph-subview-main").Add(m_jGraph);
+           
         }
         protected override void HandleCharacterSelection(OTGCombatSMC _selectedCharacter)
         {
-           
+            m_stateGraph.OnCharacterSelected(_selectedCharacter);
         }
         protected override void HandleOnProjectUpdate()
         {
