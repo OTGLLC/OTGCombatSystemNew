@@ -14,6 +14,8 @@ namespace OTG.CombatSM.Core
     {
         Movement,
         Combat,
-        Misc
+        Status,
+        Misc,
+        All
     }
 }

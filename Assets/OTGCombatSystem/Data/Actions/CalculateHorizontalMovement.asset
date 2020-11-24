@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3e39bf8f4f64cdb4580bf792ab0589dd, type: 3}
-  m_Name: OTG.CombatSM.Concrete.CalculateHorizontalMovement
+  m_Name: CalculateHorizontalMovement
   m_EditorClassIdentifier: 
   m_combatActionType: 2
   m_processType: 1

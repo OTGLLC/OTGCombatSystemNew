@@ -94,7 +94,7 @@ namespace OTG.CombatSM.EditorTools
 
             if(m_currentSubView != null)
             {
-                m_newCharacterSubView.OnViewLostFocus();
+                m_currentSubView.OnViewLostFocus();
                 ContainerElement.Q<VisualElement>("workflow-area").Remove(m_currentSubView.ContainerElement);
             }
 

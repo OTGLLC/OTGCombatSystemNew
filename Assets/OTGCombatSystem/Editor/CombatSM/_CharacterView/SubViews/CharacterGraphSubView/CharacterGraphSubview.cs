@@ -1,14 +1,30 @@
 ﻿
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 using OTG.CombatSM.Core;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
+using UnityEditor.UIElements;
 
 namespace OTG.CombatSM.EditorTools
 {
     public class CharacterGraphSubview : CharacterSubViewBase
     {
+      
+        #region Fields
+
         private CharacterStateGraph m_stateGraph;
+        private ListView m_actionListView;
+        private ListView m_transitionListView;
+        #endregion
+
+        #region Public API
+        public void OnStateSelected(SerializedObject _stateObj)
+        {
+            PopulateStateDetailsView(_stateObj);
+        }
+        #endregion
 
         #region abstract implementatiosn
         public CharacterGraphSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) { }
@@ -27,10 +43,15 @@ namespace OTG.CombatSM.EditorTools
         {
             CleanupGraph();
             CreateNewGraph();
+            PopulateListView<OTGCombatAction>(ref m_actionListView, OTGEditorUtility.ActionsInstantiated ,"action-list-area");
+            PopulateListView<OTGTransitionDecision>(ref m_transitionListView, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
+            SubscribeToButtonCallbacks();
         }
         protected override void HandleViewLostFocus()
         {
+            ContainerElement.Q<VisualElement>("state-details-area").Clear();
             CleanupGraph();
+            UnSubscribeFromButtonCallBacks();
         }
         protected override void HandleOnHierarchyChanged()
         {
@@ -47,7 +68,7 @@ namespace OTG.CombatSM.EditorTools
         #region Utility
         private void CreateNewGraph()
         {
-            m_stateGraph = new CharacterStateGraph(m_charViewData)
+            m_stateGraph = new CharacterStateGraph(m_charViewData,this)
             {
                 name = "State Graph"
             };
@@ -63,6 +84,67 @@ namespace OTG.CombatSM.EditorTools
             m_stateGraph.OnGraphHidden();
             ContainerElement.Q<VisualElement>("graph-area").Remove(m_stateGraph);
             m_stateGraph = null;
+        }
+        private void PopulateListView<T>(ref ListView _targetListView, List<T> _items ,string _listAreaName) where T : ScriptableObject
+        {
+            _targetListView = ContainerElement.Query<ListView>(_listAreaName).First();
+
+            _targetListView.Clear();
+            _targetListView.makeItem = () => new Label();
+
+
+            _targetListView.bindItem = (element, i) => (element as Label).text = _items[i].name;
+            _targetListView.itemsSource = _items;
+            _targetListView.itemHeight = 16;
+            _targetListView.selectionType = SelectionType.Single;
+        }
+        private void SubscribeToButtonCallbacks()
+        {
+
+            ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked += OnRefreshActions;
+            ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked += OnRefreshTransitions;
+             
+
+        }
+        private void UnSubscribeFromButtonCallBacks()
+        {
+            ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked -= OnRefreshActions;
+            ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked -= OnRefreshTransitions;
+
+        }
+        private void PopulateStateDetailsView(SerializedObject _targetState)
+        {
+            //"state-details-area"
+           ContainerElement.Q<VisualElement>("state-details-area").Clear();
+
+            PopulateReorderableList(_targetState, _targetState.FindProperty("m_onEnterActions"), "On Enter Actions");
+            PopulateReorderableList(_targetState, _targetState.FindProperty("m_onUpdateActions"), "On Update Actions");
+            PopulateReorderableList(_targetState, _targetState.FindProperty("m_animUpdateActions"), "On Animator Move Actions");
+            PopulateReorderableList(_targetState, _targetState.FindProperty("m_onExitActions"), "On Exit Actions");
+            //PopulateTransitionList(_targetState, _targetState.FindProperty("m_onEnterActions"), "Transitions");
+        }
+        private void PopulateReorderableList(SerializedObject _owner, SerializedProperty _listItems, string _listName)
+        {
+            OTGReorderableListViewElement roList = new OTGReorderableListViewElement(_owner, _listItems, _listName);
+            roList.Bind(_owner);
+            
+            ContainerElement.Q<VisualElement>("state-details-area").Add(roList);
+        }
+       
+        #endregion
+
+        #region Callbacks
+        private void OnRefreshActions()
+        {
+            OTGEditorUtility.RegisterActions();
+            OTGEditorUtility.FindAllActions(m_editorConfig);
+            PopulateListView<OTGCombatAction>(ref m_actionListView, OTGEditorUtility.ActionsInstantiated, "action-list-area");
+        }
+        private void OnRefreshTransitions()
+        {
+            OTGEditorUtility.RegisterTransitions();
+            OTGEditorUtility.FindAllTransitions(m_editorConfig);
+            PopulateListView<OTGTransitionDecision>(ref m_transitionListView, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
         }
         #endregion
     }

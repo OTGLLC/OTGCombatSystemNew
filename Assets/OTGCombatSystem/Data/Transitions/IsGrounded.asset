@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57fd865b4266a6840ae2ee6165e71136, type: 3}
-  m_Name: PassThrough 3
+  m_Script: {fileID: 11500000, guid: cf0e571efb91378469e08b6e64b48e02, type: 3}
+  m_Name: IsGrounded
   m_EditorClassIdentifier: 
-  m_transitionDecisionType: 0
+  m_transitionDecisionType: 2

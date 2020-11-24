@@ -17,13 +17,15 @@ namespace OTG.CombatSM.EditorTools
         #region Fields
         private CharcaterStateGraphData m_graphData;
         private CharacterViewData m_charViewData;
+        private CharacterGraphSubview m_subView;
         #endregion
 
 
         #region Public API
-        public CharacterStateGraph(CharacterViewData _charViewData)
+        public CharacterStateGraph(CharacterViewData _charViewData, CharacterGraphSubview _subView)
         {
             m_charViewData = _charViewData;
+            m_subView = _subView;
             m_graphData = new CharcaterStateGraphData();
 
             AddManipulators();
@@ -40,6 +42,10 @@ namespace OTG.CombatSM.EditorTools
         {
             Clear();
             m_graphData.Cleanup();
+        }
+        public void OnNodeSelected(SerializedObject _selectedStateNode)
+        {
+            m_subView.OnStateSelected(_selectedStateNode);
         }
         #endregion
 
@@ -63,6 +69,7 @@ namespace OTG.CombatSM.EditorTools
             GenerateNodes(m_graphData.StateDataNodeRoot, 0);
 
         }
+        
         #endregion
 
         private void GenerateNodes(StateDataNode _stateNode, int _level, Port _outPort = null)
@@ -92,7 +99,7 @@ namespace OTG.CombatSM.EditorTools
 
         private CharacterStateNode GenerateNode(StateDataNode _data)
         {
-            var node = new CharacterStateNode()
+            var node = new CharacterStateNode(_data.StateObj, this)
             {
                 title = _data.StateObj.targetObject.name,
                 
@@ -106,35 +113,35 @@ namespace OTG.CombatSM.EditorTools
 
             return node;
         }
-        private CharacterStateNode GenerateEntryPointNode()
-        {
-            var node = new CharacterStateNode()
-            {
-                title = "START",
-                GUID = Guid.NewGuid().ToString(),
-                StateName = "EntryState",
-                EntryPoint = true
-            };
+        //private CharacterStateNode GenerateEntryPointNode()
+        //{
+        //    var node = new CharacterStateNode()
+        //    {
+        //        title = "START",
+        //        GUID = Guid.NewGuid().ToString(),
+        //        StateName = "EntryState",
+        //        EntryPoint = true
+        //    };
 
-            var port = GeneratePort(node, Direction.Output);
-            port.name = "NEXT";
-            var port2 = GeneratePort(node, Direction.Output);
-            port.name = "NEXT2";
+        //    var port = GeneratePort(node, Direction.Output);
+        //    port.name = "NEXT";
+        //    var port2 = GeneratePort(node, Direction.Output);
+        //    port.name = "NEXT2";
 
-            var portIn = GeneratePort(node, Direction.Input);
+        //    var portIn = GeneratePort(node, Direction.Input);
 
-            node.outputContainer.Add(port);
-            node.outputContainer.Add(port2);
-            node.inputContainer.Add(portIn);
-            port.ConnectTo(portIn);
+        //    node.outputContainer.Add(port);
+        //    node.outputContainer.Add(port2);
+        //    node.inputContainer.Add(portIn);
+        //    port.ConnectTo(portIn);
           
-            node.SetPosition(new Rect(100, 200, 100, 150));
+        //    node.SetPosition(new Rect(100, 200, 100, 150));
 
-            node.RefreshExpandedState();
-            node.RefreshPorts();
+        //    node.RefreshExpandedState();
+        //    node.RefreshPorts();
 
-            return node;
-        }
+        //    return node;
+        //}
 
         private Port GeneratePort(CharacterStateNode _targetNode, Direction _portDirection, Port.Capacity _capacity = Port.Capacity.Single)
         {

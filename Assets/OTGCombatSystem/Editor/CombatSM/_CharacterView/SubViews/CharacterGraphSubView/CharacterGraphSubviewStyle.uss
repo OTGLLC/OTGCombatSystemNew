@@ -26,13 +26,40 @@
 }
 #action-area
 {
+	display: flex;
+	flex-direction: column;
 	flex: .5;
-	background-color: rgba(120,10,100,1);
+}
+#transition-area
+{
+	display: flex;
+	flex-direction: column;
+	flex: .5;
+}
+#transition-label-area
+{
+	display: flex;
+	flex-direction: row;
+	flex: .2;
+}
+#action-label-area
+{
+	display: flex;
+	flex-direction: row;
+	flex: .2;
+}
+#transition-list-area
+{
+	flex: .8;
+}
+#action-list-area
+{
+	flex: .8;
 }
 #transition-area
 {
 	flex: .5;
-	background-color: rgba(10,120,100,1);
+	
 }
 
 

@@ -19,11 +19,13 @@ namespace OTG.CombatSM.Core
     {
         MovementBased,
         CombatBased,
-        Misc
+        Misc,
+        All
     }
     public enum E_ProcessType
     {
         Calculation,
-        Perform
+        Perform,
+        All
     }
 }
