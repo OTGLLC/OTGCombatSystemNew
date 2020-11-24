@@ -78,9 +78,9 @@ namespace OTG.CombatSM.EditorTools
         private void CreateViews(EditorConfig _editorConfig)
         {
             m_newCharacterSubView = new NewCharacterSubView(_editorConfig, m_viewData);
-            m_charDetailsSubView = new CharacterDetailsSubView(m_viewData);
-            m_characterGraphSubView = new CharacterGraphSubview(m_viewData);
-            m_characterStateSubView = new CharacterStateSubview(m_viewData);
+            m_charDetailsSubView = new CharacterDetailsSubView(m_viewData, _editorConfig);
+            m_characterGraphSubView = new CharacterGraphSubview(m_viewData, _editorConfig);
+            m_characterStateSubView = new CharacterStateSubview(m_viewData, _editorConfig);
         }
         private void SwitchSubViews(CharacterSubViewBase _newView)
         {

@@ -11,7 +11,7 @@ namespace OTG.CombatSM.EditorTools
         private CharacterStateGraph m_stateGraph;
 
         #region abstract implementatiosn
-        public CharacterGraphSubview(CharacterViewData _charViewData) : base(_charViewData) { }
+        public CharacterGraphSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) { }
         protected override void HandleCharacterSelection()
         {
             CleanupGraph();

@@ -12,6 +12,7 @@ namespace OTG.CombatSM.Core
         #region Properties
         public Transform Comp_Transform { get; private set; }
         public CharacterController Comp_CharControl { get; private set; }
+        public float DesiredHorizontalDistance { get; set; }
         #endregion
 
         #region Public API

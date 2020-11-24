@@ -1,4 +1,5 @@
 ﻿
+using UnityEngine;
 
 namespace OTG.CombatSM.Core
 {
@@ -9,7 +10,7 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Properties
-
+        public Vector2 MovementVector { get; set; }
         #endregion
 
         #region Public API

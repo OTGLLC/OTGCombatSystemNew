@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5dfd9d41e2f97fc42a06b756997effbf, type: 3}
-  m_Name: TestActionOne
+  m_Script: {fileID: 11500000, guid: 50dfd1724aaabff4b9d4fd4a88d346fa, type: 3}
+  m_Name: OTG.CombatSM.Concrete.CalculateVerticalMovenet
   m_EditorClassIdentifier: 
   m_combatActionType: 0
+  m_processType: 0

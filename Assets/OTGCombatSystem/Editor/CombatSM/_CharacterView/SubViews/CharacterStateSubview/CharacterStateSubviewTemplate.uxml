@@ -11,7 +11,8 @@
 		  <engine:Box name="available-actions-container" class="available-container">
 			  <engine:Label name="available-actions-label" text="Available Actions" class ="available-label"/>
 			  <engine:Box name="actions-menu-container" class ="menu-container">
-				  <editor:EnumField label="Action Type" name ="action-filter" type="OTG.CombatSM.Core.E_ActionType, Assembly-CSharp" class="enum-filter-label"/>
+				  <editor:EnumField name ="action-filter" type="OTG.CombatSM.Core.E_ActionType, Assembly-CSharp" class="enum-filter-label"/>
+				  <editor:EnumField name ="process-filter" type="OTG.CombatSM.Core.E_ProcessType, Assembly-CSharp" class="enum-filter-label"/>
 				  <engine:Button name="refresh-actions-button" class ="available-refresh-button"/>
 			  </engine:Box>
 			  <engine:Box name ="available-actions" class="available-box">
@@ -21,7 +22,8 @@
 		  <engine:Box name="available-transitions-container" class="available-container">
 			  <engine:Label name="available-transitions-label" text="Available Transitions" class ="available-label"/>
 			  <engine:Box name="transitions-menu-container" class ="menu-container">
-				  <editor:EnumField label="Transition Type" name ="transition-filter" type="OTG.CombatSM.Core.E_TransitionDecisionType, Assembly-CSharp" class="enum-filter-label"/>
+				  <editor:EnumField name ="transition-filter" type="OTG.CombatSM.Core.E_TransitionDecisionType, Assembly-CSharp" class="enum-filter-label"/>
+				  <editor:EnumField name ="process-filter" type="OTG.CombatSM.Core.E_ProcessType, Assembly-CSharp" class="enum-filter-label"/>
 				  <engine:Button name="refresh-transitions-button" class ="available-refresh-button"/>
 			  </engine:Box>
 			  <engine:Box name ="available-transitions" class="available-box">

@@ -10,7 +10,7 @@ namespace OTG.CombatSM.EditorTools
 
 
         #region abstract implementatiosn
-        public CharacterDetailsSubView(CharacterViewData _charViewData) : base(_charViewData) { }
+        public CharacterDetailsSubView(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) { }
         protected override void HandleCharacterSelection()
         {
            

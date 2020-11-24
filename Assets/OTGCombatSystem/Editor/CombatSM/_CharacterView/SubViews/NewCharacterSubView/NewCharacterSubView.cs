@@ -22,7 +22,6 @@ namespace OTG.CombatSM.EditorTools
         private Stack<BreadcrumbData> m_currentBreadcrumbs;
         private Stack<BreadcrumbData> m_availableBreadcrumbs;
         private NewCharacterCreationFactory m_creationFactory;
-        private EditorConfig m_editorConfig;
         #endregion
 
         #region Public API
@@ -33,9 +32,8 @@ namespace OTG.CombatSM.EditorTools
         #endregion
 
         #region abstract implementatiosn
-        public NewCharacterSubView(EditorConfig _config, CharacterViewData _viewData) : base(_viewData)
+        public NewCharacterSubView(EditorConfig _config, CharacterViewData _viewData) : base(_viewData, _config)
         {
-            m_editorConfig = _config;
             m_creationData = new NewCharacterCreationData();
             m_creationFactory = new NewCharacterCreationFactory();
             CreateBreadcrumbs();
