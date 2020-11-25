@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: DevPlayer_Inititial_CombatState
+  m_Name: OTGCombatState 3
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: fe9e9976ffea9fd44bc10cebee1d4609, type: 3}
+    m_animClip: {fileID: 0}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
@@ -21,9 +21,7 @@ MonoBehaviour:
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
   m_onEnterActions: []
-  m_onUpdateActions:
-  - {fileID: 11400000, guid: 0c1523eb2df0f00409c75ff6c7f0f08a, type: 2}
-  m_animUpdateActions:
-  - {fileID: 11400000, guid: 14a48d8d408d1f949ac2e075a4f96021, type: 2}
+  m_onUpdateActions: []
+  m_animUpdateActions: []
   m_onExitActions: []
   m_stateTransitions: []

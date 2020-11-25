@@ -130,14 +130,14 @@ namespace OTG.CombatSM.EditorTools
 
             ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked += OnRefreshActions;
             ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked += OnRefreshTransitions;
-             
+            ContainerElement.Q<Button>("new-state-button").clickable.clicked += OnNewStateClicked;
 
         }
         private void UnSubscribeFromButtonCallBacks()
         {
             ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked -= OnRefreshActions;
             ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked -= OnRefreshTransitions;
-
+            ContainerElement.Q<Button>("new-state-button").clickable.clicked -= OnNewStateClicked;
         }
         private void PopulateStateDetailsView(SerializedObject _targetState)
         {
@@ -217,7 +217,7 @@ namespace OTG.CombatSM.EditorTools
         }
         private void OnNewStateClicked()
         {
-
+            m_stateGraph.OnNewStateButtonPressed();
         }
         #endregion
     }

@@ -36,7 +36,6 @@ namespace OTG.CombatSM.EditorTools
         }
         public void OnCharacterSelected()
         {
-            
             m_graphData.PopulateExistingStateData(m_charViewData.SelectedCharacter);
             CreateStartingNodeGraph();
         }
@@ -45,6 +44,10 @@ namespace OTG.CombatSM.EditorTools
             m_selectedNode = null;
             Clear();
             m_graphData.Cleanup();
+        }
+        public void OnNewStateButtonPressed()
+        {
+
         }
         #endregion
 
