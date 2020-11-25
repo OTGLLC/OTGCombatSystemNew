@@ -5,20 +5,19 @@ namespace OTG.CombatSM.Core
 {
     public class MovementHandler
     {
-        #region Fields
-        private MovementHandlerData m_moveHandlerData;
-        #endregion
-
+        
         #region Properties
+        public MovementHandlerData Data { get; private set; }
         public Transform Comp_Transform { get; private set; }
         public CharacterController Comp_CharControl { get; private set; }
         public float DesiredHorizontalDistance { get; set; }
+        public float CurrentHorizontalPosition { get; set; }
         #endregion
 
         #region Public API
         public MovementHandler(HandlerDataGroup _dataGroup, CharacterController _charControl, Transform _trans)
         {
-            m_moveHandlerData = _dataGroup.MoveHandlerData;
+            Data = _dataGroup.MoveHandlerData;
             Comp_CharControl = _charControl;
             Comp_Transform = _trans;
         }
@@ -32,7 +31,7 @@ namespace OTG.CombatSM.Core
         #region Utility
         private void Cleanup()
         {
-            m_moveHandlerData = null;
+            Data = null;
             Comp_Transform = null;
             Comp_CharControl = null;
         }

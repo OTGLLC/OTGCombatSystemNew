@@ -10,7 +10,8 @@ namespace OTG.CombatSM.EditorTools
     {
         #region Properties
         public List<OTGCombatSMC> CharactersInScene { get; private set; }
-        public OTGCombatSMC SelectedCharacter { get; set; }
+        public OTGCombatSMC SelectedCharacter { get; private set; }
+        public SerializedObject SelectedCharacterSObject { get; private set; }
         #endregion
 
         #region Public API
@@ -31,6 +32,11 @@ namespace OTG.CombatSM.EditorTools
             }
 
             
+        }
+        public void SetSelectedCharacter(OTGCombatSMC _selection)
+        {
+            SelectedCharacter = _selection;
+            SelectedCharacterSObject = new SerializedObject(SelectedCharacter);
         }
         #endregion
     }

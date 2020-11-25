@@ -56,6 +56,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable = new List<OTGCombatAction>();
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateVerticalMovenet>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformMovement>());
         }
         public static void RegisterTransitions()
         {

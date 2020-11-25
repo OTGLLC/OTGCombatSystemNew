@@ -36,11 +36,15 @@ namespace OTG.CombatSM.Core
         private void OnEnable()
         {
             InitializeHandlers();
-            OTGCombatantManager.SubscribeToCombatantUpdateLoop(this);
+            //OTGCombatantManager.SubscribeToCombatantUpdateLoop(this);
         }
         private void Start()
         {
             ChangeState(m_startingState);
+        }
+        private void Update()
+        {
+            m_currentState.OnStateUpdate(this);
         }
         private void OnAnimatorMove()
         {
@@ -49,7 +53,7 @@ namespace OTG.CombatSM.Core
         private void OnDisable()
         {
             CleanupHandlers();
-            OTGCombatantManager.UnsubscribeFromCombatantUpdateLoop(this);
+            //OTGCombatantManager.UnsubscribeFromCombatantUpdateLoop(this);
         }
         #endregion
 
@@ -81,7 +85,6 @@ namespace OTG.CombatSM.Core
                 return;
             }
 
-            Debug.Log("Changing to new state");
 
             if (m_currentState != null)
                 m_currentState.OnStateExit(this);

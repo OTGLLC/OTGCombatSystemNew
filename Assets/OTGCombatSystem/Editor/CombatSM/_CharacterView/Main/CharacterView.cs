@@ -70,7 +70,7 @@ namespace OTG.CombatSM.EditorTools
                 {
                     OTGCombatSMC combatant = candidate as OTGCombatSMC;
 
-                    m_viewData.SelectedCharacter = combatant;
+                    m_viewData.SetSelectedCharacter(combatant);
                     m_currentSubView.OnCharacterSelected();
                 }
             };

@@ -21,7 +21,8 @@ namespace OTG.CombatSM.Concrete
             MovementHandler moveHandler = _controller.Handler_Movement;
             InputHandler inputHandle = _controller.Handler_Input;
 
-
+            moveHandler.DesiredHorizontalDistance = inputHandle.MovementVector.x * moveHandler.Data.HorizontalMoveSpeed;
+            moveHandler.CurrentHorizontalPosition = Mathf.MoveTowards(moveHandler.CurrentHorizontalPosition, moveHandler.DesiredHorizontalDistance, Time.deltaTime);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace OTG.CombatSM.Concrete
 
         public override void Act(OTGCombatSMC _controller)
         {
-            throw new System.NotImplementedException();
+            
         }
     }
 }

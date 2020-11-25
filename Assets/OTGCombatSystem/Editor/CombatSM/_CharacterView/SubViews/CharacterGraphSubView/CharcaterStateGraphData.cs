@@ -72,8 +72,14 @@ namespace OTG.CombatSM.EditorTools
             for(int i = 0; i < transitionCount; i++)
             {
                 SerializedProperty transition = _state.FindProperty("m_stateTransitions").GetArrayElementAtIndex(i);
-                
-                SerializedObject nextState = new SerializedObject(transition.FindPropertyRelative("m_nextState").objectReferenceValue);
+
+                SerializedProperty nextStateProp = transition.FindPropertyRelative("m_nextState");
+                SerializedObject nextState = null;
+
+                if (nextStateProp.objectReferenceValue == null)
+                    return;
+
+                nextState = new SerializedObject(nextStateProp.objectReferenceValue);
 
                 string ID = _state.targetObject.name + "-to-" + nextState.targetObject.name;
 

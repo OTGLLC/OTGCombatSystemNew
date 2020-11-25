@@ -1,1 +1,16 @@
-﻿VisualElement {}
+﻿#character-details-subview-main
+{
+	display: flex;
+	flex-direction: column;
+}
+.handler-data-row
+{
+	flex: .5;
+	display : flex;
+	flex-direction: row;
+}
+.handler-data-box
+{
+	display: flex;
+	flex: .33;
+}

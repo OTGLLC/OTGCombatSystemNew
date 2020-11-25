@@ -5,8 +5,33 @@
     xmlns:editor="UnityEditor.UIElements"
     xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
 >
-  <engine:VisualElement name="character-subview-main">
-    <engine:Label text="This is the detail sub view"/>
+  <engine:VisualElement name="character-details-subview-main">
+	  <engine:VisualElement name="first-row" class="handler-data-row">
+		  <engine:Box name="movehandler-data-box" class="handler-data-box">
+			  <engine:Label text ="Movement Data"/>
+			  <engine:VisualElement name="movement-handler-data" class="handler-data-area"/>
+		  </engine:Box>
+		  <engine:Box name="inputhandler-data-box" class="handler-data-box">
+			  <engine:Label text ="Input Data"/>
+			  <engine:VisualElement name="input-handler-data" class="handler-data-area"/>
+		  </engine:Box>
+		  <engine:Box name="collisionhandler-data-box" class="handler-data-box">
+			  <engine:Label text ="Collision Data"/>
+			  <engine:VisualElement name="collision-handler-data" class="handler-data-area"/>
+		  </engine:Box>
+	  </engine:VisualElement>
+	  <engine:VisualElement name="second-row" class ="handler-data-row">
+		  <engine:Box name="combathandler-data-box" class="handler-data-box">
+			  <engine:Label text ="Combat Data"/>
+			  <engine:VisualElement name="combat-handler-data" class="handler-data-area"/>
+		  </engine:Box>
+		  <engine:Box name="animationhandler-data-box" class="handler-data-box">
+			  <engine:Label text ="Animation Data"/>
+			  <engine:VisualElement name="animation-handler-data" class="handler-data-area"/>
+		  </engine:Box>
+		  
+	  </engine:VisualElement>
+	  
   </engine:VisualElement>    
 
 </engine:UXML>
