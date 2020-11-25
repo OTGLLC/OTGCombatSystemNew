@@ -18,12 +18,14 @@ namespace OTG.CombatSM.EditorTools
         private CharacterStateGraph m_stateGraph;
         private ListView m_actionListView;
         private ListView m_transitionListView;
+        private CharacterStateNode m_selectedNode;
         #endregion
 
         #region Public API
-        public void OnStateSelected(SerializedObject _stateObj)
+        public void OnStateSelected(CharacterStateNode _selectedNode)
         {
-            PopulateStateDetailsView(_stateObj);
+            m_selectedNode = _selectedNode;
+            PopulateStateDetailsView(_selectedNode.OwningSerializedObject);
         }
         #endregion
 
@@ -93,7 +95,7 @@ namespace OTG.CombatSM.EditorTools
         {
             if (m_stateGraph == null)
                 return;
-
+            m_selectedNode = null;
             m_stateGraph.OnGraphHidden();
             ContainerElement.Q<VisualElement>("graph-area").Remove(m_stateGraph);
             m_stateGraph = null;
@@ -212,6 +214,10 @@ namespace OTG.CombatSM.EditorTools
         private void OnMouseUpEvent(MouseUpEvent e)
         {
             m_GotMouseDown = false;
+        }
+        private void OnNewStateClicked()
+        {
+
         }
         #endregion
     }

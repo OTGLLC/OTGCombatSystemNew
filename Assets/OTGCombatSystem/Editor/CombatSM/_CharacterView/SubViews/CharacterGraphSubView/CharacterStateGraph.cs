@@ -15,12 +15,14 @@ namespace OTG.CombatSM.EditorTools
 
 
         #region Fields
+        private CharacterStateNode m_selectedNode;
+
         private CharcaterStateGraphData m_graphData;
         private CharacterViewData m_charViewData;
         private CharacterGraphSubview m_subView;
         #endregion
 
-
+        
         #region Public API
         public CharacterStateGraph(CharacterViewData _charViewData, CharacterGraphSubview _subView)
         {
@@ -40,13 +42,21 @@ namespace OTG.CombatSM.EditorTools
         }
         public void OnGraphHidden()
         {
+            m_selectedNode = null;
             Clear();
             m_graphData.Cleanup();
         }
-        public void OnNodeSelected(SerializedObject _selectedStateNode)
+        #endregion
+
+        #region Base Class Implementation
+        public override void AddToSelection(ISelectable selectable)
         {
-            m_subView.OnStateSelected(_selectedStateNode);
+            m_selectedNode = (CharacterStateNode)selectable;
+            m_subView.OnStateSelected(m_selectedNode);
+            base.AddToSelection(selectable);
+
         }
+      
         #endregion
 
         #region Utility
@@ -99,7 +109,7 @@ namespace OTG.CombatSM.EditorTools
 
         private CharacterStateNode GenerateNode(StateDataNode _data)
         {
-            var node = new CharacterStateNode(_data.StateObj, this)
+            var node = new CharacterStateNode(_data.StateObj)
             {
                 title = _data.StateObj.targetObject.name,
                 

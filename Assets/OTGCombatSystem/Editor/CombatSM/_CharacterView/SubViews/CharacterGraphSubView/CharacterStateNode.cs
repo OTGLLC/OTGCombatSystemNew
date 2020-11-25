@@ -17,18 +17,17 @@ namespace OTG.CombatSM.EditorTools
 
         public bool EntryPoint = false;
 
-        private SerializedObject m_owningObject;
-        private CharacterStateGraph m_ownerGraph;
-
+        public SerializedObject OwningSerializedObject { get; private set; }
+       
         #region Public API
-        public CharacterStateNode(SerializedObject _owningObj, CharacterStateGraph _ownerGraph)
+        public CharacterStateNode(SerializedObject _owningObj)
         {
             GUID = Guid.NewGuid().ToString();
-            m_owningObject = _owningObj;
-            m_ownerGraph = _ownerGraph;
+            OwningSerializedObject = _owningObj;
+
             InitializeStyleSheet();
-            RegisterCallback<MouseDownEvent>(OnMouseDown);
         }
+        
         #endregion
 
         #region Utility
@@ -36,14 +35,6 @@ namespace OTG.CombatSM.EditorTools
         {
             
             styleSheets.Add(AssetDatabase.LoadAssetAtPath<StyleSheet>("Assets/OTGCombatSystem/Editor/CombatSM/_CharacterView/SubViews/CharacterGraphSubView/CharacterStateNodeStyle.uss"));
-        }
-        private void OnMouseDown(MouseDownEvent e)
-        {
-            m_ownerGraph.OnNodeSelected(m_owningObject);
-        }
-        private void RegisterNodeCallbacks(Action<SerializedObject> _targetCallback)
-        {
-            _targetCallback.Invoke(m_owningObject);
         }
         #endregion
 

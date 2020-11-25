@@ -12,5 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d53d51d3e74f034f8d1666588a8d9ab, type: 3}
   m_Name: DevPlayer_HanderDataGroup
   m_EditorClassIdentifier: 
+  m_animHandlerData:
+    m_test: 0
   m_moveHandlerData:
-    m_horizontalMoveSpeed: 10
+    m_horizontalMoveSpeed: 0.01
+  m_inputHandlerData:
+    m_test: 0
+  m_collisionHandlerData:
+    m_test: 0
+  m_combatHandlerData:
+    m_test: 0
