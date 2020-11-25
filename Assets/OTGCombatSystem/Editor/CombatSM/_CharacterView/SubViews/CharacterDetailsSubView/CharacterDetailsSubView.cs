@@ -11,17 +11,36 @@ namespace OTG.CombatSM.EditorTools
     {
         #region Data Boxes
         private VisualElement m_movementHandlerData;
+        private PropertyField m_moveDataPropField;
+
         private VisualElement m_inputHandlerData;
+        private PropertyField m_inputDataPropField;
+
         private VisualElement m_collisionHandlerData;
+        private PropertyField m_collisionDataPropField;
+
         private VisualElement m_combatHandlerData;
+        private PropertyField m_combatHandlerDataPropField;
+
         private VisualElement m_animationHandlerData;
+        private PropertyField m_animhandlerDataPropField;
         #endregion
 
         #region abstract implementatiosn
         public CharacterDetailsSubView(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) { }
         protected override void HandleCharacterSelection()
         {
-            BindData(ref m_movementHandlerData, m_charViewData.SelectedCharacterSObject.FindProperty("m_handlerDataGroup").FindPropertyRelative("m_moveHandlerData"));
+            UnBindData(ref m_movementHandlerData, ref m_moveDataPropField);
+            UnBindData(ref m_inputHandlerData, ref m_inputDataPropField);
+            UnBindData(ref m_collisionHandlerData, ref m_collisionDataPropField);
+            UnBindData(ref m_combatHandlerData, ref m_combatHandlerDataPropField);
+            UnBindData(ref m_animationHandlerData, ref m_animhandlerDataPropField);
+
+            BindData(ref m_movementHandlerData,ref m_moveDataPropField, m_charViewData.CharacterHandlerDataObj,m_charViewData.MovementDataProp);
+            BindData(ref m_inputHandlerData, ref m_inputDataPropField, m_charViewData.CharacterHandlerDataObj, m_charViewData.InputHandlerDataProp);
+            BindData(ref m_collisionHandlerData, ref m_collisionDataPropField, m_charViewData.CharacterHandlerDataObj, m_charViewData.CollisionHandlerDataProp);
+            BindData(ref m_combatHandlerData, ref m_combatHandlerDataPropField, m_charViewData.CharacterHandlerDataObj, m_charViewData.CombatHandlerDataProp);
+            BindData(ref m_animationHandlerData, ref m_animhandlerDataPropField, m_charViewData.CharacterHandlerDataObj, m_charViewData.AnimHandlerDataProp);
         }
         protected override void HandleOnProjectUpdate()
         {
@@ -55,17 +74,25 @@ namespace OTG.CombatSM.EditorTools
             FindDataBox(ref m_animationHandlerData, "animationhandler-data-box");
             FindDataBox(ref m_collisionHandlerData, "collisionhandler-data-box");
             FindDataBox(ref m_inputHandlerData, "inputhandler-data-box");
-            FindDataBox(ref m_movementHandlerData, "movehandler-data-box");
+            FindDataBox(ref m_combatHandlerData, "combathandler-data-box");
         }
         private void FindDataBox(ref VisualElement _target, string _boxName)
         {
             _target = ContainerElement.Q<VisualElement>(_boxName);
         }
-        private void BindData(ref VisualElement _target, SerializedProperty _source)
+        private void BindData(ref VisualElement _target, ref PropertyField _targetField,SerializedObject _owner, SerializedProperty _propTarget)
         {
-            PropertyField field = new PropertyField(_source);
+            _targetField = new PropertyField(_propTarget);
+            _targetField.Bind(_owner);
+            _target.Add(_targetField);
+        }
+        private void UnBindData(ref VisualElement _target, ref PropertyField _targetField)
+        {
+            if (_targetField == null || _target == null)
+                return; 
 
-            _target.Add(field);
+            _targetField.Unbind();
+            _target.Remove(_targetField);
         }
         #endregion
     }
