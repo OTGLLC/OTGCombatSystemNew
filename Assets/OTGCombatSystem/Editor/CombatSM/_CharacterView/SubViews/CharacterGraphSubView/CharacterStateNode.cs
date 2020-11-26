@@ -24,6 +24,7 @@ namespace OTG.CombatSM.EditorTools
         {
             GUID = Guid.NewGuid().ToString();
             OwningSerializedObject = n.OwnerStateObject;
+            title = n.OwnerState.name;
 
             InitializeStyleSheet();
         }
