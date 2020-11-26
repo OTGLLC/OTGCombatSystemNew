@@ -29,7 +29,7 @@ namespace OTG.CombatSM.EditorTools
 
             AddManipulators();
             ConstructGridBackground();
-            CreateStartingNodeGraph();
+           
         }
         public void OnCharacterSelected()
         {
@@ -75,7 +75,10 @@ namespace OTG.CombatSM.EditorTools
         }
         private void CreateStartingNodeGraph()
         {
-            
+            StateNode startingState = m_charViewData.StateTree.RootNode;
+            CharacterStateNode staringStateNode = new CharacterStateNode(startingState);
+
+            AddElement(staringStateNode);
 
         }
         

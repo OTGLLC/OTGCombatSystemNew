@@ -20,10 +20,10 @@ namespace OTG.CombatSM.EditorTools
         public SerializedObject OwningSerializedObject { get; private set; }
        
         #region Public API
-        public CharacterStateNode(SerializedObject _owningObj)
+        public CharacterStateNode(StateNode n)
         {
             GUID = Guid.NewGuid().ToString();
-            OwningSerializedObject = _owningObj;
+            OwningSerializedObject = n.OwnerStateObject;
 
             InitializeStyleSheet();
         }
