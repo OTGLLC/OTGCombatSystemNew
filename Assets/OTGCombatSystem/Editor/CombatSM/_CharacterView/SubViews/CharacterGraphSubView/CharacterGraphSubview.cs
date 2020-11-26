@@ -18,6 +18,7 @@ namespace OTG.CombatSM.EditorTools
         private CharacterStateGraph m_stateGraph;
         private ListView m_actionListView;
         private ListView m_transitionListView;
+        private ListView m_availabeStatesListView;
         private CharacterStateNode m_selectedNode;
         #endregion
 
@@ -36,6 +37,7 @@ namespace OTG.CombatSM.EditorTools
             CleanupGraph();
             CreateNewGraph();
 
+            PopulateAvailableStates();
             m_stateGraph.OnCharacterSelected();
         }
         protected override void HandleOnProjectUpdate()
@@ -48,6 +50,7 @@ namespace OTG.CombatSM.EditorTools
             CreateNewGraph();
             PopulateListView<OTGCombatAction>(ref m_actionListView, OTGEditorUtility.ActionsInstantiated ,"action-list-area");
             PopulateListView<OTGTransitionDecision>(ref m_transitionListView, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
+         
             AddCallbacksToListView(ref m_actionListView);
             AddCallbacksToListView(ref m_transitionListView);
             m_actionListView.onSelectionChange += OnActionListItemSelected;
@@ -163,6 +166,11 @@ namespace OTG.CombatSM.EditorTools
             transList.Bind(_owner);
             ContainerElement.Q<VisualElement>("state-details-area").Add(transList);
         }
+        private void PopulateAvailableStates()
+        {
+            OTGEditorUtility.FindCharacterStates(m_charViewData.SelectedCharacter.name, m_editorConfig);
+            PopulateListView<OTGCombatState>(ref m_availabeStatesListView, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
+        }
         #endregion
 
         #region Callbacks
@@ -224,6 +232,7 @@ namespace OTG.CombatSM.EditorTools
             newState.name = stateName;
             AssetDatabase.CreateAsset(newState, folder + "/" + stateName + ".asset");
 
+            PopulateAvailableStates();
             m_stateGraph.OnNewStateButtonPressed();
         }
         #endregion

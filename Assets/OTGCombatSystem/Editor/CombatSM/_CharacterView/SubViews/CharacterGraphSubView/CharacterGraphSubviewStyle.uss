@@ -29,13 +29,19 @@
 {
 	display: flex;
 	flex-direction: column;
-	flex: .5;
+	flex: .33;
 }
 #transition-area
 {
 	display: flex;
 	flex-direction: column;
-	flex: .5;
+	flex: .33;
+}
+#state-area
+{
+	display: flex;
+	flex-direction: column;
+	flex: .33;
 }
 #transition-label-area
 {
@@ -50,6 +56,10 @@
 	flex: .2;
 }
 #transition-list-area
+{
+	flex: .8;
+}
+#state-list-area
 {
 	flex: .8;
 }

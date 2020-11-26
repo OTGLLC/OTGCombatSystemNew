@@ -93,8 +93,7 @@ namespace OTG.CombatSM.EditorTools
             StateNode startingState = m_charViewData.StateTree.RootNode;
 
             CharacterStateNode n = GenerateNode(startingState);
-            Rect parentPosition = new Rect((startingState.Level * 150) + 150, (startingState.Order * 150) + 150, 150, 150);
-            n.SetPosition(parentPosition);
+           
             GenerateChildrenNodes(n);
 
 
@@ -104,6 +103,9 @@ namespace OTG.CombatSM.EditorTools
         {
             CharacterStateNode n = new CharacterStateNode(_nodeData);
             AddElement(n);
+
+            Rect parentPosition = new Rect((n.NodeData.Level * 150) + 150, (n.NodeData.Order * 150) + 150, 150, 150);
+            n.SetPosition(parentPosition);
 
             return n;
         }

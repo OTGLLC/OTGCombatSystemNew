@@ -29,7 +29,12 @@
 				</engine:VisualElement>
 				<engine:ListView name="transition-list-area"/>
 			</engine:Box>
-			
+			<engine:Box name="state-area">
+				<engine:VisualElement name="state-label-area">
+					<engine:Label name="state-label" text="Available States"/>
+				</engine:VisualElement>
+				<engine:ListView name="state-list-area"/>
+			</engine:Box>
 		</engine:VisualElement>
 	</engine:VisualElement>
 	

@@ -17,6 +17,7 @@ namespace OTG.CombatSM.EditorTools
 
         public static List<OTGTransitionDecision> TransitionsAvailable { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; } = new List<OTGTransitionDecision>();
+        public static List<OTGCombatState> AvailableCharacterStates { get; private set; } = new List<OTGCombatState>();
         public static void SubscribeToolbarButtonCallback(VisualElement _container, string _buttonName,  Action _callback)
         {
             _container.Q<ToolbarButton>(_buttonName).clickable.clicked += _callback;
@@ -63,6 +64,21 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Clear();
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsGrounded>());
+        }
+        public static void FindCharacterStates(string _characterName, EditorConfig _config)
+        {
+            // Find all Texture2Ds that have 'co' in their filename, that are labelled with 'architecture' and are placed in 'MyAwesomeProps' folder
+            AvailableCharacterStates = new List<OTGCombatState>();
+            string searchString = _characterName + " t:OTGCombatState";
+            string folderName = GetCharacterStateFolder(_characterName, _config.CharacterPathRoot);
+            string[] guids = AssetDatabase.FindAssets(searchString, new[] { folderName });
+
+            for(int i = 0; i < guids.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                AvailableCharacterStates.Add(AssetDatabase.LoadAssetAtPath<OTGCombatState>(path));
+            }
+
         }
         public static void FindAllActions(EditorConfig _editorConfig)
         {
