@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d53d51d3e74f034f8d1666588a8d9ab, type: 3}
-  m_Name: Dev Player_HanderDataGroup
+  m_Name: Test Character_HanderDataGroup
   m_EditorClassIdentifier: 
   m_animHandlerData:
     m_test: 0

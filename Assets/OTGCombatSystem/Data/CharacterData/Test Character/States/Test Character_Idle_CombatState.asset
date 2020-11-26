@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: OTGCombatState
+  m_Name: Test Character_Idle_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
     m_animClip: {fileID: 0}

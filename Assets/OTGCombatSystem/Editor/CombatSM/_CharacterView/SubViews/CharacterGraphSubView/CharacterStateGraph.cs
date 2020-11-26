@@ -93,35 +93,10 @@ namespace OTG.CombatSM.EditorTools
             StateNode startingState = m_charViewData.StateTree.RootNode;
 
             CharacterStateNode n = GenerateNode(startingState);
-           
+            Rect parentPosition = new Rect((startingState.Level * 150) + 150, (startingState.Order * 150) + 150, 150, 150);
+            n.SetPosition(parentPosition);
             GenerateChildrenNodes(n);
 
-
-            //foreach (KeyValuePair<OTGCombatState,StateNodeTransition> pair in startingState.StateTransitions)
-            //{
-            //    Port outPort = GenerateStateNodePort(n, Direction.Output);
-            //    outPort.portName = "Next State";
-            //    n.outputContainer.Add(outPort);
-            //    n.RefreshExpandedState();
-            //    n.RefreshPorts();
-
-            //    CharacterStateNode next = CreateStateNode(pair.Value.Transition);
-            //    Port inPort2 = GenerateStateNodePort(n, Direction.Input);
-            //    inPort2.portName = "Input";
-            //    next.inputContainer.Add(inPort2);
-            //    Edge e = new Edge();
-                
-            //    outPort.ConnectTo(inPort2);
-
-            //    e.input = inPort2;
-            //    e.output = outPort;
-            //    AddElement(e);
-            //    next.RefreshExpandedState();
-            //    next.RefreshPorts();
-                
-            //    AddElement(next);
-
-            //}
 
             
         }
@@ -136,8 +111,7 @@ namespace OTG.CombatSM.EditorTools
         {
             foreach (KeyValuePair<OTGCombatState, StateNodeTransition> pair in _startingNode.NodeData.StateTransitions)
             {
-                Rect parentPosition = new Rect((_startingNode.NodeData.Level * 150) + 150, (_startingNode.NodeData.Order * 150) + 150, 150, 150);
-                _startingNode.SetPosition(parentPosition);
+               
 
                 Port outPort = _startingNode.InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(OTGCombatState));
                 outPort.portName = "Next State";

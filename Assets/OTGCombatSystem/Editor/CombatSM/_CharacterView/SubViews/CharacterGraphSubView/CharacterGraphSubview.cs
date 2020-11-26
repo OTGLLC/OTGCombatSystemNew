@@ -217,6 +217,13 @@ namespace OTG.CombatSM.EditorTools
         }
         private void OnNewStateClicked()
         {
+            string textBoxValue = ContainerElement.Q<TextField>("new-state-name-textfield").text;
+            string folder =    OTGEditorUtility.GetCharacterStateFolder(m_charViewData.SelectedCharacter.name, m_editorConfig.CharacterPathRoot);
+            string stateName = OTGEditorUtility.GetCombatStateName(m_charViewData.SelectedCharacter.name, textBoxValue);
+            OTGCombatState newState = ScriptableObject.CreateInstance<OTGCombatState>();
+            newState.name = stateName;
+            AssetDatabase.CreateAsset(newState, folder + "/" + stateName + ".asset");
+
             m_stateGraph.OnNewStateButtonPressed();
         }
         #endregion
