@@ -14,26 +14,32 @@
 		</editor:Toolbar>
 		<engine:VisualElement name ="graph-area"/>
 		<engine:VisualElement name ="action-transition-container">
-			<engine:Box name="action-area">
-				<engine:VisualElement name="action-label-area">
+			<engine:Box name="action-area" class ="item-view-area">
+				<engine:VisualElement name="action-label-area" class="item-view-label-area">
 					<editor:EnumField name ="action-filter" type="OTG.CombatSM.Core.E_ActionType, Assembly-CSharp" class="enum-filter-label"/>
 					<editor:EnumField name ="process-filter" type="OTG.CombatSM.Core.E_ProcessType, Assembly-CSharp" class="enum-filter-label"/>
 					<engine:Button name="refresh-actions-button" text ="Refresh"/>
 				</engine:VisualElement>
-				<engine:ListView name="action-list-area"/>
+				<engine:ListView name="action-list-area" class ="item-view-list-area"/>
 			</engine:Box>
-			<engine:Box name="transition-area">
-				<engine:VisualElement name="transition-label-area">
+			<engine:Box name="transition-area" class ="item-view-area">
+				<engine:VisualElement name="transition-label-area" class="item-view-label-area">
 					<editor:EnumField name ="type-filter" type="OTG.CombatSM.Core.E_TransitionDecisionType, Assembly-CSharp" class="enum-filter-label"/>
 					<engine:Button name="refresh-transitions-button" text ="Refresh"/>
 				</engine:VisualElement>
-				<engine:ListView name="transition-list-area"/>
+				<engine:ListView name="transition-list-area" class ="item-view-list-area"/>
 			</engine:Box>
-			<engine:Box name="state-area">
-				<engine:VisualElement name="state-label-area">
+			<engine:Box name="state-area" class ="item-view-area">
+				<engine:VisualElement name="state-label-area" class="item-view-label-area">
 					<engine:Label name="state-label" text="Available States"/>
 				</engine:VisualElement>
-				<engine:ListView name="state-list-area"/>
+				<engine:ListView name="state-list-area" class ="item-view-list-area"/>
+			</engine:Box>
+			<engine:Box name="animation-area" class ="item-view-area">
+				<engine:VisualElement name="animation-label-area" class="item-view-label-area">
+					<engine:Label name="animation-label" text="Current Animation"/>
+				</engine:VisualElement>
+				<engine:Box name ="animation-drop-area" class ="item-view-list-area"/>
 			</engine:Box>
 		</engine:VisualElement>
 	</engine:VisualElement>

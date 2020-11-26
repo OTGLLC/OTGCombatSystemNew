@@ -38,6 +38,8 @@ namespace OTG.CombatSM.EditorTools
             CreateNewGraph();
 
             PopulateAvailableStates();
+            AddCallbacksToListView(ref m_availabeStatesListView);
+            m_availabeStatesListView.onSelectionChange += OnActionListItemSelected;
             m_stateGraph.OnCharacterSelected();
         }
         protected override void HandleOnProjectUpdate()
@@ -63,10 +65,11 @@ namespace OTG.CombatSM.EditorTools
         {
             RemoveCallbacksFromListView(ref m_actionListView);
             RemoveCallbacksFromListView(ref m_transitionListView);
+            RemoveCallbacksFromListView(ref m_availabeStatesListView);
 
             m_actionListView.onSelectionChange -= OnActionListItemSelected;
             m_transitionListView.onSelectionChange -= OnActionListItemSelected;
-
+            m_availabeStatesListView.onSelectionChange -= OnActionListItemSelected;
             ContainerElement.Q<VisualElement>("state-details-area").Clear();
             CleanupGraph();
             UnSubscribeFromButtonCallBacks();

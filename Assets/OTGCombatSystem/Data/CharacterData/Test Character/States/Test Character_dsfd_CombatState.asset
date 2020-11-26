@@ -24,4 +24,10 @@ MonoBehaviour:
   m_onUpdateActions: []
   m_animUpdateActions: []
   m_onExitActions: []
-  m_stateTransitions: []
+  m_stateTransitions:
+  - m_nextState: {fileID: 11400000, guid: 6b0012ddb5de5d249b4607dcec0000b4, type: 2}
+    m_decisions: []
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000}
+    m_decisions: []
+    m_usePreviousState: 0
