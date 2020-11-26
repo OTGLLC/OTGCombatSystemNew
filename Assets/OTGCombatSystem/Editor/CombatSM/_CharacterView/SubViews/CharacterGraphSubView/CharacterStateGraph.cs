@@ -16,8 +16,6 @@ namespace OTG.CombatSM.EditorTools
 
         #region Fields
         private CharacterStateNode m_selectedNode;
-
-        private CharcaterStateGraphData m_graphData;
         private CharacterViewData m_charViewData;
         private CharacterGraphSubview m_subView;
         #endregion
@@ -28,22 +26,20 @@ namespace OTG.CombatSM.EditorTools
         {
             m_charViewData = _charViewData;
             m_subView = _subView;
-            m_graphData = new CharcaterStateGraphData();
 
             AddManipulators();
             ConstructGridBackground();
-
+            CreateStartingNodeGraph();
         }
         public void OnCharacterSelected()
         {
-            m_graphData.PopulateExistingStateData(m_charViewData.SelectedCharacter);
             CreateStartingNodeGraph();
         }
         public void OnGraphHidden()
         {
             m_selectedNode = null;
             Clear();
-            m_graphData.Cleanup();
+           
         }
         public void OnNewStateButtonPressed()
         {
@@ -79,87 +75,11 @@ namespace OTG.CombatSM.EditorTools
         }
         private void CreateStartingNodeGraph()
         {
-            GenerateNodes(m_graphData.StateDataNodeRoot, 0);
+            
 
         }
         
         #endregion
-
-        private void GenerateNodes(StateDataNode _stateNode, int _level, Port _outPort = null)
-        {
-            CharacterStateNode n = GenerateNode(_stateNode);
-            AddElement(n);
-
-            Port inPort = GeneratePort(n, Direction.Input);
-            n.inputContainer.Add(inPort);
-            //if (_outPort != null)
-            //{
-            //    _outPort.ConnectTo(inPort);
-            //}
-
-
-
-            foreach(KeyValuePair<string,StateDataNode> pair in _stateNode.NextStates)
-            {
-                Port portOut = GeneratePort(n, Direction.Output);
-                n.outputContainer.Add(portOut);
-
-                GenerateNodes(pair.Value, _level + 1, portOut);
-            }
-
-            n.RefreshPorts();
-        }
-
-        private CharacterStateNode GenerateNode(StateDataNode _data)
-        {
-            var node = new CharacterStateNode(_data.StateObj)
-            {
-                title = _data.StateObj.targetObject.name,
-                
-                EntryPoint = true,
-            };
-
-          
-            node.SetPosition(new Rect(100, 200, 100, 150));
-            node.RefreshExpandedState();
-            node.RefreshPorts();
-
-            return node;
-        }
-        //private CharacterStateNode GenerateEntryPointNode()
-        //{
-        //    var node = new CharacterStateNode()
-        //    {
-        //        title = "START",
-        //        GUID = Guid.NewGuid().ToString(),
-        //        StateName = "EntryState",
-        //        EntryPoint = true
-        //    };
-
-        //    var port = GeneratePort(node, Direction.Output);
-        //    port.name = "NEXT";
-        //    var port2 = GeneratePort(node, Direction.Output);
-        //    port.name = "NEXT2";
-
-        //    var portIn = GeneratePort(node, Direction.Input);
-
-        //    node.outputContainer.Add(port);
-        //    node.outputContainer.Add(port2);
-        //    node.inputContainer.Add(portIn);
-        //    port.ConnectTo(portIn);
-          
-        //    node.SetPosition(new Rect(100, 200, 100, 150));
-
-        //    node.RefreshExpandedState();
-        //    node.RefreshPorts();
-
-        //    return node;
-        //}
-
-        private Port GeneratePort(CharacterStateNode _targetNode, Direction _portDirection, Port.Capacity _capacity = Port.Capacity.Single)
-        {
-            return (_targetNode.InstantiatePort(Orientation.Horizontal, _portDirection, _capacity, typeof(float)));
-        }
     }
 
 }

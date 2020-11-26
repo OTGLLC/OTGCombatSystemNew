@@ -79,25 +79,38 @@ namespace OTG.CombatSM.EditorTools
         public OTGCombatState OwnerState { get; private set; }
         public SerializedObject OwnerStateObject { get; private set; }
         public int Level { get; private set; }
-        public Dictionary<OTGCombatState, StateNode> StateTransitions { get; private set; }
-
-        public StateNode(OTGCombatState _newState, int _level)
+        public Dictionary<OTGCombatState, StateNodeTransition> StateTransitions { get; private set; }
+        public bool IsRepeatNode { get; private set; }
+        public StateNode(OTGCombatState _newState, int _level, Dictionary<OTGCombatState, int> _stateRecord)
         {
-            StateTransitions = new Dictionary<OTGCombatState, StateNode>();
+            IsRepeatNode = false;
+            StateTransitions = new Dictionary<OTGCombatState, StateNodeTransition>();
            
             Level = _level;
             OwnerState = _newState;
             PopulateStateObject();
-            FindTransitions(OwnerStateObject);
+
+            if(_stateRecord.ContainsKey(OwnerState))
+            {
+                IsRepeatNode = true;
+                return;
+            }
+            else
+            {
+                _stateRecord.Add(OwnerState, 1);
+            }
+
+            FindTransitions(OwnerStateObject, _stateRecord);
         }
 
+       
 
         #region Utility
         private void PopulateStateObject()
         {
             OwnerStateObject = new SerializedObject(OwnerState);
         }
-        private void FindTransitions(SerializedObject _ownerObj)
+        private void FindTransitions(SerializedObject _ownerObj, Dictionary<OTGCombatState, int> _stateRecord)
         {
             int amountOfTransitions = _ownerObj.FindProperty("m_stateTransitions").arraySize;
             for(int i = 0; i < amountOfTransitions; i++)
@@ -106,10 +119,15 @@ namespace OTG.CombatSM.EditorTools
                 if(nextStateObj != null)
                 {
                     OTGCombatState state = (OTGCombatState)nextStateObj;
-                    StateNode n = new StateNode(state,1);
+                    bool transitionRepeats = (_stateRecord.ContainsKey(state)) ? true : false;
+                    
+                    
+
+                    StateNode n = new StateNode(state,1,_stateRecord);
+                    StateNodeTransition nTrans = new StateNodeTransition(transitionRepeats, n);
                     if(!StateTransitions.ContainsKey(state))
                     {
-                        StateTransitions.Add(state, n);
+                        StateTransitions.Add(state, nTrans);
                     }
 
                 }
@@ -117,23 +135,18 @@ namespace OTG.CombatSM.EditorTools
         }
         #endregion
     }
+
     public class StateNodeTransition
     {
-        public string TransitionName { get; private set; }
-        public OTGCombatState NextState { get; private set; }
-        public SerializedObject NextStateObject { get; private set; }
-        public StateNodeTransition(string _transitionName, OTGCombatState _owner)
+        public bool ShouldReturnToAnExistingState { get; private set; }
+        public StateNode Transition { get; private set; }
+        public StateNodeTransition(bool _repeat, StateNode _n)
         {
-            TransitionName = _transitionName;
-            NextState = _owner;
-            NextStateObject = new SerializedObject(_owner);
-        }
-        public void Cleanup()
-        {
-            NextState = null;
-            NextStateObject = null;
+            ShouldReturnToAnExistingState = _repeat;
+            Transition = _n;
         }
     }
+
     public class CharacterStateTree
     {
         public StateNode RootNode { get; private set; }
@@ -141,7 +154,8 @@ namespace OTG.CombatSM.EditorTools
 
         public CharacterStateTree(OTGCombatState _startingState)
         {
-            RootNode = new StateNode(_startingState,0);
+            RecordOfStates = new Dictionary<OTGCombatState, int>();
+            RootNode = new StateNode(_startingState,0,RecordOfStates);
         }
     }
 
