@@ -79,14 +79,16 @@ namespace OTG.CombatSM.EditorTools
         public OTGCombatState OwnerState { get; private set; }
         public SerializedObject OwnerStateObject { get; private set; }
         public int Level { get; private set; }
+        public int Order { get; private set; }
         public Dictionary<OTGCombatState, StateNodeTransition> StateTransitions { get; private set; }
         public bool IsRepeatNode { get; private set; }
-        public StateNode(OTGCombatState _newState, int _level, Dictionary<OTGCombatState, int> _stateRecord)
+        public StateNode(OTGCombatState _newState, int _level, Dictionary<OTGCombatState, int> _stateRecord, int _order)
         {
             IsRepeatNode = false;
             StateTransitions = new Dictionary<OTGCombatState, StateNodeTransition>();
            
             Level = _level;
+            Order = _order;
             OwnerState = _newState;
             PopulateStateObject();
 
@@ -100,7 +102,7 @@ namespace OTG.CombatSM.EditorTools
                 _stateRecord.Add(OwnerState, 1);
             }
 
-            FindTransitions(OwnerStateObject, _stateRecord);
+            FindTransitions(OwnerStateObject, _stateRecord, _level + 1);
         }
 
        
@@ -110,9 +112,10 @@ namespace OTG.CombatSM.EditorTools
         {
             OwnerStateObject = new SerializedObject(OwnerState);
         }
-        private void FindTransitions(SerializedObject _ownerObj, Dictionary<OTGCombatState, int> _stateRecord)
+        private void FindTransitions(SerializedObject _ownerObj, Dictionary<OTGCombatState, int> _stateRecord, int _currentLevel)
         {
             int amountOfTransitions = _ownerObj.FindProperty("m_stateTransitions").arraySize;
+
             for(int i = 0; i < amountOfTransitions; i++)
             {
                 Object nextStateObj = _ownerObj.FindProperty("m_stateTransitions").GetArrayElementAtIndex(i).FindPropertyRelative("m_nextState").objectReferenceValue;
@@ -123,7 +126,7 @@ namespace OTG.CombatSM.EditorTools
                     
                     
 
-                    StateNode n = new StateNode(state,1,_stateRecord);
+                    StateNode n = new StateNode(state,_currentLevel+1,_stateRecord,i);
                     StateNodeTransition nTrans = new StateNodeTransition(transitionRepeats, n);
                     if(!StateTransitions.ContainsKey(state))
                     {
@@ -155,7 +158,7 @@ namespace OTG.CombatSM.EditorTools
         public CharacterStateTree(OTGCombatState _startingState)
         {
             RecordOfStates = new Dictionary<OTGCombatState, int>();
-            RootNode = new StateNode(_startingState,0,RecordOfStates);
+            RootNode = new StateNode(_startingState,0,RecordOfStates,0);
         }
     }
 

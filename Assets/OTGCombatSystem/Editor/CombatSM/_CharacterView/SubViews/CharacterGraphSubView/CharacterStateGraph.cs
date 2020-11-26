@@ -92,54 +92,79 @@ namespace OTG.CombatSM.EditorTools
         {
             StateNode startingState = m_charViewData.StateTree.RootNode;
 
-            CharacterStateNode n = CreateStateNode(startingState);
-
-           Port inPort= GenerateStateNodePort(n, Direction.Input);
-            inPort.portName = "Input";
-            n.inputContainer.Add(inPort);
+            CharacterStateNode n = GenerateNode(startingState);
            
+            GenerateChildrenNodes(n);
 
-            AddElement(n);
 
-            foreach (KeyValuePair<OTGCombatState,StateNodeTransition> pair in startingState.StateTransitions)
-            {
-                Port outPort = GenerateStateNodePort(n, Direction.Output);
-                outPort.portName = "Next State";
-                n.outputContainer.Add(outPort);
-                n.RefreshExpandedState();
-                n.RefreshPorts();
+            //foreach (KeyValuePair<OTGCombatState,StateNodeTransition> pair in startingState.StateTransitions)
+            //{
+            //    Port outPort = GenerateStateNodePort(n, Direction.Output);
+            //    outPort.portName = "Next State";
+            //    n.outputContainer.Add(outPort);
+            //    n.RefreshExpandedState();
+            //    n.RefreshPorts();
 
-                CharacterStateNode next = CreateStateNode(pair.Value.Transition);
-                Port inPort2 = GenerateStateNodePort(n, Direction.Input);
-                inPort2.portName = "Input";
-                next.inputContainer.Add(inPort2);
-                Edge e = new Edge();
+            //    CharacterStateNode next = CreateStateNode(pair.Value.Transition);
+            //    Port inPort2 = GenerateStateNodePort(n, Direction.Input);
+            //    inPort2.portName = "Input";
+            //    next.inputContainer.Add(inPort2);
+            //    Edge e = new Edge();
                 
-                outPort.ConnectTo(inPort2);
+            //    outPort.ConnectTo(inPort2);
 
-                e.input = inPort2;
-                e.output = outPort;
-                AddElement(e);
-                next.RefreshExpandedState();
-                next.RefreshPorts();
+            //    e.input = inPort2;
+            //    e.output = outPort;
+            //    AddElement(e);
+            //    next.RefreshExpandedState();
+            //    next.RefreshPorts();
                 
-                AddElement(next);
+            //    AddElement(next);
 
-            }
+            //}
 
             
         }
-        private CharacterStateNode CreateStateNode(StateNode _dataNode)
+        private CharacterStateNode GenerateNode(StateNode _nodeData)
         {
-            return  new CharacterStateNode(_dataNode);
-        }
-        private Port GenerateStateNodePort(CharacterStateNode n, Direction _portDirection)
-        {
-           return n.InstantiatePort(Orientation.Horizontal, _portDirection, Port.Capacity.Single, typeof(OTGCombatState));
-        }
-        private void SetNodePosition(CharacterStateNode n)
-        {
+            CharacterStateNode n = new CharacterStateNode(_nodeData);
+            AddElement(n);
 
+            return n;
+        }
+        private void GenerateChildrenNodes(CharacterStateNode _startingNode)
+        {
+            foreach (KeyValuePair<OTGCombatState, StateNodeTransition> pair in _startingNode.NodeData.StateTransitions)
+            {
+                Rect parentPosition = new Rect((_startingNode.NodeData.Level * 150) + 150, (_startingNode.NodeData.Order * 150) + 150, 150, 150);
+                _startingNode.SetPosition(parentPosition);
+
+                Port outPort = _startingNode.InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(OTGCombatState));
+                outPort.portName = "Next State";
+                _startingNode.outputContainer.Add(outPort);
+                _startingNode.RefreshExpandedState();
+                _startingNode.RefreshPorts();
+                Edge e = new Edge();
+
+                if(pair.Value.ShouldReturnToAnExistingState)
+                {
+                    CharacterStateNode n = GenerateNode(pair.Value.Transition);
+                    outPort.ConnectTo(n.InputPort);
+                    e.input = n.InputPort;
+                    e.output = outPort;
+                    n.SetPosition(new Rect((n.NodeData.Level * 150) + 150, (n.NodeData.Order * 150) + 150, 150, 150));
+                    AddElement(e);
+                }
+                else
+                {
+                    CharacterStateNode n = GenerateNode(pair.Value.Transition);
+                    outPort.ConnectTo(n.InputPort);
+                    e.input = n.InputPort;
+                    e.output = outPort;
+                    AddElement(e);
+                    GenerateChildrenNodes(n);
+                }
+            }
         }
         #endregion
     }
