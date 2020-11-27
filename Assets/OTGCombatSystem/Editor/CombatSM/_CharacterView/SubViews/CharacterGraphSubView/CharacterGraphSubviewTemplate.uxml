@@ -37,9 +37,9 @@
 			</engine:Box>
 			<engine:Box name="animation-area" class ="item-view-area">
 				<engine:VisualElement name="animation-label-area" class="item-view-label-area">
-					<engine:Label name="animation-label" text="Current Animation"/>
+					<engine:Label name="animation-label"/>
 				</engine:VisualElement>
-				<engine:Box name ="animation-drop-area" class ="item-view-list-area"/>
+				<engine:ListView name ="animation-list-area" class ="item-view-list-area"/>
 			</engine:Box>
 		</engine:VisualElement>
 	</engine:VisualElement>

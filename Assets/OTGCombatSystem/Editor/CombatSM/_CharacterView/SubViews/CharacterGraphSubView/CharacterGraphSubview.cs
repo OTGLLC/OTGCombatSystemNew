@@ -19,7 +19,8 @@ namespace OTG.CombatSM.EditorTools
         private ListView m_actionListView;
         private ListView m_transitionListView;
         private ListView m_availabeStatesListView;
-        private Box m_animDropArea;
+        private ListView m_animationListView;
+        private Label m_currentAnimLabel;
         private CharacterStateNode m_selectedNode;
         #endregion
 
@@ -35,8 +36,8 @@ namespace OTG.CombatSM.EditorTools
         #region abstract implementatiosn
         public CharacterGraphSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) 
         {
-            m_animDropArea = ContainerElement.Query<Box>("animation-drop-area");
-            
+            m_availabeStatesListView = ContainerElement.Query<ListView>("state-list-area");
+            m_currentAnimLabel = ContainerElement.Query<Label>("animation-label");
         }
         protected override void HandleCharacterSelection()
         {
@@ -56,13 +57,15 @@ namespace OTG.CombatSM.EditorTools
         {
             CleanupGraph();
             CreateNewGraph();
-            PopulateListView<OTGCombatAction>(ref m_actionListView, OTGEditorUtility.ActionsInstantiated ,"action-list-area");
-            PopulateListView<OTGTransitionDecision>(ref m_transitionListView, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
-         
+            OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatAction>(ref m_actionListView,ref m_containerElement, OTGEditorUtility.ActionsInstantiated ,"action-list-area");
+            OTGEditorUtility.PopulateListViewScriptableObject<OTGTransitionDecision>(ref m_transitionListView,ref m_containerElement, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
+            OTGEditorUtility.PopulateListView<string>(ref m_animationListView, ref m_containerElement, OTGEditorUtility.AvailableAnimationClips, "animation-list-area",true);
             AddCallbacksToListView(ref m_actionListView);
             AddCallbacksToListView(ref m_transitionListView);
+            AddCallbacksToListView(ref m_animationListView);
             m_actionListView.onSelectionChange += OnActionListItemSelected;
             m_transitionListView.onSelectionChange += OnActionListItemSelected;
+            m_animationListView.onSelectionChange += OnAnimationListItemSelected;
             SubscribeToButtonCallbacks();
         }
 
@@ -72,10 +75,12 @@ namespace OTG.CombatSM.EditorTools
             RemoveCallbacksFromListView(ref m_actionListView);
             RemoveCallbacksFromListView(ref m_transitionListView);
             RemoveCallbacksFromListView(ref m_availabeStatesListView);
+            RemoveCallbacksFromListView(ref m_animationListView);
 
             m_actionListView.onSelectionChange -= OnActionListItemSelected;
             m_transitionListView.onSelectionChange -= OnActionListItemSelected;
             m_availabeStatesListView.onSelectionChange -= OnActionListItemSelected;
+            m_animationListView.onSelectionChange -= OnAnimationListItemSelected;
             ContainerElement.Q<VisualElement>("state-details-area").Clear();
             CleanupGraph();
             UnSubscribeFromButtonCallBacks();
@@ -112,27 +117,20 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<VisualElement>("graph-area").Remove(m_stateGraph);
             m_stateGraph = null;
         }
-        private void PopulateListView<T>(ref ListView _targetListView, List<T> _items ,string _listAreaName) where T : ScriptableObject
-        {
-            _targetListView = ContainerElement.Query<ListView>(_listAreaName).First();
-
-            _targetListView.Clear();
-            _targetListView.makeItem = () => new Label();
-
-
-            _targetListView.bindItem = (element, i) => (element as Label).text = _items[i].name;
-            _targetListView.itemsSource = _items;
-            _targetListView.itemHeight = 16;
-            _targetListView.selectionType = SelectionType.Single;
-        }
         private void AddCallbacksToListView(ref ListView _targetList)
         {
+            if (_targetList == null)
+                return;
+
             _targetList.RegisterCallback<MouseDownEvent>(OnMouseDownEvent);
             _targetList.RegisterCallback<MouseMoveEvent>(OnMouseMoveEvent);
             _targetList.RegisterCallback<MouseUpEvent>(OnMouseUpEvent);
         }
         private void RemoveCallbacksFromListView(ref ListView _targetList)
         {
+            if (_targetList == null)
+                return;
+
             _targetList.UnregisterCallback<MouseDownEvent>(OnMouseDownEvent);
             _targetList.UnregisterCallback<MouseMoveEvent>(OnMouseMoveEvent);
             _targetList.UnregisterCallback<MouseUpEvent>(OnMouseUpEvent);
@@ -156,11 +154,18 @@ namespace OTG.CombatSM.EditorTools
             //"state-details-area"
            ContainerElement.Q<VisualElement>("state-details-area").Clear();
 
+            DisplayAnimationPropertyField(_targetState);
             PopulateReorderableList(_targetState, _targetState.FindProperty("m_onEnterActions"), "On Enter Actions");
             PopulateReorderableList(_targetState, _targetState.FindProperty("m_onUpdateActions"), "On Update Actions");
             PopulateReorderableList(_targetState, _targetState.FindProperty("m_animUpdateActions"), "On Animator Move Actions");
             PopulateReorderableList(_targetState, _targetState.FindProperty("m_onExitActions"), "On Exit Actions");
             PopulateTransitionList(_targetState, _targetState.FindProperty("m_stateTransitions"), "Transitions");
+        }
+        private void DisplayAnimationPropertyField(SerializedObject _targetState)
+        {
+            PropertyField animProp = new PropertyField(_targetState.FindProperty("m_combatAnim").FindPropertyRelative("m_animClip"));
+            animProp.Bind(_targetState);
+            ContainerElement.Q<VisualElement>("state-details-area").Add(animProp);
         }
         private void PopulateReorderableList(SerializedObject _owner, SerializedProperty _listItems, string _listName)
         {
@@ -178,19 +183,22 @@ namespace OTG.CombatSM.EditorTools
         private void PopulateAvailableStates()
         {
             OTGEditorUtility.FindCharacterStates(m_charViewData.SelectedCharacter.name, m_editorConfig);
-            PopulateListView<OTGCombatState>(ref m_availabeStatesListView, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
+            OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatState>(ref m_availabeStatesListView,ref m_containerElement, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
         }
         private void SetAnimationDropAreaColor(CharacterStateNode _selectedNode)
         {
             if(_selectedNode.NodeData.HasAnimation)
             {
-                m_animDropArea.style.color = Color.green;
+
+                m_currentAnimLabel.text = "Current Animation: " + _selectedNode.NodeData.AnimationName;
             }
             else
             {
-                m_animDropArea.style.color = Color.red;
+                m_currentAnimLabel.text = "Current Animation: NONE";
+                
             }
         }
+       
         #endregion
 
         #region Callbacks
@@ -198,13 +206,13 @@ namespace OTG.CombatSM.EditorTools
         {
             OTGEditorUtility.RegisterActions();
             OTGEditorUtility.FindAllActions(m_editorConfig);
-            PopulateListView<OTGCombatAction>(ref m_actionListView, OTGEditorUtility.ActionsInstantiated, "action-list-area");
+            OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatAction>(ref m_actionListView,ref m_containerElement, OTGEditorUtility.ActionsInstantiated, "action-list-area");
         }
         private void OnRefreshTransitions()
         {
             OTGEditorUtility.RegisterTransitions();
             OTGEditorUtility.FindAllTransitions(m_editorConfig);
-            PopulateListView<OTGTransitionDecision>(ref m_transitionListView, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
+            OTGEditorUtility.PopulateListViewScriptableObject<OTGTransitionDecision>(ref m_transitionListView,ref m_containerElement, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
         }
 
         private void OnActionListItemSelected(IEnumerable<object> _obj)
@@ -224,7 +232,22 @@ namespace OTG.CombatSM.EditorTools
             }
 
         }
+        private void OnAnimationListItemSelected(IEnumerable<object> _obj)
+        {
+            foreach (string actionCandidate in _obj)
+            {
 
+                if (Event.current.type == EventType.MouseDown)
+                {
+                    AnimationClip clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(actionCandidate.ToString());
+                    m_draggedItems[0] = clip;
+                }
+                if (Event.current.type == EventType.MouseUp)
+                {
+                    m_draggedItems[0] = null;
+                }
+            }
+        }
         private void OnMouseDownEvent(MouseDownEvent e)
         {
             m_GotMouseDown = true;
@@ -255,6 +278,7 @@ namespace OTG.CombatSM.EditorTools
             PopulateAvailableStates();
             m_stateGraph.OnNewStateButtonPressed();
         }
+        
         #endregion
     }
 

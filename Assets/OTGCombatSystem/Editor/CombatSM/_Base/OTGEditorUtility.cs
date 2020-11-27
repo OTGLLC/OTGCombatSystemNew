@@ -18,6 +18,7 @@ namespace OTG.CombatSM.EditorTools
         public static List<OTGTransitionDecision> TransitionsAvailable { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGCombatState> AvailableCharacterStates { get; private set; } = new List<OTGCombatState>();
+        public static List<string> AvailableAnimationClips { get; private set; } = new List<string>();
         public static void SubscribeToolbarButtonCallback(VisualElement _container, string _buttonName,  Action _callback)
         {
             _container.Q<ToolbarButton>(_buttonName).clickable.clicked += _callback;
@@ -145,6 +146,56 @@ namespace OTG.CombatSM.EditorTools
                 string[] splitFileName = act.GetType().ToString().Split('.');
                 AssetDatabase.CreateAsset(act, _editorConfig.CombatTransitionsPath + "/" + splitFileName[splitFileName.Length-1] + ".asset");
             }
+        }
+
+        public static void FindAllAnimationClips()
+        {
+            AvailableAnimationClips?.Clear();
+
+            string[] guids = AssetDatabase.FindAssets("t:AnimationClip");
+
+            for (int i = 0; i < guids.Length; i++)
+            {
+                AvailableAnimationClips.Add(AssetDatabase.GUIDToAssetPath(guids[i]));
+                
+            }
+            
+        }
+
+        public static void PopulateListView<T>(ref ListView _targetListView,ref VisualElement _ownerContainer , List<T> _items, string _listAreaName, bool tailOfPath = false)
+        {
+            _targetListView = _ownerContainer.Query<ListView>(_listAreaName).First();
+
+            _targetListView.Clear();
+            _targetListView.makeItem = () => new Label();
+
+            _targetListView.bindItem = (element, i) =>
+            {
+                string labelText = _items[i].ToString();
+                if(tailOfPath)
+                {
+                    string[] pathSplit = labelText.Split('/');
+                    labelText = pathSplit[pathSplit.Length - 1];
+                }
+                (element as Label).text = labelText;
+            };
+
+            _targetListView.itemsSource = _items;
+            _targetListView.itemHeight = 16;
+            _targetListView.selectionType = SelectionType.Single;
+        }
+        public static void PopulateListViewScriptableObject<T>(ref ListView _targetListView, ref VisualElement _ownerContainer, List<T> _items, string _listAreaName) where T : ScriptableObject
+        {
+            _targetListView = _ownerContainer.Query<ListView>(_listAreaName).First();
+
+            _targetListView.Clear();
+            _targetListView.makeItem = () => new Label();
+
+
+            _targetListView.bindItem = (element, i) => (element as Label).text = _items[i].name;
+            _targetListView.itemsSource = _items;
+            _targetListView.itemHeight = 16;
+            _targetListView.selectionType = SelectionType.Single;
         }
     }
  }

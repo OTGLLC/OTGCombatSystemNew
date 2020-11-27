@@ -114,11 +114,12 @@ namespace OTG.CombatSM.EditorTools
         {
             OwnerStateObject = new SerializedObject(OwnerState);
             SerializedProperty anim = OwnerStateObject.FindProperty("m_combatAnim").FindPropertyRelative("m_animClip");
-
-            if(anim!=null)
+            
+            
+            if(anim.objectReferenceValue!=null)
             {
                 HasAnimation = true;
-                AnimationName = anim.serializedObject.targetObject.name;
+                AnimationName = anim.objectReferenceValue.name;
             }
         }
         private void FindTransitions(SerializedObject _ownerObj, Dictionary<OTGCombatState, int> _stateRecord, int _currentLevel)

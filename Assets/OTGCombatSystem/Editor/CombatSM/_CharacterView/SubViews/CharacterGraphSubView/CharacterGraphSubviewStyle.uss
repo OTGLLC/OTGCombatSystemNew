@@ -25,9 +25,11 @@
 	display: flex;
 	flex-direction: row;
 }
-
-.item-view-area
+#animation-label
 {
+	flex-grow: 1;
+}
+.item-view-area {
 	display: flex;
 	flex-direction: column;
 	flex: .25;

@@ -7,13 +7,14 @@ using UnityEngine.UIElements;
 public abstract class CombatSMBaseView : VisualElement
 {
     #region Properties
-    public VisualElement ContainerElement { get; protected set; }
+    public VisualElement ContainerElement { get { return m_containerElement; } }
     public string ContainerStyleName { get; protected set; }
     #endregion
 
     #region Fields
     protected string m_templatePath;
     protected string m_stylePath;
+    protected VisualElement m_containerElement;
     #endregion
 
 
@@ -25,9 +26,9 @@ public abstract class CombatSMBaseView : VisualElement
         VisualTreeAsset visualTree = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(m_templatePath);
         StyleSheet style = AssetDatabase.LoadAssetAtPath<StyleSheet>(m_stylePath);
 
-        ContainerElement = new VisualElement();
-        visualTree.CloneTree(ContainerElement);
-        ContainerElement.styleSheets.Add(style);
+        m_containerElement = new VisualElement();
+        visualTree.CloneTree(m_containerElement);
+        m_containerElement.styleSheets.Add(style);
     }
     public void OnProjectUpdated()
     {
@@ -51,7 +52,7 @@ public abstract class CombatSMBaseView : VisualElement
     }
     public virtual void UpdateViewHeight(float _height)
     {
-        ContainerElement.Q<VisualElement>(ContainerStyleName).style.height = new StyleLength(_height);
+        m_containerElement.Q<VisualElement>(ContainerStyleName).style.height = new StyleLength(_height);
     }
     #endregion
 

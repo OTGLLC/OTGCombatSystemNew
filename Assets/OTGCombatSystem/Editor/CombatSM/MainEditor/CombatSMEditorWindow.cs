@@ -38,7 +38,7 @@ namespace OTG.CombatSM.EditorTools
             InitializeMenuBar();
             CreateViews();
             SubscribeButtonsToCallbacks();
-           
+            OTGEditorUtility.FindAllAnimationClips();
             
         }
 
@@ -53,6 +53,7 @@ namespace OTG.CombatSM.EditorTools
         }
         private void OnProjectChange()
         {
+            OTGEditorUtility.FindAllAnimationClips();
             m_currentView.OnProjectUpdated();
         }
         private void OnDisable()

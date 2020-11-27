@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: Test Character_dfsfdsf_CombatState
+  m_Name: Prototype Player_Inititial_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
     m_animClip: {fileID: 0}
@@ -24,4 +24,8 @@ MonoBehaviour:
   m_onUpdateActions: []
   m_animUpdateActions: []
   m_onExitActions: []
-  m_stateTransitions: []
+  m_stateTransitions:
+  - m_nextState: {fileID: 11400000, guid: c46c85aaf1c9f5b40a2fc121b23a14d7, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 52ecc85b035abff4cb0a16d6b9ca4b05, type: 2}
+    m_usePreviousState: 0
