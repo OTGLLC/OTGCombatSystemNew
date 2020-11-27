@@ -13,7 +13,7 @@ namespace OTG.CombatSM.Concrete
         }
         public override bool Decide(OTGCombatSMC _controller)
         {
-            throw new System.NotImplementedException();
+            return true;
         }
     }
 }

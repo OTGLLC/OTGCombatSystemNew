@@ -25,6 +25,11 @@
 	display: flex;
 	flex-direction: row;
 }
+#animation-filter {
+	flex-grow: 1;
+}
+
+
 #animation-label
 {
 	flex-grow: 1;

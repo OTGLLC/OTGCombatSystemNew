@@ -37,7 +37,7 @@
 			</engine:Box>
 			<engine:Box name="animation-area" class ="item-view-area">
 				<engine:VisualElement name="animation-label-area" class="item-view-label-area">
-					<engine:Label name="animation-label"/>
+					<engine:TextField name="animation-filter" label="Filter:"/>
 				</engine:VisualElement>
 				<engine:ListView name ="animation-list-area" class ="item-view-list-area"/>
 			</engine:Box>

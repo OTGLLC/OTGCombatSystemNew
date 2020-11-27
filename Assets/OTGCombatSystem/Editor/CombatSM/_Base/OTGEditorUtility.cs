@@ -19,6 +19,7 @@ namespace OTG.CombatSM.EditorTools
         public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGCombatState> AvailableCharacterStates { get; private set; } = new List<OTGCombatState>();
         public static List<string> AvailableAnimationClips { get; private set; } = new List<string>();
+        public static List<string> AvailableAnimationClipsFilteredList { get; private set; } = new List<string>();
         public static void SubscribeToolbarButtonCallback(VisualElement _container, string _buttonName,  Action _callback)
         {
             _container.Q<ToolbarButton>(_buttonName).clickable.clicked += _callback;

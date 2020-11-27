@@ -6,6 +6,7 @@ using OTG.CombatSM.Core;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using System.Linq;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -20,8 +21,9 @@ namespace OTG.CombatSM.EditorTools
         private ListView m_transitionListView;
         private ListView m_availabeStatesListView;
         private ListView m_animationListView;
-        private Label m_currentAnimLabel;
         private CharacterStateNode m_selectedNode;
+        private TextField m_animFilterField;
+        
         #endregion
 
         #region Public API
@@ -29,15 +31,15 @@ namespace OTG.CombatSM.EditorTools
         {
             m_selectedNode = _selectedNode;
             PopulateStateDetailsView(_selectedNode.OwningSerializedObject);
-            SetAnimationDropAreaColor(_selectedNode);
+            
         }
         #endregion
 
         #region abstract implementatiosn
         public CharacterGraphSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) 
         {
-            m_availabeStatesListView = ContainerElement.Query<ListView>("state-list-area");
-            m_currentAnimLabel = ContainerElement.Query<Label>("animation-label");
+            m_animFilterField = m_containerElement.Q<TextField>("animation-filter");
+           
         }
         protected override void HandleCharacterSelection()
         {
@@ -67,8 +69,10 @@ namespace OTG.CombatSM.EditorTools
             m_transitionListView.onSelectionChange += OnActionListItemSelected;
             m_animationListView.onSelectionChange += OnAnimationListItemSelected;
             SubscribeToButtonCallbacks();
-        }
 
+            m_animFilterField.RegisterValueChangedCallback(OnTextChanged);
+        }
+        
       
         protected override void HandleViewLostFocus()
         {
@@ -84,6 +88,8 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<VisualElement>("state-details-area").Clear();
             CleanupGraph();
             UnSubscribeFromButtonCallBacks();
+
+            m_animFilterField.UnregisterValueChangedCallback(OnTextChanged);
         }
         protected override void HandleOnHierarchyChanged()
         {
@@ -185,19 +191,7 @@ namespace OTG.CombatSM.EditorTools
             OTGEditorUtility.FindCharacterStates(m_charViewData.SelectedCharacter.name, m_editorConfig);
             OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatState>(ref m_availabeStatesListView,ref m_containerElement, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
         }
-        private void SetAnimationDropAreaColor(CharacterStateNode _selectedNode)
-        {
-            if(_selectedNode.NodeData.HasAnimation)
-            {
-
-                m_currentAnimLabel.text = "Current Animation: " + _selectedNode.NodeData.AnimationName;
-            }
-            else
-            {
-                m_currentAnimLabel.text = "Current Animation: NONE";
-                
-            }
-        }
+        
        
         #endregion
 
@@ -236,10 +230,11 @@ namespace OTG.CombatSM.EditorTools
         {
             foreach (string actionCandidate in _obj)
             {
-
+                
                 if (Event.current.type == EventType.MouseDown)
                 {
                     AnimationClip clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(actionCandidate.ToString());
+                    Selection.activeObject = clip;
                     m_draggedItems[0] = clip;
                 }
                 if (Event.current.type == EventType.MouseUp)
@@ -278,7 +273,14 @@ namespace OTG.CombatSM.EditorTools
             PopulateAvailableStates();
             m_stateGraph.OnNewStateButtonPressed();
         }
-        
+        private void OnTextChanged(ChangeEvent<string> changeEv)
+        {
+            var filteredItems = OTGEditorUtility.AvailableAnimationClips.Where(x => x.ToLower().Contains(changeEv.newValue.ToLower())).ToList();
+            OTGEditorUtility.AvailableAnimationClipsFilteredList.Clear();
+            OTGEditorUtility.AvailableAnimationClipsFilteredList.AddRange(filteredItems);
+
+            OTGEditorUtility.PopulateListView<string>(ref m_animationListView, ref m_containerElement, OTGEditorUtility.AvailableAnimationClipsFilteredList, "animation-list-area", true);
+        }
         #endregion
     }
 
