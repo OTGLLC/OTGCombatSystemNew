@@ -19,6 +19,7 @@ namespace OTG.CombatSM.EditorTools
         private ListView m_actionListView;
         private ListView m_transitionListView;
         private ListView m_availabeStatesListView;
+        private Box m_animDropArea;
         private CharacterStateNode m_selectedNode;
         #endregion
 
@@ -27,11 +28,16 @@ namespace OTG.CombatSM.EditorTools
         {
             m_selectedNode = _selectedNode;
             PopulateStateDetailsView(_selectedNode.OwningSerializedObject);
+            SetAnimationDropAreaColor(_selectedNode);
         }
         #endregion
 
         #region abstract implementatiosn
-        public CharacterGraphSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) { }
+        public CharacterGraphSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) 
+        {
+            m_animDropArea = ContainerElement.Query<Box>("animation-drop-area");
+            
+        }
         protected override void HandleCharacterSelection()
         {
             CleanupGraph();
@@ -173,6 +179,17 @@ namespace OTG.CombatSM.EditorTools
         {
             OTGEditorUtility.FindCharacterStates(m_charViewData.SelectedCharacter.name, m_editorConfig);
             PopulateListView<OTGCombatState>(ref m_availabeStatesListView, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
+        }
+        private void SetAnimationDropAreaColor(CharacterStateNode _selectedNode)
+        {
+            if(_selectedNode.NodeData.HasAnimation)
+            {
+                m_animDropArea.style.color = Color.green;
+            }
+            else
+            {
+                m_animDropArea.style.color = Color.red;
+            }
         }
         #endregion
 

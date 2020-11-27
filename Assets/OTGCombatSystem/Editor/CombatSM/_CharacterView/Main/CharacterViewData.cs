@@ -82,6 +82,8 @@ namespace OTG.CombatSM.EditorTools
         public int Order { get; private set; }
         public Dictionary<OTGCombatState, StateNodeTransition> StateTransitions { get; private set; }
         public bool IsRepeatNode { get; private set; }
+        public bool HasAnimation { get; private set; }
+        public string AnimationName { get; private set; }
         public StateNode(OTGCombatState _newState, int _level, Dictionary<OTGCombatState, int> _stateRecord, int _order)
         {
             IsRepeatNode = false;
@@ -111,6 +113,13 @@ namespace OTG.CombatSM.EditorTools
         private void PopulateStateObject()
         {
             OwnerStateObject = new SerializedObject(OwnerState);
+            SerializedProperty anim = OwnerStateObject.FindProperty("m_combatAnim").FindPropertyRelative("m_animClip");
+
+            if(anim!=null)
+            {
+                HasAnimation = true;
+                AnimationName = anim.serializedObject.targetObject.name;
+            }
         }
         private void FindTransitions(SerializedObject _ownerObj, Dictionary<OTGCombatState, int> _stateRecord, int _currentLevel)
         {
