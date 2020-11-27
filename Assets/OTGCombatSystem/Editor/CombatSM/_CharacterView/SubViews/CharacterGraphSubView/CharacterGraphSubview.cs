@@ -83,8 +83,11 @@ namespace OTG.CombatSM.EditorTools
 
             m_actionListView.onSelectionChange -= OnActionListItemSelected;
             m_transitionListView.onSelectionChange -= OnActionListItemSelected;
-            m_availabeStatesListView.onSelectionChange -= OnActionListItemSelected;
+           
             m_animationListView.onSelectionChange -= OnAnimationListItemSelected;
+
+            if(m_availabeStatesListView != null)
+                m_availabeStatesListView.onSelectionChange -= OnActionListItemSelected;
             ContainerElement.Q<VisualElement>("state-details-area").Clear();
             CleanupGraph();
             UnSubscribeFromButtonCallBacks();
