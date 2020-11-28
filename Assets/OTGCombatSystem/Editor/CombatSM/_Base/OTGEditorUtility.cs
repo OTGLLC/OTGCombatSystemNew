@@ -6,20 +6,45 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using OTG.CombatSM.Core;
-using OTG.CombatSM.Concrete;
+
 
 namespace OTG.CombatSM.EditorTools
 {
     public static class OTGEditorUtility
     {
+        public enum E_CombatTemplate
+        {
+            TwitchFighter,
+            SideScrollBeatemUpWithLanes,
+            None
+        }
         public static List<OTGCombatAction> ActionsAvailable { get; private set; } = new List<OTGCombatAction>();
         public static List<OTGCombatAction> ActionsInstantiated { get; private set; } = new List<OTGCombatAction>();
-
         public static List<OTGTransitionDecision> TransitionsAvailable { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGCombatState> AvailableCharacterStates { get; private set; } = new List<OTGCombatState>();
         public static List<string> AvailableAnimationClips { get; private set; } = new List<string>();
         public static List<string> AvailableAnimationClipsFilteredList { get; private set; } = new List<string>();
+        public static E_CombatTemplate CurrentCombatTemplate { get; private set; } = E_CombatTemplate.TwitchFighter;
+
+        public static void SetCombatTemplate(E_CombatTemplate _template, EditorConfig _config)
+        {
+            CurrentCombatTemplate = _template;
+            RegisterActions();
+            RegisterTransitions();
+            FindAllAnimationClips();
+            FindAllActions(_config);
+            FindAllTransitions(_config);
+        }
+        public static void RefreshProject(EditorConfig _config)
+        {
+            RegisterActions();
+            RegisterTransitions();
+            FindAllAnimationClips();
+            FindAllActions(_config);
+            FindAllTransitions(_config);
+        }
+        #region Folder and Data
         public static void SubscribeToolbarButtonCallback(VisualElement _container, string _buttonName,  Action _callback)
         {
             _container.Q<ToolbarButton>(_buttonName).clickable.clicked += _callback;
@@ -53,44 +78,57 @@ namespace OTG.CombatSM.EditorTools
             return string.Format(nameFormat, _characterName, _stateType);
         }
 
+        #endregion
 
-        public static void RegisterActions()
+        #region Template specific
+        private static void RegisterActions()
         {
             ActionsAvailable = new List<OTGCombatAction>();
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateVerticalMovenet>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformMovement>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetHorizontalDashingDistance>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetDashingParameters>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateCurrentDashDistance>());
+
+            switch(CurrentCombatTemplate)
+            {
+                case E_CombatTemplate.TwitchFighter:
+                    RegisterTwitchFighterActions();
+                    break;
+                case E_CombatTemplate.SideScrollBeatemUpWithLanes:
+                    break;
+                        
+            }
             
+
+
         }
-        public static void RegisterTransitions()
+        private static void RegisterTransitions()
         {
             TransitionsAvailable.Clear();
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsGrounded>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasLeftOrRightInput>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasReachedDesiredDashDistance>());
             
-            
-        }
-        public static void FindCharacterStates(string _characterName, EditorConfig _config)
-        {
-            // Find all Texture2Ds that have 'co' in their filename, that are labelled with 'architecture' and are placed in 'MyAwesomeProps' folder
-            AvailableCharacterStates = new List<OTGCombatState>();
-            string searchString = _characterName + " t:OTGCombatState";
-            string folderName = GetCharacterStateFolder(_characterName, _config.CharacterPathRoot);
-            string[] guids = AssetDatabase.FindAssets(searchString, new[] { folderName });
-
-            for(int i = 0; i < guids.Length; i++)
+            switch (CurrentCombatTemplate)
             {
-                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
-                AvailableCharacterStates.Add(AssetDatabase.LoadAssetAtPath<OTGCombatState>(path));
+                case E_CombatTemplate.TwitchFighter:
+                    RegisterTwitchFighterTransitions();
+                    break;
+                case E_CombatTemplate.SideScrollBeatemUpWithLanes:
+                    break;
+
+            }
+
+
+
+        }
+        private static void FindAllAnimationClips()
+        {
+            AvailableAnimationClips?.Clear();
+
+            string[] guids = AssetDatabase.FindAssets("t:AnimationClip");
+
+            for (int i = 0; i < guids.Length; i++)
+            {
+                AvailableAnimationClips.Add(AssetDatabase.GUIDToAssetPath(guids[i]));
+
             }
 
         }
-        public static void FindAllActions(EditorConfig _editorConfig)
+        private static void FindAllActions(EditorConfig _editorConfig)
         {
             string[] actionGuids = AssetDatabase.FindAssets("t:OTGCombatAction");
 
@@ -123,7 +161,7 @@ namespace OTG.CombatSM.EditorTools
                 AssetDatabase.CreateAsset(act, _editorConfig.CombatActionsPath + "/" + splitFileName[splitFileName.Length - 1] + ".asset");
             }
         }
-        public static void FindAllTransitions(EditorConfig _editorConfig)
+        private static void FindAllTransitions(EditorConfig _editorConfig)
         {
             string[] transitionGuids = AssetDatabase.FindAssets("t:OTGTransitionDecision");
 
@@ -153,24 +191,29 @@ namespace OTG.CombatSM.EditorTools
             {
                 OTGTransitionDecision act = TransitionsAvailable[k];
                 string[] splitFileName = act.GetType().ToString().Split('.');
-                AssetDatabase.CreateAsset(act, _editorConfig.CombatTransitionsPath + "/" + splitFileName[splitFileName.Length-1] + ".asset");
+                AssetDatabase.CreateAsset(act, _editorConfig.CombatTransitionsPath + "/" + splitFileName[splitFileName.Length - 1] + ".asset");
             }
         }
+        #endregion
 
-        public static void FindAllAnimationClips()
+        #region Combat
+
+        public static void FindCharacterStates(string _characterName, EditorConfig _config)
         {
-            AvailableAnimationClips?.Clear();
+            // Find all Texture2Ds that have 'co' in their filename, that are labelled with 'architecture' and are placed in 'MyAwesomeProps' folder
+            AvailableCharacterStates = new List<OTGCombatState>();
+            string searchString = _characterName + " t:OTGCombatState";
+            string folderName = GetCharacterStateFolder(_characterName, _config.CharacterPathRoot);
+            string[] guids = AssetDatabase.FindAssets(searchString, new[] { folderName });
 
-            string[] guids = AssetDatabase.FindAssets("t:AnimationClip");
-
-            for (int i = 0; i < guids.Length; i++)
+            for(int i = 0; i < guids.Length; i++)
             {
-                AvailableAnimationClips.Add(AssetDatabase.GUIDToAssetPath(guids[i]));
-                
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                AvailableCharacterStates.Add(AssetDatabase.LoadAssetAtPath<OTGCombatState>(path));
             }
-            
-        }
 
+        }
+        
         public static void PopulateListView<T>(ref ListView _targetListView,ref VisualElement _ownerContainer , List<T> _items, string _listAreaName, bool tailOfPath = false)
         {
             _targetListView = _ownerContainer.Query<ListView>(_listAreaName).First();
@@ -206,5 +249,20 @@ namespace OTG.CombatSM.EditorTools
             _targetListView.itemHeight = 16;
             _targetListView.selectionType = SelectionType.Single;
         }
+
+        #endregion
+
+        #region --Twitch Fighter---
+        private static void RegisterTwitchFighterActions()
+        {
+            //ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
+        }
+        private static void RegisterTwitchFighterTransitions()
+        {
+            //TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
+        }
+        #endregion
     }
- }
+
+
+}

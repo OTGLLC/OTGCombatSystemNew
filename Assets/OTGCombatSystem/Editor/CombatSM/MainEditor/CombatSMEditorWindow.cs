@@ -2,8 +2,6 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEngine.UIElements;
-using OTG.CombatSM.Core;
-using System.Collections.Generic;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -38,8 +36,7 @@ namespace OTG.CombatSM.EditorTools
             InitializeMenuBar();
             CreateViews();
             SubscribeButtonsToCallbacks();
-            OTGEditorUtility.FindAllAnimationClips();
-            
+            OTGEditorUtility.SetCombatTemplate(OTGEditorUtility.E_CombatTemplate.TwitchFighter, m_editorConfig);
         }
 
         private void OnGUI()
@@ -53,8 +50,8 @@ namespace OTG.CombatSM.EditorTools
         }
         private void OnProjectChange()
         {
-            OTGEditorUtility.FindAllAnimationClips();
             m_currentView.OnProjectUpdated();
+            OTGEditorUtility.RefreshProject(m_editorConfig);
         }
         private void OnDisable()
         {

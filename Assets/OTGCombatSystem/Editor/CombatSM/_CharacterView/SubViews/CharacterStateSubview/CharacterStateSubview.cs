@@ -1,8 +1,5 @@
 ﻿
 using System.Collections.Generic;
-using OTG.CombatSM.Concrete;
-using UnityEngine;
-using UnityEditor;
 using OTG.CombatSM.Core;
 
 namespace OTG.CombatSM.EditorTools
@@ -17,11 +14,7 @@ namespace OTG.CombatSM.EditorTools
         #region abstract implementatiosn
         public CharacterStateSubview(CharacterViewData _charViewData, EditorConfig _editorConfig) : base(_charViewData, _editorConfig) 
         {
-            OTGEditorUtility.RegisterActions();
-            OTGEditorUtility.FindAllActions(_editorConfig);
-
-            OTGEditorUtility.RegisterTransitions();
-            OTGEditorUtility.FindAllTransitions(_editorConfig);
+        
         }
         protected override void HandleCharacterSelection()
         {

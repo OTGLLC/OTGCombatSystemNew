@@ -44,9 +44,12 @@ namespace OTG.CombatSM.Core
     }
     public class TwitchMovementParams
     {
+        public Transform Comp_Transform { get; private set; }
+        public CharacterController Comp_CharacterControl { get; private set; }
+        public MovementHandlerData Data { get; private set; }
+
         public float DesiredDashDistance;
         public float CurrentDashDistance;
-        
         public float Movement;
         
         public void ResetParams()

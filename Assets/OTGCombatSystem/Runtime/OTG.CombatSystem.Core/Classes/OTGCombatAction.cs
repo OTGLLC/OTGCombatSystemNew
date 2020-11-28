@@ -9,7 +9,7 @@ namespace OTG.CombatSM.Core
     {
         [SerializeField] protected E_ActionType m_combatActionType;
         [SerializeField] protected E_ProcessType m_processType;
-
+        [SerializeField] protected E_Template m_SystemTemplate;
         public E_ActionType CombatActionType { get { return m_combatActionType; } }
         public E_ProcessType ProcessType { get { return m_processType; } }
         public abstract void Act(OTGCombatSMC _controller);
@@ -29,5 +29,10 @@ namespace OTG.CombatSM.Core
         Perform,
         SetParameter,
         All
+    }
+    public enum E_Template
+    {
+        TwitchFighter,
+        None
     }
 }

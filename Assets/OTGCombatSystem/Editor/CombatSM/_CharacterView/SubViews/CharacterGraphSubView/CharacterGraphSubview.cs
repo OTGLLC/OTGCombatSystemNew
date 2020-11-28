@@ -201,14 +201,12 @@ namespace OTG.CombatSM.EditorTools
         #region Callbacks
         private void OnRefreshActions()
         {
-            OTGEditorUtility.RegisterActions();
-            OTGEditorUtility.FindAllActions(m_editorConfig);
+            OTGEditorUtility.RefreshProject(m_editorConfig);
             OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatAction>(ref m_actionListView,ref m_containerElement, OTGEditorUtility.ActionsInstantiated, "action-list-area");
         }
         private void OnRefreshTransitions()
         {
-            OTGEditorUtility.RegisterTransitions();
-            OTGEditorUtility.FindAllTransitions(m_editorConfig);
+            OTGEditorUtility.RefreshProject(m_editorConfig);
             OTGEditorUtility.PopulateListViewScriptableObject<OTGTransitionDecision>(ref m_transitionListView,ref m_containerElement, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
         }
 
