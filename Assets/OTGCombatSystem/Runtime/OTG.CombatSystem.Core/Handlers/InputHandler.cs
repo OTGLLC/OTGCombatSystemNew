@@ -11,12 +11,14 @@ namespace OTG.CombatSM.Core
 
         #region Properties
         public Vector2 MovementVector { get; set; }
+        public TwitchFighterInput TwitchInput { get; set; }
         #endregion
 
         #region Public API
         public InputHandler(HandlerDataGroup _dataGroup)
         {
             InitializeData(_dataGroup);
+            TwitchInput = new TwitchFighterInput();
         }
         public void CleanupHandler()
         {
@@ -35,5 +37,15 @@ namespace OTG.CombatSM.Core
         }
         #endregion
 
+    }
+
+    public class TwitchFighterInput
+    {
+        public bool HasRightInput { get; set; }
+        public bool IsHoldingRightInput { get; set; }
+        public bool HasLeftInput { get; set; }
+        public bool IsHoldingLeftInput { get; set; }
+        public bool HasSwitchLanesUpInput { get; set; }
+        public bool HasSwitchLanesDownInpu { get; set; }
     }
 }

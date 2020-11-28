@@ -17,7 +17,7 @@ namespace OTG.CombatSM.Concrete
             MovementHandler moveHandler = _controller.Handler_Movement;
 
             Vector3 movement = new Vector3(
-                moveHandler.CurrentHorizontalPosition,
+                moveHandler.TwitchParams.Movement,
                 0,
                 0
                 );

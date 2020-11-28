@@ -15,7 +15,8 @@ MonoBehaviour:
   m_animHandlerData:
     m_test: 0
   m_moveHandlerData:
-    m_horizontalMoveSpeed: 0
+    m_horizontalMoveSpeed: 0.2
+    m_horizontalDashDistance: 10
   m_inputHandlerData:
     m_test: 0
   m_collisionHandlerData:

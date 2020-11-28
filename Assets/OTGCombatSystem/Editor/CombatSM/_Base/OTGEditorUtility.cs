@@ -60,12 +60,20 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateVerticalMovenet>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformMovement>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetHorizontalDashingDistance>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetDashingParameters>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateCurrentDashDistance>());
+            
         }
         public static void RegisterTransitions()
         {
             TransitionsAvailable.Clear();
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsGrounded>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasLeftOrRightInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasReachedDesiredDashDistance>());
+            
+            
         }
         public static void FindCharacterStates(string _characterName, EditorConfig _config)
         {

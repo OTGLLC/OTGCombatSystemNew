@@ -18,6 +18,7 @@ namespace OTG.CombatSM.Core
     public enum E_ActionType
     {
         MovementBased,
+        MovementBased_Twitch,
         CombatBased,
         Misc,
         All
@@ -26,6 +27,7 @@ namespace OTG.CombatSM.Core
     {
         Calculation,
         Perform,
+        SetParameter,
         All
     }
 }
