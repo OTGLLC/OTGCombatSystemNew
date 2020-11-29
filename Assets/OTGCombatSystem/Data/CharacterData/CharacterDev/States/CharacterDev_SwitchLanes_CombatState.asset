@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: CharacterDev_Idle_CombatState
+  m_Name: CharacterDev_SwitchLanes_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: fe9e9976ffea9fd44bc10cebee1d4609, type: 3}
+    m_animClip: {fileID: 7400000, guid: ab0ea3dd3223be64d91bfebeb6f3238d, type: 3}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
@@ -24,8 +24,4 @@ MonoBehaviour:
   m_onUpdateActions: []
   m_animUpdateActions: []
   m_onExitActions: []
-  m_stateTransitions:
-  - m_nextState: {fileID: 11400000, guid: 087bf88b9231b284eb9b37161d5025c3, type: 2}
-    m_decisions:
-    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
-    m_usePreviousState: 0
+  m_stateTransitions: []

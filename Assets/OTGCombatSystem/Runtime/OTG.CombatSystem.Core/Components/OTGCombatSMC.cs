@@ -45,6 +45,7 @@ namespace OTG.CombatSM.Core
         private void Update()
         {
             m_currentState.OnStateUpdate(this);
+            Debug.Log(m_currentState.name);
         }
         private void OnAnimatorMove()
         {

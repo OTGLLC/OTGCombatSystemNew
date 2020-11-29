@@ -42,9 +42,7 @@ namespace OTG.CombatSM.Core
     public class TwitchFighterInput
     {
         public bool HasRightInput { get; set; }
-        public bool IsHoldingRightInput { get; set; }
         public bool HasLeftInput { get; set; }
-        public bool IsHoldingLeftInput { get; set; }
         public bool HasSwitchLanesUpInput { get; set; }
         public bool HasSwitchLanesDownInpu { get; set; }
     }

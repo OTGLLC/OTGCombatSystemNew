@@ -264,6 +264,11 @@ namespace OTG.CombatSM.EditorTools
         {
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasReachedDesiredDashDistance>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRightInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasLeftInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesUp>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
         }
         #endregion
     }
