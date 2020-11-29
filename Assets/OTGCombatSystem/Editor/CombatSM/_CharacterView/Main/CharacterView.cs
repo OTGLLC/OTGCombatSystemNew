@@ -11,6 +11,7 @@ namespace OTG.CombatSM.EditorTools
         #region Fields
         private CharacterViewData m_viewData;
         private ListView m_charListView;
+        private EditorConfig m_config;
         #endregion
 
         #region SubViews
@@ -107,10 +108,19 @@ namespace OTG.CombatSM.EditorTools
         #region abstract class implementation
         public CharacterView(EditorConfig _editorConfig):base()
         {
+            m_config = _editorConfig;
             CreateNewData();
             GetAllCharactersInScene();
             GatherVisualElements();
             CreateViews(_editorConfig);
+            SwitchSubViews(m_charDetailsSubView);
+        }
+        protected override void Refresh()
+        {
+            CreateNewData();
+            GetAllCharactersInScene();
+            GatherVisualElements();
+            CreateViews(m_config);
             SwitchSubViews(m_charDetailsSubView);
         }
         protected override void HandleOnProjectUpdate()

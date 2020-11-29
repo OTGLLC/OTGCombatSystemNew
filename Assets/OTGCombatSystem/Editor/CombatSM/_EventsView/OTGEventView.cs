@@ -18,6 +18,10 @@ namespace OTG.CombatSM.EditorTools
             m_templatePath = CombatSMStrings.Templates.EventView;
             ContainerStyleName = CombatSMStrings.StyleContainerName.EventView;
         }
+        protected override void Refresh()
+        {
+
+        }
         protected override void HandleOnProjectUpdate()
         {
            

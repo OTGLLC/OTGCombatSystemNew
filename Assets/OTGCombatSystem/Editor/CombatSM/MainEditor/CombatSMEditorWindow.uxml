@@ -15,6 +15,7 @@
       <engine:Button name ="main-button-options" class="options-button">
         <engine:Image class="img"/>
       </engine:Button>
+		<engine:Button name="main-button-refresh" text ="Refresh"/>
     </engine:VisualElement>
    
     <engine:VisualElement name="main-work-view">

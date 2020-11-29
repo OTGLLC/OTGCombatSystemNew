@@ -50,6 +50,10 @@ public abstract class CombatSMBaseView : VisualElement
     {
 
     }
+    public void OnRefreshButtonClicked()
+    {
+
+    }
     public virtual void UpdateViewHeight(float _height)
     {
         m_containerElement.Q<VisualElement>(ContainerStyleName).style.height = new StyleLength(_height);
@@ -57,6 +61,7 @@ public abstract class CombatSMBaseView : VisualElement
     #endregion
 
     #region abstract methods
+    protected abstract void Refresh();
     protected abstract void SetStrings();
     protected abstract void HandleOnProjectUpdate();
     protected abstract void HandleOnViewFocused();

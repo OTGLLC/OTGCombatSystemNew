@@ -16,6 +16,10 @@ namespace OTG.CombatSM.EditorTools
         {
         
         }
+        protected override void Refresh()
+        {
+            
+        }
         protected override void HandleCharacterSelection()
         {
             

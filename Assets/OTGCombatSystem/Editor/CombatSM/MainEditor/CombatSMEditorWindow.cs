@@ -136,6 +136,9 @@ namespace OTG.CombatSM.EditorTools
 
             Button eventViewerBtn = rootVisualElement.Query<Button>("main-button-events");
             eventViewerBtn.clickable.clicked += OnEventViewButtonClicked;
+
+            Button refreshButton = rootVisualElement.Query<Button>("main-button-refresh");
+            eventViewerBtn.clickable.clicked += OnRefreshButtonClicked;
         }
         private void UnsubscribeButtonCallbacks()
         {
@@ -147,6 +150,9 @@ namespace OTG.CombatSM.EditorTools
 
             Button eventViewerBtn = rootVisualElement.Query<Button>("main-button-events");
             eventViewerBtn.clickable.clicked -= OnEventViewButtonClicked;
+
+            Button refreshButton = rootVisualElement.Query<Button>("main-button-refresh");
+            eventViewerBtn.clickable.clicked -= OnRefreshButtonClicked;
         }
         private void OnCharacterViewButtonClicked()
         {
@@ -171,6 +177,13 @@ namespace OTG.CombatSM.EditorTools
                 return;
 
             SwitchViews(m_optionView);
+        }
+        private void OnRefreshButtonClicked()
+        {
+            if(m_currentView != null)
+            {
+                m_currentView.OnRefreshButtonClicked();
+            }
         }
         #endregion
     }

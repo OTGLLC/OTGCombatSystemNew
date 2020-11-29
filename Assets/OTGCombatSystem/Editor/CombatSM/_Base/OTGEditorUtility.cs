@@ -263,7 +263,7 @@ namespace OTG.CombatSM.EditorTools
         private static void RegisterTwitchFighterTransitions()
         {
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasReachedDesiredDashDistance>());
-            
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
         }
         #endregion
     }

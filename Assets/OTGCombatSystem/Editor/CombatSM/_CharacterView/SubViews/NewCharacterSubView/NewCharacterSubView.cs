@@ -39,6 +39,10 @@ namespace OTG.CombatSM.EditorTools
             CreateBreadcrumbs();
             PopulateNextBreadcrumb();
         }
+        protected override void Refresh()
+        {
+            
+        }
         public override void UpdateViewHeight(float _height)
         {
             

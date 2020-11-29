@@ -41,6 +41,10 @@ namespace OTG.CombatSM.EditorTools
             m_animFilterField = m_containerElement.Q<TextField>("animation-filter");
            
         }
+        protected override void Refresh()
+        {
+
+        }
         protected override void HandleCharacterSelection()
         {
             CleanupGraph();

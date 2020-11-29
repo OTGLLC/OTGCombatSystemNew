@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d53d51d3e74f034f8d1666588a8d9ab, type: 3}
-  m_Name: Proto Character_HanderDataGroup
+  m_Name: CharacterDev_HanderDataGroup
   m_EditorClassIdentifier: 
   m_animHandlerData:
     m_test: 0
   m_moveHandlerData:
     m_twitchData:
       m_dashDistance: 10
-      m_dashSpeed: 0.2
-      m_acceleration: 0.01
-      m_changeLaneSpeed: 0
+      m_dashSpeed: 0.1
+      m_acceleration: 0.05
+      m_changeLaneSpeed: 0.1
       m_dashDistanceMinThreshold: 0.1
   m_inputHandlerData:
     m_test: 0

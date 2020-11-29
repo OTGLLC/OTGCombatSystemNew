@@ -42,6 +42,10 @@ namespace OTG.CombatSM.EditorTools
             BindData(ref m_combatHandlerData, ref m_combatHandlerDataPropField, m_charViewData.CharacterHandlerDataObj, m_charViewData.CombatHandlerDataProp);
             BindData(ref m_animationHandlerData, ref m_animhandlerDataPropField, m_charViewData.CharacterHandlerDataObj, m_charViewData.AnimHandlerDataProp);
         }
+        protected override void Refresh()
+        {
+
+        }
         protected override void HandleOnProjectUpdate()
         {
            
