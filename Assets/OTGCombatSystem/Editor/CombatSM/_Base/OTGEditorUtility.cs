@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using OTG.CombatSM.Core;
 
+using OTG.CombatSM.TwitchFighter;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -255,11 +256,14 @@ namespace OTG.CombatSM.EditorTools
         #region --Twitch Fighter---
         private static void RegisterTwitchFighterActions()
         {
-            //ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetDashDistance>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformMovement>());
         }
         private static void RegisterTwitchFighterTransitions()
         {
-            //TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasReachedDesiredDashDistance>());
+            
         }
         #endregion
     }

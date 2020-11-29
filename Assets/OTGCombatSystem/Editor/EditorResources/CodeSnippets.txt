@@ -1,0 +1,51 @@
+
+##################################Twitch Action Spippet
+
+using OTG.CombatSM.Core;
+using UnityEngine;
+
+namespace OTG.CombatSM.TwitchFighter
+{
+    public class SetDashDistance:TwitchFighterBaseAction
+    {
+        protected override void Awake()
+        {
+            m_combatActionType = E_ActionType.MovementBased;
+            m_processType = E_ProcessType.SetParameter;
+            base.Awake();
+        }
+        public override void Act(OTGCombatSMC _controller)
+        {
+            TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
+            
+        }
+    }
+}
+
+
+
+#########################################END
+
+
+
+using OTG.CombatSM.Core;
+using UnityEngine;
+
+namespace OTG.CombatSM.TwitchFighter
+{
+    public class HasReachedDesiredDashDistance : TwitchFighterBaseTransition
+    {
+        protected override void Awake()
+        {
+            m_transitionDecisionType = E_TransitionDecisionType.Movement;
+            base.Awake();
+        }
+        public override bool Decide(OTGCombatSMC _controller)
+        {
+            TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
+
+            
+        }
+    }
+}
+

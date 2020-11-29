@@ -7,22 +7,13 @@ namespace OTG.CombatSM.Core
     {
         
         #region Properties
-        public MovementHandlerData Data { get; private set; }
-        public Transform Comp_Transform { get; private set; }
-        public CharacterController Comp_CharControl { get; private set; }
-        public float DesiredHorizontalDistance { get; set; }
-        public float CurrentHorizontalPosition { get; set; }
         public TwitchMovementParams TwitchParams { get; private set; }
         #endregion
 
         #region Public API
         public MovementHandler(HandlerDataGroup _dataGroup, CharacterController _charControl, Transform _trans)
         {
-            Data = _dataGroup.MoveHandlerData;
-            Comp_CharControl = _charControl;
-            Comp_Transform = _trans;
-
-            TwitchParams = new TwitchMovementParams();
+            TwitchParams = new TwitchMovementParams(_trans,_charControl, _dataGroup.MoveHandlerData);
         }
         public void CleanupHandler()
         {
@@ -35,9 +26,8 @@ namespace OTG.CombatSM.Core
         #region Utility
         private void Cleanup()
         {
-            Data = null;
-            Comp_Transform = null;
-            Comp_CharControl = null;
+            TwitchParams.Cleanup();
+            TwitchParams = null;
         }
 
         #endregion
@@ -46,17 +36,40 @@ namespace OTG.CombatSM.Core
     {
         public Transform Comp_Transform { get; private set; }
         public CharacterController Comp_CharacterControl { get; private set; }
-        public MovementHandlerData Data { get; private set; }
+        public TwitchMovementData Data { get; private set; }
 
+        public Vector3 DashStartPosition;
         public float DesiredDashDistance;
         public float CurrentDashDistance;
-        public float Movement;
+        public float DesiredDashSpeed;
+      
+        public float HorizontalSpeed;
+        public float VerticalSpeed;
+        public float DepthSpeed;
         
+        public TwitchMovementParams(Transform _trans, CharacterController _control, MovementHandlerData _data)
+        {
+            Comp_Transform = _trans;
+            Comp_CharacterControl = _control;
+            Data = _data.TwitchData;
+        }
+        public void Cleanup()
+        {
+            Comp_Transform = null;
+            Comp_CharacterControl = null;
+            Data = null;
+
+            ResetParams();
+        }
         public void ResetParams()
         {
+            DashStartPosition = Vector3.zero;
+            DesiredDashSpeed = 0;
             DesiredDashDistance = 0;
             CurrentDashDistance = 0;
-            Movement = 0;
+            HorizontalSpeed = 0;
+            VerticalSpeed = 0;
+            DepthSpeed = 0;
         }
     }
 }

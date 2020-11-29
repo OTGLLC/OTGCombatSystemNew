@@ -7,13 +7,24 @@ namespace OTG.CombatSM.Core
     [System.Serializable]
     public class MovementHandlerData
     {
-        [SerializeField] private float m_horizontalMoveSpeed;
-        [SerializeField] private float m_horizontalDashDistance;
+        [SerializeField] private TwitchMovementData m_twitchData;
 
 
-        #region Properties
-        public float HorizontalMoveSpeed { get { return m_horizontalMoveSpeed; } }
-        public float HorizontalDashDistance { get { return m_horizontalDashDistance; } }
-        #endregion
+        public TwitchMovementData TwitchData { get { return m_twitchData; } }
+    }
+    [System.Serializable]
+    public class TwitchMovementData
+    {
+        [SerializeField] private float m_dashDistance;
+        [SerializeField] private float m_dashSpeed;
+        [SerializeField] private float m_acceleration;
+        [SerializeField] private float m_changeLaneSpeed;
+        [SerializeField] private float m_dashDistanceMinThreshold;
+        
+        public float DashDistance { get { return m_dashDistance; } }
+        public float DashSpeed { get { return m_dashSpeed; } }
+        public float Acceleration { get { return m_acceleration; } }
+        public float ChangeLaneSpeed { get { return m_changeLaneSpeed; } }
+        public float DashDistanceMinThreshold { get { return m_dashDistanceMinThreshold; } }
     }
 }
