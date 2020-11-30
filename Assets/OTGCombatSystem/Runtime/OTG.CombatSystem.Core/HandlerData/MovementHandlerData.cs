@@ -20,11 +20,13 @@ namespace OTG.CombatSM.Core
         [SerializeField] private float m_acceleration;
         [SerializeField] private float m_changeLaneSpeed;
         [SerializeField] private float m_dashDistanceMinThreshold;
+        [SerializeField] private AnimationCurve m_dashCurve;
         
         public float DashDistance { get { return m_dashDistance; } }
         public float DashSpeed { get { return m_dashSpeed; } }
         public float Acceleration { get { return m_acceleration; } }
         public float ChangeLaneSpeed { get { return m_changeLaneSpeed; } }
         public float DashDistanceMinThreshold { get { return m_dashDistanceMinThreshold; } }
+        public AnimationCurve DashCurve { get { return m_dashCurve; } }
     }
 }

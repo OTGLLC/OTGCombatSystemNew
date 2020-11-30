@@ -42,6 +42,7 @@ namespace OTG.CombatSM.Core
         public float DesiredDashDistance;
         public float CurrentDashDistance;
         public float DesiredDashSpeed;
+        public float PercentageDistanceTraveled;
       
         public float HorizontalSpeed;
         public float VerticalSpeed;

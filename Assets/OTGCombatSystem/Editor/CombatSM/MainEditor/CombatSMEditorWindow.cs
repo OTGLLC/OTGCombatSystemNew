@@ -138,7 +138,7 @@ namespace OTG.CombatSM.EditorTools
             eventViewerBtn.clickable.clicked += OnEventViewButtonClicked;
 
             Button refreshButton = rootVisualElement.Query<Button>("main-button-refresh");
-            eventViewerBtn.clickable.clicked += OnRefreshButtonClicked;
+            refreshButton.clickable.clicked += OnRefreshButtonClicked;
         }
         private void UnsubscribeButtonCallbacks()
         {
@@ -152,7 +152,7 @@ namespace OTG.CombatSM.EditorTools
             eventViewerBtn.clickable.clicked -= OnEventViewButtonClicked;
 
             Button refreshButton = rootVisualElement.Query<Button>("main-button-refresh");
-            eventViewerBtn.clickable.clicked -= OnRefreshButtonClicked;
+            refreshButton.clickable.clicked -= OnRefreshButtonClicked;
         }
         private void OnCharacterViewButtonClicked()
         {

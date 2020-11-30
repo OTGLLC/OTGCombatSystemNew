@@ -18,6 +18,7 @@ namespace OTG.CombatSM.Core
     public enum E_ActionType
     {
         MovementBased,
+        AnimationBased,
         MovementBased_Twitch,
         CombatBased,
         Misc,

@@ -31,6 +31,10 @@ namespace OTG.CombatSM.Core
             SetAnimationClip(_clip);
             PlayCurrentAnimation();
         }
+        public void PlayAnimationByTime(float _percentCompletion)
+        {
+            PlayCurrentAnimationByTime(_percentCompletion);
+        }
         public void CleanupHandler()
         {
             Cleanup();
@@ -64,6 +68,11 @@ namespace OTG.CombatSM.Core
         void PlayCurrentAnimation()
         {
             m_playableGraph.Play();
+        }
+        private void PlayCurrentAnimationByTime(float _percComplete)
+        {
+            //m_playableGraph.Stop();
+            m_clipPlayable.SetTime((double)_percComplete);
         }
         private void Cleanup()
         {

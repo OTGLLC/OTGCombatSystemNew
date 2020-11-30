@@ -259,6 +259,10 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<SetDashDistance>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateHorizontalMovement>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformMovement>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculatePercentageDistanceTraveled>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetAnimationPlaybackTime>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ApplyDashCurveToSpeed>());
+
         }
         private static void RegisterTwitchFighterTransitions()
         {

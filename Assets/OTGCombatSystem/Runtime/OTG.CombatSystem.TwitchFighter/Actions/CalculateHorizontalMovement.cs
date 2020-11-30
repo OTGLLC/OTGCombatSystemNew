@@ -16,12 +16,9 @@ namespace OTG.CombatSM.TwitchFighter
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
 
 
-            twitch.HorizontalSpeed = Mathf.MoveTowards(twitch.HorizontalSpeed, twitch.DesiredDashSpeed, twitch.Data.Acceleration);
+            twitch.HorizontalSpeed = Mathf.MoveTowards(twitch.HorizontalSpeed, twitch.DesiredDashSpeed, twitch.Data.DashSpeed);
             float currentXPosition = Mathf.MoveTowards(twitch.Comp_Transform.position.x, twitch.DesiredDashDistance, twitch.HorizontalSpeed);
 
-            Debug.Log(twitch.CurrentDashDistance);
-
- 
             twitch.CurrentDashDistance = currentXPosition - twitch.DashStartPosition.x;
         }
     }

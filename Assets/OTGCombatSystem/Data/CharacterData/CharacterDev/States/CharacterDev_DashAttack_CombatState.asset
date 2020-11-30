@@ -20,8 +20,16 @@ MonoBehaviour:
       m_DepthImpactForce: 0
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
-  m_onEnterActions: []
-  m_onUpdateActions: []
-  m_animUpdateActions: []
+  m_onEnterActions:
+  - {fileID: 11400000, guid: fe1d587a2e9e81c47af4e77a68b19bcc, type: 2}
+  m_onUpdateActions:
+  - {fileID: 11400000, guid: 0c1523eb2df0f00409c75ff6c7f0f08a, type: 2}
+  - {fileID: 11400000, guid: 44b84a85d8abc9d44b97aad544424cf3, type: 2}
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 14a48d8d408d1f949ac2e075a4f96021, type: 2}
   m_onExitActions: []
-  m_stateTransitions: []
+  m_stateTransitions:
+  - m_nextState: {fileID: 11400000, guid: f0b32602c095fef4e89192ff7087bf06, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: d3c111ff46e452b4a80bd6888f6f9ac3, type: 2}
+    m_usePreviousState: 0

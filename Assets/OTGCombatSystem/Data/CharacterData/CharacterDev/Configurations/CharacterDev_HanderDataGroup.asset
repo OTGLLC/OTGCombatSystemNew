@@ -21,6 +21,39 @@ MonoBehaviour:
       m_acceleration: 0.05
       m_changeLaneSpeed: 0.1
       m_dashDistanceMinThreshold: 0.1
+      m_dashCurve:
+        serializedVersion: 2
+        m_Curve:
+        - serializedVersion: 3
+          time: -0.008333333
+          value: 0.009433974
+          inSlope: 0.09028819
+          outSlope: 0.09028819
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.67083335
+          value: 0.07075471
+          inSlope: -0.030664533
+          outSlope: -0.030664533
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.90416664
+          value: 0.035377353
+          inSlope: -0.15161726
+          outSlope: -0.15161726
+          tangentMode: 34
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
   m_inputHandlerData:
     m_test: 0
   m_collisionHandlerData:
