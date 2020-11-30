@@ -67,6 +67,10 @@ namespace OTG.CombatSM.Core
         {
             m_currentState.OnStateUpdate(this);
         }
+        public void OnAnimationEvent(OTGAnimationEvent _event)
+        {
+            Handler_Animation.UpdateAnimationEvent(_event);
+        }
         #endregion
 
         #region Utility

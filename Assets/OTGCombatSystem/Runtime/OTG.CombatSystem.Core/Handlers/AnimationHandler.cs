@@ -16,7 +16,7 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Properties
-
+        public OTGAnimationEvent CurrentAnimationEvent { get; private set; }
         #endregion
 
         #region Public API
@@ -38,6 +38,10 @@ namespace OTG.CombatSM.Core
         public void CleanupHandler()
         {
             Cleanup();
+        }
+        public void UpdateAnimationEvent(OTGAnimationEvent _event)
+        {
+            CurrentAnimationEvent = _event;
         }
         #endregion
 

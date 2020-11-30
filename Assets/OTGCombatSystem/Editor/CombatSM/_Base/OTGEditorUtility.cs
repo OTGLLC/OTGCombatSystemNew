@@ -262,7 +262,8 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculatePercentageDistanceTraveled>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<SetAnimationPlaybackTime>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ApplyDashCurveToSpeed>());
-
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetMovementParameters>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetAnimationEvent>());
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -273,6 +274,9 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasLeftInput>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesUp>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<MatchAnimationEvent>());
+
+            
         }
         #endregion
     }
