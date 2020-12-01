@@ -20,6 +20,7 @@ namespace OTG.CombatSM.EditorTools
         private NewCharacterSubView m_newCharacterSubView;
         private CharacterStateSubview m_characterStateSubView;
         private CharacterGraphSubview m_characterGraphSubView;
+        private CharacterAnimationSubView m_charAnimationSubview;
         #endregion
 
         #region Utility
@@ -32,6 +33,7 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<ToolbarButton>("details-sub-view-button").clickable.clicked += SwitchToDetailsSubView;
             ContainerElement.Q<ToolbarButton>("state-sub-view-button").clickable.clicked += SwitchToStateSubview;
             ContainerElement.Q<ToolbarButton>("graph-sub-view-button").clickable.clicked += SwitchToGraphsubView;
+            ContainerElement.Q<ToolbarButton>("animation-sub-view-button").clickable.clicked += SwitchToAnimationSubView;
         }
         private void CleanupCharacterToolBar()
         {
@@ -42,6 +44,7 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<ToolbarButton>("details-sub-view-button").clickable.clicked -= SwitchToDetailsSubView;
             ContainerElement.Q<ToolbarButton>("state-sub-view-button").clickable.clicked -= SwitchToStateSubview;
             ContainerElement.Q<ToolbarButton>("graph-sub-view-button").clickable.clicked -= SwitchToGraphsubView;
+            ContainerElement.Q<ToolbarButton>("animation-sub-view-button").clickable.clicked -= SwitchToAnimationSubView;
         }
         private void CreateNewData()
         {
@@ -82,6 +85,7 @@ namespace OTG.CombatSM.EditorTools
             m_charDetailsSubView = new CharacterDetailsSubView(m_viewData, _editorConfig);
             m_characterGraphSubView = new CharacterGraphSubview(m_viewData, _editorConfig);
             m_characterStateSubView = new CharacterStateSubview(m_viewData, _editorConfig);
+            m_charAnimationSubview = new CharacterAnimationSubView(m_viewData, _editorConfig);
         }
         private void SwitchSubViews(CharacterSubViewBase _newView)
         {
@@ -182,6 +186,10 @@ namespace OTG.CombatSM.EditorTools
         private void SwitchToGraphsubView()
         {
             SwitchSubViews(m_characterGraphSubView);
+        }
+        private void SwitchToAnimationSubView()
+        {
+            SwitchSubViews(m_charAnimationSubview);
         }
         #endregion
 

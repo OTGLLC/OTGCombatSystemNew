@@ -1,0 +1,42 @@
+﻿#main-container
+{
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+}
+#list-view-container
+{
+	flex: .2;
+	
+
+}
+#animation-work-area
+{
+	display: flex;
+	flex-direction: column;
+	border-top-width: 0px;
+	border-left-width: 0px;
+	flex: .4;
+}
+#animation-preview
+{
+	flex: .5;
+}
+#animation-event-work-area
+{
+	flex: .5;
+	border-left-width: 0px;
+	border-right-width: 0px;
+}
+#animation-data-container
+{
+	flex: .4;
+	border-top-width: 0px;
+	border-left-width: 0px;
+}
+
+#animation-list-view
+{
+   border-top-color: rgba(0,0,0,1);
+   border-top-width: 1px;
+}

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engine:UXML
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:engine="UnityEngine.UIElements"
+    xmlns:editor="UnityEditor.UIElements"
+    xsi:noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd"
+>
+	<engine:VisualElement name ="character-animation-subview-main">
+		<engine:VisualElement name="main-container">
+			<engine:Box name="list-view-container">
+				<engine:Label name="list-view-label" text ="Current Animations"/>
+				<engine:ListView name="animation-list-view"/>
+			</engine:Box>
+			<engine:Box name="animation-work-area">
+				<engine:VisualElement name="animation-preview"/>
+				<engine:Box name ="animation-event-work-area">
+				
+				</engine:Box>
+		</engine:Box>
+			<engine:Box name ="animation-data-container">
+				
+			</engine:Box>
+		</engine:VisualElement>
+	</engine:VisualElement>
+</engine:UXML>

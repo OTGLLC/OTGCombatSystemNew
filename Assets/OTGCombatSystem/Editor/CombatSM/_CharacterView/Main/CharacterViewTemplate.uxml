@@ -20,6 +20,7 @@
         <editor:ToolbarButton name="details-sub-view-button" text="Character Details" class ="subview-button" />
         <editor:ToolbarButton name="state-sub-view-button" text ="Character States" class ="subview-button"/>
         <editor:ToolbarButton name="graph-sub-view-button" text ="State Graph" class ="subview-button"/>
+		<editor:ToolbarButton name="animation-sub-view-button" text ="Character Animation" class ="subview-button"/>
       </editor:Toolbar>
       <engine:VisualElement name ="workflow-area">
       </engine:VisualElement>

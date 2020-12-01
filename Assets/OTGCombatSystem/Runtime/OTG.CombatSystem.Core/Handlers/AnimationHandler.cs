@@ -14,6 +14,7 @@ namespace OTG.CombatSM.Core
         private AnimationPlayableOutput m_playableOutput;
         private AnimationClipPlayable m_clipPlayable;
         #endregion
+        
 
         #region Properties
         public OTGAnimationEvent CurrentAnimationEvent { get; private set; }
