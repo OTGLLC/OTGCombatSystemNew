@@ -17,7 +17,7 @@ MonoBehaviour:
   m_moveHandlerData:
     m_twitchData:
       m_dashDistance: 10
-      m_dashSpeed: 0.1
+      m_dashSpeed: 0.05
       m_acceleration: 0.05
       m_changeLaneSpeed: 0.1
       m_dashDistanceMinThreshold: 0.1
@@ -27,26 +27,26 @@ MonoBehaviour:
         - serializedVersion: 3
           time: -0.008333333
           value: 0.009433974
-          inSlope: 0.09028819
-          outSlope: 0.09028819
+          inSlope: 1.8076867
+          outSlope: 1.8076867
           tangentMode: 34
           weightedMode: 0
           inWeight: 0
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.67083335
-          value: 0.07075471
-          inSlope: -0.030664533
-          outSlope: -0.030664533
+          time: 0.5221975
+          value: 0.9684675
+          inSlope: 0.7264196
+          outSlope: 0.7264196
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
-          time: 0.90416664
-          value: 0.035377353
-          inSlope: -0.15161726
-          outSlope: -0.15161726
+          time: 1.0049968
+          value: 0.7971474
+          inSlope: -0.3548474
+          outSlope: -0.3548474
           tangentMode: 34
           weightedMode: 0
           inWeight: 0.33333334

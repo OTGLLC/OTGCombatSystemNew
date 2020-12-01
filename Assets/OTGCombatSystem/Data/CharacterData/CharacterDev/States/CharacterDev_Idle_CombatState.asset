@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CharacterDev_Idle_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: fe9e9976ffea9fd44bc10cebee1d4609, type: 3}
+    m_animClip: {fileID: 7400000, guid: f616a2e271f109447b49d45d058a4084, type: 3}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0

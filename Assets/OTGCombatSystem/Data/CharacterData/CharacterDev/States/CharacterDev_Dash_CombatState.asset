@@ -13,15 +13,24 @@ MonoBehaviour:
   m_Name: CharacterDev_Dash_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 0}
+    m_animClip: {fileID: 7400000, guid: d7595d8f2185f9a44ab5c32cda4cdba0, type: 3}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
       m_DepthImpactForce: 0
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
-  m_onEnterActions: []
-  m_onUpdateActions: []
-  m_animUpdateActions: []
+  m_onEnterActions:
+  - {fileID: 11400000, guid: fe1d587a2e9e81c47af4e77a68b19bcc, type: 2}
+  - {fileID: 11400000, guid: ce518a72f2ff31744832d3b3491d5a18, type: 2}
+  m_onUpdateActions:
+  - {fileID: 11400000, guid: 0c1523eb2df0f00409c75ff6c7f0f08a, type: 2}
+  - {fileID: 11400000, guid: 44b84a85d8abc9d44b97aad544424cf3, type: 2}
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 14a48d8d408d1f949ac2e075a4f96021, type: 2}
   m_onExitActions: []
-  m_stateTransitions: []
+  m_stateTransitions:
+  - m_nextState: {fileID: 11400000, guid: 03d3e404bb1ccf846a247b06a104ecea, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: d3c111ff46e452b4a80bd6888f6f9ac3, type: 2}
+    m_usePreviousState: 0

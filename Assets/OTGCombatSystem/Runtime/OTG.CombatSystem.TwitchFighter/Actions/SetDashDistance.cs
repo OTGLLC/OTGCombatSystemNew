@@ -18,7 +18,13 @@ namespace OTG.CombatSM.TwitchFighter
 
             twitch.ResetParams();
 
-            twitch.DesiredDashSpeed = twitch.Data.DashSpeed;
+            float direction = 0;
+            if (_controller.Handler_Input.TwitchInput.HasLeftInput)
+                direction = -1;
+            else if (_controller.Handler_Input.TwitchInput.HasRightInput)
+                direction = 1;
+
+            twitch.DesiredDashSpeed = twitch.Data.DashSpeed * direction;
             twitch.DesiredDashDistance = twitch.Data.DashDistance;
             twitch.DashStartPosition = twitch.Comp_Transform.position;
         }

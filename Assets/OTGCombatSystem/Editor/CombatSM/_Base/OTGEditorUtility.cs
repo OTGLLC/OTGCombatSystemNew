@@ -264,6 +264,8 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ApplyDashCurveToSpeed>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetMovementParameters>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetAnimationEvent>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<RotateToMatchInputDirection>());
+            
         }
         private static void RegisterTwitchFighterTransitions()
         {

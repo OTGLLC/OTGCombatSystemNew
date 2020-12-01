@@ -15,8 +15,8 @@ namespace OTG.CombatSM.TwitchFighter
         public override void Act(OTGCombatSMC _controller)
         {
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
-            float currentDistance = twitch.CurrentDashDistance;
-            float maxDashDistance = twitch.DesiredDashDistance;
+            float currentDistance = Mathf.Abs(twitch.CurrentDashDistance);
+            float maxDashDistance = Mathf.Abs(twitch.DesiredDashDistance);
 
             twitch.PercentageDistanceTraveled = 1 - ((maxDashDistance - currentDistance) / maxDashDistance);
             Debug.Log("Percentage traveled " + twitch.PercentageDistanceTraveled);

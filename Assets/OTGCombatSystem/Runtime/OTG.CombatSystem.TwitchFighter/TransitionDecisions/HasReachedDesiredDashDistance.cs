@@ -15,7 +15,7 @@ namespace OTG.CombatSM.TwitchFighter
         {
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
 
-            return (twitch.DesiredDashDistance - twitch.CurrentDashDistance <= twitch.Data.DashDistanceMinThreshold);
+            return (Mathf.Abs(twitch.DesiredDashDistance) - Mathf.Abs(twitch.CurrentDashDistance) <= twitch.Data.DashDistanceMinThreshold);
         }
     }
 }
