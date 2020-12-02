@@ -418,17 +418,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2391403295657355393, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
-      propertyPath: m_Center.y
-      value: 1.03
-      objectReference: {fileID: 0}
     - target: {fileID: 2391403295657355395, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
       propertyPath: m_Name
       value: CharacterDev
-      objectReference: {fileID: 0}
-    - target: {fileID: 2391403295657355397, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
-      propertyPath: m_DefaultControlScheme
-      value: Keyboard&Mouse
       objectReference: {fileID: 0}
     - target: {fileID: 2391403295657355399, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
       propertyPath: m_RootOrder
@@ -473,18 +465,6 @@ PrefabInstance:
     - target: {fileID: 2391403295657355399, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2391403296839101569, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2391403296839101569, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 2391403296839101569, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 01270e4717173ad46af28ac26fa1ea98, type: 3}
