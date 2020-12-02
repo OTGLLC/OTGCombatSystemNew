@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CharacterDev_DashAttack_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: 129f05c2fdd00fd4fb608dfbf4231c89, type: 3}
+    m_animClip: {fileID: 7400000, guid: c9882739488c4a44cb25e41defe55455, type: 3}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
@@ -22,8 +22,10 @@ MonoBehaviour:
       m_onConnectBaseDamage: 0
   m_onEnterActions: []
   m_onUpdateActions: []
-  m_animUpdateActions: []
-  m_onExitActions: []
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 660e7c7e675a06b41b0048029268b922, type: 2}
+  m_onExitActions:
+  - {fileID: 11400000, guid: 6cd22fe456c71b149a9fb3624e1e7962, type: 2}
   m_stateTransitions:
   - m_nextState: {fileID: 11400000, guid: f0b32602c095fef4e89192ff7087bf06, type: 2}
     m_decisions:

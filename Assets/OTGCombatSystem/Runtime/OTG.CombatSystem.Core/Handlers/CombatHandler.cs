@@ -1,5 +1,5 @@
 ﻿
-
+using UnityEngine;
 
 namespace OTG.CombatSM.Core
 {
@@ -10,13 +10,14 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Properties
-
+        public TwitchFighterCombatParams TwitchCombat { get; private set; }
         #endregion
 
         #region Public API
         public CombatHandler(HandlerDataGroup _dataGroup)
         {
             InitHandlerData(_dataGroup);
+            InitializeIndividualParams(_dataGroup);
         }
         public void CleanupHandler()
         {
@@ -25,6 +26,10 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Utility
+        private void InitializeIndividualParams(HandlerDataGroup _dataGroup)
+        {
+            TwitchCombat = new TwitchFighterCombatParams(_dataGroup);
+        }
         private void InitHandlerData(HandlerDataGroup _dataGroup)
         {
             m_handlerData = _dataGroup.CombatsHandlerData;
@@ -34,5 +39,29 @@ namespace OTG.CombatSM.Core
             m_handlerData = null;
         }
         #endregion
+    }
+    public class TwitchFighterCombatParams
+    {
+        public OTGCombatSMC NearestTarget { get; set; }
+        public Vector3 NearestTargetPosition { get; set; }
+
+        public TwitchFighterCombatParams(HandlerDataGroup _datGroup)
+        {
+            Initialize();
+        }
+
+        public void CleanupParams()
+        {
+            NearestTarget = null;
+        }
+        public void ResetParams()
+        {
+            NearestTarget = null;
+        }
+
+        private void Initialize()
+        {
+
+        }
     }
 }

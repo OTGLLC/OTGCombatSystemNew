@@ -25,7 +25,7 @@ namespace OTG.CombatSM.TwitchFighter
                 direction = 1;
 
             twitch.DesiredDashSpeed = twitch.Data.DashSpeed * direction;
-            twitch.DesiredDashDistance = twitch.Data.DashDistance;
+            twitch.DesiredDashDistance = twitch.Data.MaxDashDistance;
             twitch.DashStartPosition = twitch.Comp_Transform.position;
         }
     }

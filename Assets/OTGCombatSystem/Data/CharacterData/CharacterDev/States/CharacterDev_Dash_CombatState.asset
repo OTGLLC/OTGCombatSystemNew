@@ -21,10 +21,10 @@ MonoBehaviour:
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
   m_onEnterActions:
-  - {fileID: 11400000, guid: fe1d587a2e9e81c47af4e77a68b19bcc, type: 2}
+  - {fileID: 11400000, guid: 02720a001afd07d479041c585276c3a8, type: 2}
   - {fileID: 11400000, guid: ce518a72f2ff31744832d3b3491d5a18, type: 2}
   m_onUpdateActions:
-  - {fileID: 11400000, guid: 0c1523eb2df0f00409c75ff6c7f0f08a, type: 2}
+  - {fileID: 11400000, guid: 84f025474630f3347af91d4c0e3ef03c, type: 2}
   - {fileID: 11400000, guid: 44b84a85d8abc9d44b97aad544424cf3, type: 2}
   m_animUpdateActions:
   - {fileID: 11400000, guid: 14a48d8d408d1f949ac2e075a4f96021, type: 2}

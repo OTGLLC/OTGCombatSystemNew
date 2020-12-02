@@ -16,8 +16,8 @@ MonoBehaviour:
     m_test: 0
   m_moveHandlerData:
     m_twitchData:
-      m_dashDistance: 10
-      m_dashSpeed: 0.05
+      m_maxDashDistance: 10
+      m_dashSpeed: 20
       m_acceleration: 0.05
       m_changeLaneSpeed: 0.1
       m_dashDistanceMinThreshold: 0.1

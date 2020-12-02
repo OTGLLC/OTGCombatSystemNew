@@ -8,7 +8,7 @@ namespace OTG.CombatSM.Core
     {
         #region Fields
         private AnimationHandlerData m_handlerData;
-        private Animator m_animComponent;
+        
         private AnimationClip m_currentClip;
         private PlayableGraph m_playableGraph;
         private AnimationPlayableOutput m_playableOutput;
@@ -18,6 +18,7 @@ namespace OTG.CombatSM.Core
 
         #region Properties
         public OTGAnimationEvent CurrentAnimationEvent { get; private set; }
+        public Animator Comp_Anim { get; private set; }
         #endregion
 
         #region Public API
@@ -55,13 +56,13 @@ namespace OTG.CombatSM.Core
         }
         private void InitializeAnimator(Animator _animComponent)
         {
-            m_animComponent = _animComponent;
+            Comp_Anim = _animComponent;
         }
         private void InitializePlayableGraph()
         {
             m_playableGraph = PlayableGraph.Create();
             m_playableGraph.SetTimeUpdateMode(DirectorUpdateMode.GameTime);
-            m_playableOutput = AnimationPlayableOutput.Create(m_playableGraph, "CombatAnimation", m_animComponent);
+            m_playableOutput = AnimationPlayableOutput.Create(m_playableGraph, "CombatAnimation", Comp_Anim);
         }
         private void SetAnimationClip(AnimationClip _clip)
         {
@@ -83,7 +84,7 @@ namespace OTG.CombatSM.Core
         {
             m_handlerData = null;
             m_playableGraph.Destroy();
-            m_animComponent = null;
+            Comp_Anim = null;
         }
         #endregion
     }

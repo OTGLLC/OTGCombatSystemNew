@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace OTG.CombatSM.Core
 {
-    [RequireComponent(typeof(Animator))]
+
     [RequireComponent(typeof(CharacterController))]
     public class OTGCombatSMC : MonoBehaviour
     {
@@ -45,7 +45,7 @@ namespace OTG.CombatSM.Core
         private void Update()
         {
             m_currentState.OnStateUpdate(this);
-            Debug.Log(m_currentState.name);
+      
         }
         private void OnAnimatorMove()
         {

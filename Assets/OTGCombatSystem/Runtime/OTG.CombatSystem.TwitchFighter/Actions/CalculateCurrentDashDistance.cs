@@ -4,21 +4,20 @@ using UnityEngine;
 
 namespace OTG.CombatSM.TwitchFighter
 {
-    public class CalculatePercentageDistanceTraveled : TwitchFighterBaseAction
+    public class CalculateCurrentDashDistance : TwitchFighterBaseAction
     {
         protected override void Awake()
         {
             m_combatActionType = E_ActionType.MovementBased;
-            m_processType = E_ProcessType.Calculation;
+            m_processType = E_ProcessType.SetParameter;
             base.Awake();
         }
         public override void Act(OTGCombatSMC _controller)
         {
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
-            float currentDistance = Mathf.Abs(twitch.CurrentDashDistance);
-            float maxDashDistance = Mathf.Abs(twitch.DesiredDashDistance);
+            TwitchFighterCombatParams twitchCombat = _controller.Handler_Combat.TwitchCombat;
 
-            twitch.PercentageDistanceTraveled = 1 - ((maxDashDistance - currentDistance) / maxDashDistance);
+            twitch.CurrentDashDistance = Vector3.Distance(twitch.Comp_Transform.position, twitchCombat.NearestTargetPosition);
         }
     }
 }

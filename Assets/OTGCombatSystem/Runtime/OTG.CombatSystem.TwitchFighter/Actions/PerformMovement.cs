@@ -23,7 +23,7 @@ namespace OTG.CombatSM.TwitchFighter
                 twitch.DepthSpeed
                 );
 
-            twitch.Comp_CharacterControl.Move(movement);
+            twitch.Comp_CharacterControl.Move(movement*Time.deltaTime);
         }
     }
 }
