@@ -24,22 +24,6 @@ namespace OTG.CombatSM.EditorTools
         protected override void HandleCharacterSelection()
         {
         
-            m_charIMGUI = new IMGUIContainer(() =>
-            {
-           
-                if(m_characterEditor == null)
-                {
-                  
-                    m_characterEditor = Editor.CreateEditor(m_charViewData.SelectedCharacter.gameObject);
-                }
-                    
-
-
-                m_characterEditor.OnPreviewGUI(GUILayoutUtility.GetRect(300, 300), null);
-                
-            });
-            m_charIMGUI.onGUIHandler += IMGUIHandler;
-            m_animPreviewCont.Add(m_charIMGUI);
         }
 
         protected override void HandleOnHierarchyChanged()
@@ -59,7 +43,7 @@ namespace OTG.CombatSM.EditorTools
 
         protected override void HandleViewLostFocus()
         {
-            m_charIMGUI.onGUIHandler -= IMGUIHandler;
+            //m_charIMGUI.onGUIHandler -= IMGUIHandler;
             m_characterEditor = null;
             m_charIMGUI = null;
         }
@@ -77,11 +61,6 @@ namespace OTG.CombatSM.EditorTools
         }
         #endregion
 
-        private void IMGUIHandler()
-        {
-            return;
-            Debug.Log("Im GUI handler");
-        }
     }
 
 }

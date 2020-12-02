@@ -30,6 +30,7 @@ namespace OTG.CombatSM.Core
         public InputHandler Handler_Input { get; private set; }
         public CollisionHandler Handler_Collision { get; private set; }
         public CombatHandler Handler_Combat { get; private set; }
+        public VFXHandler Handler_VFX { get; private set; }
         #endregion
 
         #region Unity API
@@ -106,6 +107,7 @@ namespace OTG.CombatSM.Core
             Handler_Input = new InputHandler(m_handlerDataGroup);
             Handler_Collision = new CollisionHandler(m_handlerDataGroup);
             Handler_Combat = new CombatHandler(m_handlerDataGroup);
+            Handler_VFX = new VFXHandler(GetComponentsInChildren<OTGVFXController>());
         }
         private void CleanupHandlers()
         {
@@ -123,6 +125,9 @@ namespace OTG.CombatSM.Core
 
             Handler_Combat.CleanupHandler();
             Handler_Combat = null;
+
+            Handler_VFX.CleanupHandler();
+            Handler_VFX = null;
         }
         #endregion
     }
