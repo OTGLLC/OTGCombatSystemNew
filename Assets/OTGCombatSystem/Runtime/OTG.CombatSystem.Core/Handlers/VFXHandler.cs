@@ -25,7 +25,7 @@ namespace OTG.CombatSM.Core
         {
             if (_event.VfxID == null)
                 return;
-
+            VFXLookup[_event.VfxID].OnPlayVFX();
         }
         #endregion
 

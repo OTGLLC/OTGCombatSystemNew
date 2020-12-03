@@ -71,6 +71,7 @@ namespace OTG.CombatSM.Core
         public void OnAnimationEvent(OTGAnimationEvent _event)
         {
             Handler_Animation.UpdateAnimationEvent(_event);
+            Handler_VFX.OnAnimationEvent(_event);
         }
         #endregion
 
