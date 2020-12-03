@@ -20,6 +20,7 @@ MonoBehaviour:
       m_DepthImpactForce: 0
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
+      m_vfxID: {fileID: 0}
   m_onEnterActions: []
   m_onUpdateActions: []
   m_animUpdateActions: []
