@@ -237,6 +237,33 @@ namespace OTG.CombatSM.EditorTools
             _targetListView.itemHeight = 16;
             _targetListView.selectionType = SelectionType.Single;
         }
+        public static void PopulateListViewSerializedProp(ref ListView _targetListView, ref VisualElement _ownerContainer, List<SerializedProperty> _items, string _listAreaName, string _labelPath, bool _isRelativeProperty)
+        {
+            _targetListView = _ownerContainer.Query<ListView>(_listAreaName).First();
+
+            _targetListView.Clear();
+            _targetListView.makeItem = () => new Label();
+
+            _targetListView.bindItem = (element, i) =>
+            {
+                string labelText = string.Empty;
+
+                if(_isRelativeProperty)
+                {
+                    labelText = _items[i].FindPropertyRelative(_labelPath).objectReferenceValue.name;
+                }
+                else
+                {
+                    labelText = _items[i].name;
+                }
+                
+                (element as Label).text = labelText;
+            };
+
+            _targetListView.itemsSource = _items;
+            _targetListView.itemHeight = 16;
+            _targetListView.selectionType = SelectionType.Single;
+        }
         public static void PopulateListViewScriptableObject<T>(ref ListView _targetListView, ref VisualElement _ownerContainer, List<T> _items, string _listAreaName) where T : ScriptableObject
         {
             _targetListView = _ownerContainer.Query<ListView>(_listAreaName).First();

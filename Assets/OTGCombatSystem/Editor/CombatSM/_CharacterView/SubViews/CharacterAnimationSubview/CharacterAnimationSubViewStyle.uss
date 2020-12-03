@@ -30,13 +30,28 @@
 }
 #animation-data-container
 {
+	display: flex;
+	flex-direction: column;
 	flex: .4;
 	border-top-width: 0px;
 	border-left-width: 0px;
 }
-
-#animation-list-view
+#animation-data-work-area
 {
-   border-top-color: rgba(0,0,0,1);
-   border-top-width: 1px;
+	border-left-width: 0px;
+	flex: .5;
+}
+#animation-event-creation-area {
+	border-left-width: 0px;
+	border-top-width: 0px;
+	flex: .5;
+}
+#new-animation-event-name
+{
+	flex-grow: 1;
+}
+#animation-list-view {
+	flex-grow: 1;
+	border-top-color: rgba(0,0,0,1);
+	border-top-width: 1px;
 }

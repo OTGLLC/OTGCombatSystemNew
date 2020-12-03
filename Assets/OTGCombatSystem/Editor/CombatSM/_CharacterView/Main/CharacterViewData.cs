@@ -84,6 +84,7 @@ namespace OTG.CombatSM.EditorTools
         public bool IsRepeatNode { get; private set; }
         public bool HasAnimation { get; private set; }
         public string AnimationName { get; private set; }
+        public SerializedProperty CombatAnimation { get; private set; }
         public StateNode(OTGCombatState _newState, int _level, Dictionary<OTGCombatState, int> _stateRecord, int _order)
         {
             IsRepeatNode = false;
@@ -113,11 +114,14 @@ namespace OTG.CombatSM.EditorTools
         private void PopulateStateObject()
         {
             OwnerStateObject = new SerializedObject(OwnerState);
+            SerializedProperty combatAnim = OwnerStateObject.FindProperty("m_combatAnim");
+            
             SerializedProperty anim = OwnerStateObject.FindProperty("m_combatAnim").FindPropertyRelative("m_animClip");
             
             
             if(anim.objectReferenceValue!=null)
             {
+                CombatAnimation = combatAnim;
                 HasAnimation = true;
                 AnimationName = anim.objectReferenceValue.name;
             }

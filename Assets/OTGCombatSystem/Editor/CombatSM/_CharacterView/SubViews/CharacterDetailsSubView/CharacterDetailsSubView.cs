@@ -84,7 +84,7 @@ namespace OTG.CombatSM.EditorTools
         {
             _target = ContainerElement.Q<VisualElement>(_boxName);
         }
-        private void BindData(ref VisualElement _target, ref PropertyField _targetField,SerializedObject _owner, SerializedProperty _propTarget)
+        private void BindData(ref VisualElement _target, ref PropertyField _targetField, SerializedObject _owner, SerializedProperty _propTarget)
         {
             _targetField = new PropertyField(_propTarget);
             _targetField.Bind(_owner);

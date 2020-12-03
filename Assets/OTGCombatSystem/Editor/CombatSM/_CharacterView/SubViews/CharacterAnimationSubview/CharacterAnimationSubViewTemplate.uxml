@@ -14,11 +14,18 @@
 			<engine:Box name="animation-work-area">
 				<engine:VisualElement name="animation-preview"/>
 				<engine:Box name ="animation-event-work-area">
-				
 				</engine:Box>
 		</engine:Box>
 			<engine:Box name ="animation-data-container">
-				
+        <engine:Box name ="animation-data-work-area"/>
+        <engine:Box name ="animation-event-creation-area">
+          <editor:Toolbar name ="animation-event-creation-toolbar" >
+            <editor:ToolbarButton name="animation-event-creation-button" text="New"></editor:ToolbarButton>
+            <editor:EnumField name="animation-event-type" label="EventType" type ="OTG.CombatSM.Core.OTGAnimationEventTypeEnum, Assembly-CSharp"/>
+            <engine:TextField name="new-animation-event-name"/>
+          </editor:Toolbar>
+         
+        </engine:Box>
 			</engine:Box>
 		</engine:VisualElement>
 	</engine:VisualElement>
