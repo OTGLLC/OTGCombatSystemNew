@@ -15,6 +15,8 @@ public abstract class CombatSMBaseView : VisualElement
     protected string m_templatePath;
     protected string m_stylePath;
     protected VisualElement m_containerElement;
+    protected Object[] m_draggedItems = new Object[1];
+    protected bool m_GotMouseDown;
     #endregion
 
 
@@ -57,6 +59,45 @@ public abstract class CombatSMBaseView : VisualElement
     public virtual void UpdateViewHeight(float _height)
     {
         m_containerElement.Q<VisualElement>(ContainerStyleName).style.height = new StyleLength(_height);
+    }
+    #endregion
+
+    #region Protected
+    protected void AddCallbacksToListView(ref ListView _targetList)
+    {
+        if (_targetList == null)
+            return;
+
+        _targetList.RegisterCallback<MouseDownEvent>(OnMouseDownEvent);
+        _targetList.RegisterCallback<MouseMoveEvent>(OnMouseMoveEvent);
+        _targetList.RegisterCallback<MouseUpEvent>(OnMouseUpEvent);
+    }
+    protected void RemoveCallbacksFromListView(ref ListView _targetList)
+    {
+        if (_targetList == null)
+            return;
+
+        _targetList.UnregisterCallback<MouseDownEvent>(OnMouseDownEvent);
+        _targetList.UnregisterCallback<MouseMoveEvent>(OnMouseMoveEvent);
+        _targetList.UnregisterCallback<MouseUpEvent>(OnMouseUpEvent);
+    }
+    protected void OnMouseDownEvent(MouseDownEvent e)
+    {
+        m_GotMouseDown = true;
+    }
+    protected void OnMouseMoveEvent(MouseMoveEvent e)
+    {
+        if (m_GotMouseDown && e.pressedButtons == 1)
+        {
+
+            DragAndDrop.PrepareStartDrag();
+            DragAndDrop.objectReferences = m_draggedItems;
+            DragAndDrop.StartDrag("ActionDrag");
+        }
+    }
+    protected void OnMouseUpEvent(MouseUpEvent e)
+    {
+        m_GotMouseDown = false;
     }
     #endregion
 

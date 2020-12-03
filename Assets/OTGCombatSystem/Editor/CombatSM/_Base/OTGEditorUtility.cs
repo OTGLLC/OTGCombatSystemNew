@@ -24,6 +24,8 @@ namespace OTG.CombatSM.EditorTools
         public static List<OTGTransitionDecision> TransitionsAvailable { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; } = new List<OTGTransitionDecision>();
         public static List<OTGCombatState> AvailableCharacterStates { get; private set; } = new List<OTGCombatState>();
+        public static List<OTGAnimationEvent> AvailableAnimationEvents { get; private set; } = new List<OTGAnimationEvent>();
+       
         public static List<string> AvailableAnimationClips { get; private set; } = new List<string>();
         public static List<string> AvailableAnimationClipsFilteredList { get; private set; } = new List<string>();
         public static E_CombatTemplate CurrentCombatTemplate { get; private set; } = E_CombatTemplate.TwitchFighter;
@@ -36,6 +38,7 @@ namespace OTG.CombatSM.EditorTools
             FindAllAnimationClips();
             FindAllActions(_config);
             FindAllTransitions(_config);
+            FindAllAnimationEvents();
         }
         public static void RefreshProject(EditorConfig _config)
         {
@@ -44,6 +47,7 @@ namespace OTG.CombatSM.EditorTools
             FindAllAnimationClips();
             FindAllActions(_config);
             FindAllTransitions(_config);
+            FindAllAnimationEvents();
         }
         #region Folder and Data
         public static void SubscribeToolbarButtonCallback(VisualElement _container, string _buttonName,  Action _callback)
@@ -115,6 +119,18 @@ namespace OTG.CombatSM.EditorTools
 
 
 
+        }
+        private static void FindAllAnimationEvents()
+        {
+            AvailableAnimationEvents.Clear();
+
+            string[] guids = AssetDatabase.FindAssets("t:OTGAnimationEvent");
+            for(int i = 0; i < guids.Length; i++)
+            {
+                string path = AssetDatabase.GUIDToAssetPath(guids[i]);
+                OTGAnimationEvent ev = AssetDatabase.LoadAssetAtPath<OTGAnimationEvent>(path);
+                AvailableAnimationEvents.Add(ev);
+            }
         }
         private static void FindAllAnimationClips()
         {
@@ -310,7 +326,10 @@ namespace OTG.CombatSM.EditorTools
             
         }
         #endregion
+
+       
     }
+
 
 
 }

@@ -24,7 +24,7 @@
             <editor:EnumField name="animation-event-type" label="EventType" type ="OTG.CombatSM.Core.OTGAnimationEventTypeEnum, Assembly-CSharp"/>
             <engine:TextField name="new-animation-event-name"/>
           </editor:Toolbar>
-         
+		  <engine:ListView name="animation-event-list"/>
         </engine:Box>
 			</engine:Box>
 		</engine:VisualElement>

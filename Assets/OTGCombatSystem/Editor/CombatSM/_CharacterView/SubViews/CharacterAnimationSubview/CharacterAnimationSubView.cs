@@ -17,6 +17,7 @@ namespace OTG.CombatSM.EditorTools
         private PropertyField m_animDataPropfield;
         private SerializedProperty m_selectedCombatAnim;
         private AnimationClip m_selectedClip;
+        private ListView m_availableAnimationEventList;
         #endregion
 
         private List<SerializedProperty> m_animationList;
@@ -36,7 +37,7 @@ namespace OTG.CombatSM.EditorTools
             RetrieveAnimationsFromCombatStateTree();
             PopulateAnimationListView();
             CreateAnimationListView();
-
+ 
 
         }
 
@@ -54,6 +55,8 @@ namespace OTG.CombatSM.EditorTools
         {
             CreateAnimationListView();
             m_animationsListView.onSelectionChange += OnAnimationSelected;
+            CreateAnimationEventListView();
+            PopulateAnimationEventListView();
         }
 
         protected override void HandleViewLostFocus()
@@ -64,6 +67,8 @@ namespace OTG.CombatSM.EditorTools
             m_selectedCombatAnim = null;
           
             m_animationList.Clear();
+
+            CleanupAnimationEventListView();
         }
 
         protected override void Refresh()
@@ -97,6 +102,19 @@ namespace OTG.CombatSM.EditorTools
         {
             m_animationsListView.Clear();
             OTGEditorUtility.PopulateListViewSerializedProp(ref m_animationsListView, ref m_containerElement, m_animationList, "animation-list-view","m_animClip",true);
+        }
+        private void CreateAnimationEventListView()
+        {
+            m_availableAnimationEventList = ContainerElement.Q<ListView>("animation-event-list");
+        }
+        private void CleanupAnimationEventListView()
+        {
+            m_availableAnimationEventList.Clear();
+            m_availableAnimationEventList = null;
+        }
+        private void PopulateAnimationEventListView()
+        {
+            OTGEditorUtility.PopulateListViewScriptableObject<OTGAnimationEvent>(ref m_availableAnimationEventList, ref m_containerElement, OTGEditorUtility.AvailableAnimationEvents,"animation-event-list");
         }
         #endregion
         private void RetrieveAnimationsFromCombatStateTree()

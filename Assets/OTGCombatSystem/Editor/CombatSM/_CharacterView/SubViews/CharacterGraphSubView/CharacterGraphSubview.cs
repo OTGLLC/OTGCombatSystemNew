@@ -14,8 +14,7 @@ namespace OTG.CombatSM.EditorTools
     {
 
         #region Fields
-        private bool m_GotMouseDown;
-        private Object[] m_draggedItems = new Object[1];
+        
         private CharacterStateGraph m_stateGraph;
         private ListView m_actionListView;
         private ListView m_transitionListView;
@@ -49,7 +48,6 @@ namespace OTG.CombatSM.EditorTools
         {
             CleanupGraph();
             CreateNewGraph();
-
             PopulateAvailableStates();
             AddCallbacksToListView(ref m_availabeStatesListView);
             m_availabeStatesListView.onSelectionChange += OnActionListItemSelected;
@@ -130,24 +128,7 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<VisualElement>("graph-area").Remove(m_stateGraph);
             m_stateGraph = null;
         }
-        private void AddCallbacksToListView(ref ListView _targetList)
-        {
-            if (_targetList == null)
-                return;
-
-            _targetList.RegisterCallback<MouseDownEvent>(OnMouseDownEvent);
-            _targetList.RegisterCallback<MouseMoveEvent>(OnMouseMoveEvent);
-            _targetList.RegisterCallback<MouseUpEvent>(OnMouseUpEvent);
-        }
-        private void RemoveCallbacksFromListView(ref ListView _targetList)
-        {
-            if (_targetList == null)
-                return;
-
-            _targetList.UnregisterCallback<MouseDownEvent>(OnMouseDownEvent);
-            _targetList.UnregisterCallback<MouseMoveEvent>(OnMouseMoveEvent);
-            _targetList.UnregisterCallback<MouseUpEvent>(OnMouseUpEvent);
-        }
+        
         private void SubscribeToButtonCallbacks()
         {
 
@@ -248,24 +229,7 @@ namespace OTG.CombatSM.EditorTools
                 }
             }
         }
-        private void OnMouseDownEvent(MouseDownEvent e)
-        {
-            m_GotMouseDown = true;
-        }
-        private void OnMouseMoveEvent(MouseMoveEvent e)
-        {
-            if (m_GotMouseDown && e.pressedButtons == 1)
-            {
-
-                DragAndDrop.PrepareStartDrag();
-                DragAndDrop.objectReferences = m_draggedItems;
-                DragAndDrop.StartDrag("ActionDrag");
-            }
-        }
-        private void OnMouseUpEvent(MouseUpEvent e)
-        {
-            m_GotMouseDown = false;
-        }
+        
         private void OnNewStateClicked()
         {
             string textBoxValue = ContainerElement.Q<TextField>("new-state-name-textfield").text;

@@ -31,12 +31,14 @@ namespace OTG.CombatSM.Core
         [SerializeField] private float m_DepthImpactForce;
         [SerializeField] private float m_onConnectPauseTime;
         [SerializeField] private float m_onConnectBaseDamage;
+        [SerializeField] private OTGVFXIdentification m_vfxID;
         #endregion
 
         #region Properties
         public Vector3 ImpactForce { get { return new Vector3(m_HorizontalImpactForce, m_VerticalImpactForce, m_DepthImpactForce); } }
         public float OnConnectPauseTime { get { return m_onConnectPauseTime; } }
         public float OnConnectBaseDamage { get { return m_onConnectBaseDamage; } }
+        public OTGVFXIdentification VFX_ID { get { return m_vfxID; } }
         #endregion
     }
 
