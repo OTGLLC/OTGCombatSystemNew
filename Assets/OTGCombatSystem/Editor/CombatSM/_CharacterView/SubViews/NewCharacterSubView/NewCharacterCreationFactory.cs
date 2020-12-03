@@ -89,7 +89,11 @@ namespace OTG.CombatSM.EditorTools
         private void ApplyCharacterModel(NewCharacterCreationData _data)
         {
             GameObject characterModel = (GameObject)PrefabUtility.InstantiatePrefab(_data.CharacterObject);
-             
+
+            Animator anim = characterModel.GetComponent<Animator>();
+            if (anim != null)
+                GameObject.Destroy(anim);
+
             characterModel.transform.SetParent(m_characterGameObject.transform);
         }
         #endregion

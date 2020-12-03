@@ -8,7 +8,9 @@ namespace OTG.CombatSM.Core
     {
         [SerializeField] private OTGVFXIdentification m_vfxID;
         public OTGVFXIdentification VfxID { get { return m_vfxID; } }
+
         [SerializeField]private ParticleSystem m_psys;
+        [SerializeField] private ParticleSystem m_psysHit;
        
        public void OnPlayVFX()
         {
