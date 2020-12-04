@@ -48,7 +48,11 @@ namespace OTG.CombatSM.Core
     [System.Serializable]
     public class CombatAnimHitCollisionData
     {
-        
+        [SerializeField] private Vector3 m_colliderPosition;
+        [SerializeField] private Vector3 m_colliderSize;
+
+        public Vector3 ColliderPosition { get { return m_colliderPosition; } }
+        public Vector3 ColliderSize { get { return m_colliderSize; } }
     }
     [System.Serializable]
     public class CombatAnimHurtCollisionData

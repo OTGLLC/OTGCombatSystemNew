@@ -15,11 +15,11 @@ TagManager:
   - 
   - Ground
   - PlayerPushBox
-  - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerHitBox
+  - PlayerHurtBox
+  - EnemyPushBox
+  - EnemyHitBox
+  - EnemyHurtBox
   - 
   - 
   - 

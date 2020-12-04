@@ -10,6 +10,7 @@ namespace OTG.CombatSM.EditorTools
     {
         #region Fields
         private GameObject m_characterGameObject;
+        private OTGHitColliderController m_hitColliderObj;
         private SerializedObject m_characterSMCObj;
         #endregion
 
@@ -23,7 +24,13 @@ namespace OTG.CombatSM.EditorTools
             ApplyCharacterType(_data);
             ApplyCharacterModel(_data);
             AdjustCharacterControllerCapsule();
+            AddHitBoxCollider();
+
+            SetLayers(_data);
             FocusOnAddedCharacter();
+
+
+            Cleanup();
         }
 
         #region Utility
@@ -101,6 +108,36 @@ namespace OTG.CombatSM.EditorTools
         private void AdjustCharacterControllerCapsule()
         {
             m_characterGameObject.GetComponent<CharacterController>().center = new Vector3(0, 1, 0);
+        }
+        private void AddHitBoxCollider()
+        {
+            GameObject collider = new GameObject();
+            m_hitColliderObj = collider.AddComponent<OTGHitColliderController>();
+            
+            collider.GetComponent<BoxCollider>().isTrigger = true;
+            collider.name = "HitBoxCollider";
+            collider.transform.parent = m_characterGameObject.transform;
+            collider.transform.position = new Vector3(0, 1, 0);
+        }
+        private void SetLayers(NewCharacterCreationData _data)
+        {
+            if(_data.CharacterType == e_CombatantType.Player)
+            {
+                m_characterGameObject.layer = OTGCombatSystemConfig.LAYER_PLAYER_PUSH;
+                m_hitColliderObj.gameObject.layer = OTGCombatSystemConfig.LAYER_PLAYER_HIT;
+            }
+            else if(_data.CharacterType == e_CombatantType.Enemy)
+            {
+
+                m_characterGameObject.layer = OTGCombatSystemConfig.LAYER_ENEMY_PUSH;
+                m_hitColliderObj.gameObject.layer = OTGCombatSystemConfig.LAYER_ENEMY_HIT;
+            }
+        }
+        private void Cleanup()
+        {
+            m_characterGameObject = null;
+            m_hitColliderObj = null;
+            m_characterSMCObj = null;
         }
         #endregion
 
