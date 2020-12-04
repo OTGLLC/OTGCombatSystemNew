@@ -12,11 +12,15 @@ namespace OTG.CombatSM.Core
         #region Inspector Vars
         [SerializeField] private AnimationClip m_animClip;
         [SerializeField] private CombatAnimData m_animData;
+        [SerializeField] private CombatAnimHitCollisionData m_hitCollisionData;
+        [SerializeField] private CombatAnimHurtCollisionData m_hurtCollisionData;
         #endregion
 
         #region Properties
         public AnimationClip AnimClip { get { return m_animClip; } }
         public CombatAnimData AnimData { get { return m_animData; } }
+        public CombatAnimHitCollisionData HitCollisionData { get { return m_hitCollisionData; } }
+        public CombatAnimHurtCollisionData HurtCollisionData { get { return m_hurtCollisionData; } }
         #endregion
 
     }
@@ -41,5 +45,24 @@ namespace OTG.CombatSM.Core
         public OTGVFXIdentification VFX_ID { get { return m_vfxID; } }
         #endregion
     }
+    [System.Serializable]
+    public class CombatAnimHitCollisionData
+    {
+        
+    }
+    [System.Serializable]
+    public class CombatAnimHurtCollisionData
+    {
+        #region Inspector Vars
+        [SerializeField] private OTGHurtColliderID m_hurtColliderID;
+        [SerializeField] private Vector3 m_hurtBoxExtents;
+        [SerializeField] private LayerMask m_validTargets;
+        #endregion
 
+        #region Properties
+        public OTGHurtColliderID HurtColliderID { get { return m_hurtColliderID; } }
+        public Vector3 HurtBoxExtents { get { return m_hurtBoxExtents; } }
+        public LayerMask ValidTargets { get { return m_validTargets; } }
+        #endregion
+    }
 }
