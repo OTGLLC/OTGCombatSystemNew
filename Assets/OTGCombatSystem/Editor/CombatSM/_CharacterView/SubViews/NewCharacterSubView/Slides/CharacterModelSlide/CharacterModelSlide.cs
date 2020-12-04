@@ -55,6 +55,13 @@ namespace OTG.CombatSM.EditorTools
         {
             m_creationData.CharacterObject = _obj;
         }
+        private void SetCharacterAvatar(Object _obj)
+        {
+            Avatar av = _obj as Avatar;
+            if (av == null)
+                return;
+            m_creationData.CharacterAvatar = av;
+        }
         #endregion
 
         #region Callbacks
@@ -65,6 +72,7 @@ namespace OTG.CombatSM.EditorTools
             {
                 SetCharacterModel(draggedItem[0]);
                 UpdateModelDetails(draggedItem[0]);
+                SetCharacterAvatar(draggedItem[0]);
             }
                
 

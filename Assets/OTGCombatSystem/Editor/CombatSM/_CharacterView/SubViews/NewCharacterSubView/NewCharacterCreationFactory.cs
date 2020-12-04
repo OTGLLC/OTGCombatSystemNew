@@ -22,6 +22,7 @@ namespace OTG.CombatSM.EditorTools
             CreateInitialState(_data, _config);
             ApplyCharacterType(_data);
             ApplyCharacterModel(_data);
+            AdjustCharacterControllerCapsule();
             FocusOnAddedCharacter();
         }
 
@@ -92,9 +93,14 @@ namespace OTG.CombatSM.EditorTools
 
             Animator anim = characterModel.GetComponent<Animator>();
             if (anim != null)
-                GameObject.Destroy(anim);
+                GameObject.DestroyImmediate(anim);
 
             characterModel.transform.SetParent(m_characterGameObject.transform);
+            characterModel.transform.rotation = Quaternion.Euler(new Vector3(0, 90, 0));
+        }
+        private void AdjustCharacterControllerCapsule()
+        {
+            m_characterGameObject.GetComponent<CharacterController>().center = new Vector3(0, 1, 0);
         }
         #endregion
 

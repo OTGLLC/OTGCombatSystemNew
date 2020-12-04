@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace OTG.CombatSM.Core
 {
-
+    [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(CharacterController))]
     public class OTGCombatSMC : MonoBehaviour
     {
