@@ -1,14 +1,15 @@
 ﻿
+
 using OTG.CombatSM.Core;
 using UnityEngine;
 
 namespace OTG.CombatSM.TwitchFighter
 {
-    public class StunTimeHasExpired : TwitchFighterBaseTransition
+    public class StunTimeExpired : TwitchFighterBaseTransition
     {
         protected override void Awake()
         {
-            m_transitionDecisionType = E_TransitionDecisionType.Status;
+            m_transitionDecisionType = E_TransitionDecisionType.Movement;
             base.Awake();
         }
         public override bool Decide(OTGCombatSMC _controller)
@@ -16,10 +17,8 @@ namespace OTG.CombatSM.TwitchFighter
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
             AnimationHandler animHandler = _controller.Handler_Animation;
 
-            Debug.Log("Transition: StunTimeExpired. Current State Time " + animHandler.StateTime +"Max Stun Time: "+animHandler.CurrentAnimData.StunTime);
-            return (animHandler.StateTime >= animHandler.CurrentAnimData.StunTime);
+            return (animHandler.StateTime >= animHandler.MaxStunTime);
 
         }
     }
 }
-

@@ -72,5 +72,13 @@ namespace OTG.CombatSM.Core
             VerticalSpeed = 0;
             DepthSpeed = 0;
         }
+        public void RecieveDamagePayload(IDamagePayload _payload)
+        {
+            Vector3 impactForce = _payload.GetImpactForce();
+            HorizontalSpeed = impactForce.x;
+            VerticalSpeed = impactForce.y;
+            DepthSpeed = impactForce.z;
+            Debug.Log("Impact force " + impactForce);
+        }
     }
 }

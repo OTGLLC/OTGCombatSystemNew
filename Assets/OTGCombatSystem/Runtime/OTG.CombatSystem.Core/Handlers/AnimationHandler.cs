@@ -21,6 +21,7 @@ namespace OTG.CombatSM.Core
         public OTGAnimationEvent CurrentAnimationEvent { get; private set; }
         public Animator Comp_Anim { get; private set; }
         public float StateTime { get; private set; }
+        public float MaxStunTime { get; private set; }
         #endregion
 
         #region Public API
@@ -70,6 +71,10 @@ namespace OTG.CombatSM.Core
         public void ConsumeAnimationEvent()
         {
             CurrentAnimationEvent = null;
+        }
+        public void RecieveDamagePayload(IDamagePayload _payload)
+        {
+            MaxStunTime = _payload.GetStunTime();
         }
         #endregion
 

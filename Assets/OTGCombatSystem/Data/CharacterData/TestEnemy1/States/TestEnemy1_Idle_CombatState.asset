@@ -21,7 +21,7 @@ MonoBehaviour:
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
       m_vfxID: {fileID: 0}
-      m_stunTime: 0
+      m_hitStopTime: 0
     m_hitCollisionData:
       m_colliderPosition: {x: 0, y: 0.822, z: 0}
       m_colliderSize: {x: 0.5, y: 1.2, z: 0.5}

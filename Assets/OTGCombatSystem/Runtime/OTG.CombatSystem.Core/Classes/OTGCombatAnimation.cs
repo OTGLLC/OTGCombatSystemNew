@@ -36,7 +36,7 @@ namespace OTG.CombatSM.Core
         [SerializeField] private float m_onConnectPauseTime;
         [SerializeField] private float m_onConnectBaseDamage;
         [SerializeField] private OTGVFXIdentification m_vfxID;
-        [SerializeField] private float m_stunTime;
+        [SerializeField] private float m_hitStopTime;
         #endregion
 
         #region Properties
@@ -44,8 +44,11 @@ namespace OTG.CombatSM.Core
         public float OnConnectPauseTime { get { return m_onConnectPauseTime; } }
         public float OnConnectBaseDamage { get { return m_onConnectBaseDamage; } }
         public OTGVFXIdentification VFX_ID { get { return m_vfxID; } }
-        public float StunTime { get { return m_stunTime; } }
+        public float HitStopTime { get { return m_hitStopTime; } }
+       
         #endregion
+
+       
     }
     [System.Serializable]
     public class CombatAnimHitCollisionData

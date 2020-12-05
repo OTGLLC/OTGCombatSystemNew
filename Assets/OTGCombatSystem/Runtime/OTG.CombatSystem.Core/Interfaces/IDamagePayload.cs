@@ -5,7 +5,9 @@ namespace OTG.CombatSM.Core
 {
     public interface IDamagePayload
     {
+        float GetStunTime();
         float GetDamage();
-        Vector3 GetCollisionForce();
+        Vector3 GetImpactForce();
+
     }
 }

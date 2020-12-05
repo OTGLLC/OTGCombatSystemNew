@@ -326,9 +326,9 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<MatchAnimationEvent>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasDamageContacts>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeHasExpired>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HitStopTimeExpired>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRecievedDamage>());
-
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeExpired>());
         }
         #endregion
 

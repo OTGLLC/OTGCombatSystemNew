@@ -18,10 +18,13 @@ namespace OTG.CombatSM.TwitchFighter
             TwitchFighterCombatParams twitchCombat = _controller.Handler_Combat.TwitchCombat;
             TwitchFighterInput twitchInput = _controller.Handler_Input.TwitchInput;
             CollisionHandler collHandler = _controller.Handler_Collision;
+            AnimationHandler animHandler = _controller.Handler_Animation;
 
             IDamagePayload incDamage = collHandler.HitCollider.CurrendPayload;
             collHandler.HitCollider.HasRecievedDamage = false;
             twitchCombat.RecieveDamagePayload(incDamage);
+            animHandler.RecieveDamagePayload(incDamage);
+            twitch.RecieveDamagePayload(incDamage);
         }
     }
 }

@@ -14,19 +14,33 @@ namespace OTG.CombatSM.TwitchFighter
         }
         public override void Act(OTGCombatSMC _controller)
         {
-            TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
-            TwitchFighterCombatParams twitchCombat = _controller.Handler_Combat.TwitchCombat;
-            TwitchFighterInput twitchInput = _controller.Handler_Input.TwitchInput;
+            AnimationHandler animHandler = _controller.Handler_Animation;
             CollisionHandler collisionHandler = _controller.Handler_Collision;
+            TwitchMovementParams twitchMove = _controller.Handler_Movement.TwitchParams;
 
-            IDamagePayload payload = PrepareDamagePayload();
+            int faceDirection = DetermineFacingDirection(twitchMove);
+            IDamagePayload payload = PrepareDamagePayload(animHandler, faceDirection);
             SendDamageToContacts(collisionHandler, payload);
             ResetNumberOfContacts(collisionHandler);
 
         }
-        private IDamagePayload PrepareDamagePayload()
+        private int DetermineFacingDirection(TwitchMovementParams _moveParams)
         {
-            TwitchFighterDamagePayload dPayload = new TwitchFighterDamagePayload();
+            int faceDirection = 1;
+
+            if(_moveParams.Comp_Transform.rotation.eulerAngles.y == 0)
+            {
+                faceDirection= 1;
+            }
+            else if(_moveParams.Comp_Transform.rotation.eulerAngles.y == 180)
+            {
+                faceDirection = -1;
+            }
+            return faceDirection;
+        }
+        private IDamagePayload PrepareDamagePayload(AnimationHandler _animHandler, int _faceDirection)
+        {
+            TwitchFighterDamagePayload dPayload = new TwitchFighterDamagePayload(_animHandler.CurrentAnimData, _faceDirection);
 
             return dPayload;
         }
