@@ -313,6 +313,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<UnpauseAnimation>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformDamageCalculations>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ConsumeCurrentAnimationEvent>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<TakeInDamage>());
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -326,7 +327,7 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<MatchAnimationEvent>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasDamageContacts>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeHasExpired>());
-            
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRecievedDamage>());
 
         }
         #endregion

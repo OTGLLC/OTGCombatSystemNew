@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: CharacterDev_HitStop_CombatState
+  m_Name: TestEnemy1_HitStop_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
     m_animClip: {fileID: 0}
@@ -31,9 +31,9 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
   m_onEnterActions:
-  - {fileID: 11400000, guid: 290aa0cfb8f70db46a6bf12a876bc4c5, type: 2}
   - {fileID: 11400000, guid: 25344bb64403288489f708b0a8e91d92, type: 2}
-  - {fileID: 11400000, guid: 3330c7f32cef26a44be9b90b18b5eee6, type: 2}
+  - {fileID: 11400000, guid: 290aa0cfb8f70db46a6bf12a876bc4c5, type: 2}
+  - {fileID: 11400000, guid: a414a9f37aef50e4b8fd894f24e15d8d, type: 2}
   m_onUpdateActions: []
   m_animUpdateActions: []
   m_onExitActions:

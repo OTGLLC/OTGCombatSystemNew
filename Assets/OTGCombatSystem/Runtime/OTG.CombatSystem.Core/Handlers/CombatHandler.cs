@@ -58,6 +58,10 @@ namespace OTG.CombatSM.Core
         {
             NearestTarget = null;
         }
+        public void RecieveDamagePayload(IDamagePayload _payload)
+        {
+            Debug.Log("Recieved damage payload");
+        }
 
         private void Initialize()
         {

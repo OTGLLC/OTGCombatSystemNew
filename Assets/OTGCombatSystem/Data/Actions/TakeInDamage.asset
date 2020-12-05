@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa989ceca7c81c84c9a81a81fc139831, type: 3}
-  m_Name: MatchAnimationEvent_HitStop
+  m_Script: {fileID: 11500000, guid: a351b8d140a7d4545ac68f3da64ab089, type: 3}
+  m_Name: TakeInDamage
   m_EditorClassIdentifier: 
-  m_transitionDecisionType: 0
-  m_combatSystemType: 0
-  m_eventToMatch: {fileID: 11400000, guid: 367b22bd5d851ad40bc62dfc610176f0, type: 2}
+  m_combatActionType: 0
+  m_processType: 2
+  m_SystemTemplate: 0
