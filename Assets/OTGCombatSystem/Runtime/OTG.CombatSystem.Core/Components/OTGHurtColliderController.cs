@@ -12,38 +12,35 @@ namespace OTG.CombatSM.Core
 
         #region Properties
         public OTGHurtColliderID HurtColliderID { get { return m_hurtColliderID; } }
-        public int NumberOfContacts { get; set; }
-        public Collider[] ScanResults { get; private set; }
        
         #endregion
 
         #region Fields
-        private CombatAnimHurtCollisionData m_data;
         private Transform m_trans;
+        private BoxCollider m_boxCollider;
         #endregion
 
         #region Unity API
         private void OnEnable()
         {
-            ScanResults = new Collider[OTGCombatSystemConfig.MAX_HIT_SCAN_ELEMENTS];
+           
             m_trans = GetComponent<Transform>();
+            m_boxCollider = GetComponent<BoxCollider>();
         }
         private void OnDisable()
         {
-            ScanResults = null;
+    
             m_trans = null;
+            m_boxCollider = null;
         }
         #endregion
 
         #region Publc API
-        public void OnDataUpdate(CombatAnimHurtCollisionData _data)
+        
+        public int OnPerformDamageScan(Collider[] _scanResults,CombatAnimHurtCollisionData _data)
         {
-            m_data = _data;
-        }
-        public void OnPerformDamageScan()
-        {
-            NumberOfContacts = Physics.OverlapBoxNonAlloc(m_trans.position, m_data.HurtBoxExtents, ScanResults, m_trans.rotation, m_data.ValidTargets);
             
+            return Physics.OverlapBoxNonAlloc(m_trans.position, m_boxCollider.size/2, _scanResults, m_trans.rotation, _data.ValidTargets);
 
         }
         #endregion

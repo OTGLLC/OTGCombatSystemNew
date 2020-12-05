@@ -72,6 +72,7 @@ namespace OTG.CombatSM.Core
         {
             Handler_Animation.UpdateAnimationEvent(_event);
             Handler_VFX.OnAnimationEvent(_event);
+            Handler_Collision.OnAnimationEvent(_event);
         }
         #endregion
 
@@ -106,7 +107,7 @@ namespace OTG.CombatSM.Core
             Handler_Animation = new AnimationHandler(m_handlerDataGroup, GetComponent<Animator>());
             Handler_Movement = new MovementHandler(m_handlerDataGroup, GetComponent<CharacterController>(), GetComponent<Transform>());
             Handler_Input = new InputHandler(m_handlerDataGroup);
-            Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>());
+            Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>(), GetComponentsInChildren<OTGHurtColliderController>());
             Handler_Combat = new CombatHandler(m_handlerDataGroup);
             Handler_VFX = new VFXHandler(GetComponentsInChildren<OTGVFXController>());
         }

@@ -34,6 +34,7 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateEnter(OTGCombatSMC _controller)
         {
+            SetHurtColliderData(_controller);
             SetHitColliderData(_controller);
             PlayAnimation(_controller);
             PerformActions(m_onEnterActions, _controller);
@@ -80,6 +81,11 @@ namespace OTG.CombatSM.Core
         {
             CombatAnimHitCollisionData data = m_combatAnim.HitCollisionData;
             _controller.Handler_Collision.HitCollider.OnDataUpdate(data);
+        }
+        private void SetHurtColliderData(OTGCombatSMC _controller)
+        {
+            CombatAnimHurtCollisionData data = m_combatAnim.HurtCollisionData;
+            _controller.Handler_Collision.SetHurtColliderData(data);
         }
         #endregion
     }

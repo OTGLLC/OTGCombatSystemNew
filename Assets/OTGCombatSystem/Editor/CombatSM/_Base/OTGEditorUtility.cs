@@ -321,8 +321,8 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesUp>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<MatchAnimationEvent>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasDamageContacts>());
 
-            
         }
         #endregion
 
