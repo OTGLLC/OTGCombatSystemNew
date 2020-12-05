@@ -61,6 +61,7 @@ namespace OTG.CombatSM.Core
         {
             Debug.Log("State Name: " + name + " State Time: " + m_stateTime);
             UpdateHandlerStateTime(_controller);
+            CountdownComboTimer(_controller);
             PerformActions(m_onUpdateActions, _controller);
             EvaluateTransitions(_controller);
             IncrementStateTime();
@@ -127,6 +128,10 @@ namespace OTG.CombatSM.Core
                 return;
 
             _controller.Handler_Animation.UpdateAnimData(m_combatAnim.AnimData);
+        }
+        private void CountdownComboTimer(OTGCombatSMC _controller)
+        {
+            _controller.Handler_Combat.CountdownComboTimer();
         }
         #endregion
 

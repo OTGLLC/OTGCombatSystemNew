@@ -11,6 +11,8 @@ namespace OTG.CombatSM.Core
 
         #region Properties
         public TwitchFighterCombatParams TwitchCombat { get; private set; }
+        public float ComboTimer { get; private set; }
+        public int ConsecutiveHit { get; private set; }
         #endregion
 
         #region Public API
@@ -22,6 +24,18 @@ namespace OTG.CombatSM.Core
         public void CleanupHandler()
         {
             Cleanup();
+        }
+        public void ResetComboCounter()
+        {
+            ComboTimer = OTGCombatSystemConfig.MAX_COMBO_COUNTER_TIMER;
+            ConsecutiveHit++;
+        }
+        public void CountdownComboTimer()
+        {
+            if (ComboTimer <= 0)
+                return;
+            ConsecutiveHit = 0;
+            ComboTimer -= Time.deltaTime;
         }
         #endregion
 

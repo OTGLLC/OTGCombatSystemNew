@@ -314,6 +314,8 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformDamageCalculations>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ConsumeCurrentAnimationEvent>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<TakeInDamage>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ScanForAdjacentTarget>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCounterOnHit>());
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -329,6 +331,11 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HitStopTimeExpired>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRecievedDamage>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeExpired>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasAnAdjacentTarget>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasConsecutiveHits>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<DirectionInputDoesNotMatchFaceDirection>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<DirectionInputMatchesFaceDirection>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<DoesNotHaveAdjacentTarget>());
         }
         #endregion
 

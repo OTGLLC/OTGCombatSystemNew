@@ -6,6 +6,7 @@ namespace OTG.CombatSM.Core
     public static class OTGCombatSystemConfig
     {
         public const int MAX_HIT_SCAN_ELEMENTS = 10;
+        public const float MAX_COMBO_COUNTER_TIMER = 2f;
         public const int LAYER_PLAYER_PUSH = 9;
         public const int LAYER_PLAYER_HIT = 10;
         public const int LAYER_PLAYER_HURT = 11;
@@ -14,6 +15,7 @@ namespace OTG.CombatSM.Core
         public const int LAYER_ENEMY_HIT = 13;
         public const int LAYER_ENEMY_HURT = 14;
 
+        public const int LAYER_TARGETING = 15;
 
     }
 }

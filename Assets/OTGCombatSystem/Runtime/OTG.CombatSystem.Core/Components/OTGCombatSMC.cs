@@ -107,7 +107,7 @@ namespace OTG.CombatSM.Core
             Handler_Animation = new AnimationHandler(m_handlerDataGroup, GetComponent<Animator>());
             Handler_Movement = new MovementHandler(m_handlerDataGroup, GetComponent<CharacterController>(), GetComponent<Transform>());
             Handler_Input = new InputHandler(m_handlerDataGroup);
-            Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>(), GetComponentsInChildren<OTGHurtColliderController>());
+            Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>(), GetComponentsInChildren<OTGHurtColliderController>(), GetComponentInChildren<OTGTargetingController>());
             Handler_Combat = new CombatHandler(m_handlerDataGroup);
             Handler_VFX = new VFXHandler(GetComponentsInChildren<OTGVFXController>());
         }
