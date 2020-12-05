@@ -309,7 +309,10 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateCurrentDashDistance>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<AquireTarget>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ApplyRootMotion>());
-
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<PauseAnimation>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<UnpauseAnimation>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformDamageCalculations>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ConsumeCurrentAnimationEvent>());
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -322,6 +325,8 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<MatchAnimationEvent>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasDamageContacts>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeHasExpired>());
+            
 
         }
         #endregion

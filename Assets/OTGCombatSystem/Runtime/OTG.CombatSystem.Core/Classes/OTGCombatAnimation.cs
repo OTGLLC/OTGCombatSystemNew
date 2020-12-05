@@ -36,6 +36,7 @@ namespace OTG.CombatSM.Core
         [SerializeField] private float m_onConnectPauseTime;
         [SerializeField] private float m_onConnectBaseDamage;
         [SerializeField] private OTGVFXIdentification m_vfxID;
+        [SerializeField] private float m_stunTime;
         #endregion
 
         #region Properties
@@ -43,6 +44,7 @@ namespace OTG.CombatSM.Core
         public float OnConnectPauseTime { get { return m_onConnectPauseTime; } }
         public float OnConnectBaseDamage { get { return m_onConnectBaseDamage; } }
         public OTGVFXIdentification VFX_ID { get { return m_vfxID; } }
+        public float StunTime { get { return m_stunTime; } }
         #endregion
     }
     [System.Serializable]
@@ -59,14 +61,14 @@ namespace OTG.CombatSM.Core
     {
         #region Inspector Vars
         [SerializeField] private OTGHurtColliderID m_hurtColliderID;
-        [SerializeField] private Vector3 m_hurtBoxExtents;
         [SerializeField] private LayerMask m_validTargets;
+      
         #endregion
 
         #region Properties
         public OTGHurtColliderID HurtColliderID { get { return m_hurtColliderID; } }
-        public Vector3 HurtBoxExtents { get { return m_hurtBoxExtents; } }
         public LayerMask ValidTargets { get { return m_validTargets; } }
+
         #endregion
     }
 }

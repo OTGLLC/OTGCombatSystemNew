@@ -27,13 +27,31 @@ namespace OTG.CombatSM.Core
         public ushort ID { get; private set; }
         #endregion
 
+        #region Fields
+        private float m_stateTime;
+        #endregion
+
+
         #region Public API
         public void AssignID(ushort _id)
         {
             ID = _id;
         }
-        public void OnStateEnter(OTGCombatSMC _controller)
+        public void OnStateEnter(OTGCombatSMC _controller, bool _reentry = false)
         {
+            if (_reentry)
+            {
+                Debug.Log("State Re-entry: " + name + "State time: " + m_stateTime);
+                return;
+            }
+                
+
+            
+            ResetStateTime();
+            Debug.Log("state entered + " + name + "State Time: " + m_stateTime);
+            UpdateHandlerStateTime(_controller);
+
+            SetAnimationData(_controller);
             SetHurtColliderData(_controller);
             SetHitColliderData(_controller);
             PlayAnimation(_controller);
@@ -41,8 +59,12 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateUpdate(OTGCombatSMC _controller)
         {
+            Debug.Log("State Name: " + name + " State Time: " + m_stateTime);
+            UpdateHandlerStateTime(_controller);
             PerformActions(m_onUpdateActions, _controller);
             EvaluateTransitions(_controller);
+            IncrementStateTime();
+            
         }
         public void OnStateAnimUpdate(OTGCombatSMC _controller)
         {
@@ -87,7 +109,27 @@ namespace OTG.CombatSM.Core
             CombatAnimHurtCollisionData data = m_combatAnim.HurtCollisionData;
             _controller.Handler_Collision.SetHurtColliderData(data);
         }
+        private void ResetStateTime()
+        {
+            m_stateTime = 0;
+        }
+        private void IncrementStateTime()
+        {
+            m_stateTime += Time.deltaTime;
+        }
+        private void UpdateHandlerStateTime(OTGCombatSMC _controller)
+        {
+            _controller.Handler_Animation.UpdateStateTime(m_stateTime);
+        }
+        private void SetAnimationData(OTGCombatSMC _controller)
+        {
+            if (m_combatAnim.AnimClip == null)
+                return;
+
+            _controller.Handler_Animation.UpdateAnimData(m_combatAnim.AnimData);
+        }
         #endregion
+
     }
 
     [System.Serializable]

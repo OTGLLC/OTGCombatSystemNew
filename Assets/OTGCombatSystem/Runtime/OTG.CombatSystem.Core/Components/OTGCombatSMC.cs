@@ -80,14 +80,14 @@ namespace OTG.CombatSM.Core
  
         private void ChangeState(OTGCombatState _newState, bool _usePrevious = false)
         {
-            if(_usePrevious && m_previousState != null && m_previousState.ID != m_currentState.ID)
+            if(_usePrevious && m_previousState != null)
             {
 
                 Debug.Log("Changing to previous state");
 
                 m_currentState.OnStateExit(this);
                 m_currentState = m_previousState;
-                m_currentState.OnStateEnter(this);
+                m_currentState.OnStateEnter(this, true);
                 m_previousState = null;
 
                 return;

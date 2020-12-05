@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28a976bf646154a42b44d4908ae3804b, type: 3}
-  m_Name: Damage.Katana
+  m_Name: HitStop
   m_EditorClassIdentifier: 
   m_vfxID: {fileID: 0}
-  m_hurtColliderID: {fileID: 11400000, guid: 1b3851ba10e392344929733913f77434, type: 2}
+  m_hurtColliderID: {fileID: 0}

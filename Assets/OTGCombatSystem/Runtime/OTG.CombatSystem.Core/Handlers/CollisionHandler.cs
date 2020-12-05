@@ -37,6 +37,8 @@ namespace OTG.CombatSM.Core
             if (_ev.HurtColliderID == null)
                 return;
 
+            Debug.Log("Collision Event " + _ev.HurtColliderID);
+
             if (HurtColliders.ContainsKey(_ev.HurtColliderID))
                 NumberOfContacts = HurtColliders[_ev.HurtColliderID].OnPerformDamageScan( ScanResults , m_hurtData);
         }

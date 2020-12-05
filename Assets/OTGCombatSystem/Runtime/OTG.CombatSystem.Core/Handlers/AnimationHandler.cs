@@ -17,8 +17,10 @@ namespace OTG.CombatSM.Core
         
 
         #region Properties
+        public CombatAnimData CurrentAnimData { get; private set; }
         public OTGAnimationEvent CurrentAnimationEvent { get; private set; }
         public Animator Comp_Anim { get; private set; }
+        public float StateTime { get; private set; }
         #endregion
 
         #region Public API
@@ -44,6 +46,30 @@ namespace OTG.CombatSM.Core
         public void UpdateAnimationEvent(OTGAnimationEvent _event)
         {
             CurrentAnimationEvent = _event;
+        }
+        public void UpdateStateTime(float _time)
+        {
+            StateTime = _time;
+        }
+        public void UpdateAnimData(CombatAnimData _data)
+        {
+            CurrentAnimData = _data;
+        }
+        public void SetAnimationSpeed(float speed)
+        {
+            m_clipPlayable.SetSpeed((double)speed);
+            m_clipPlayable.Play();
+        }
+        public void PauseAnimation(bool _pause)
+        {
+            if (_pause)
+                m_clipPlayable.Pause();
+            else
+                m_clipPlayable.Play();
+        }
+        public void ConsumeAnimationEvent()
+        {
+            CurrentAnimationEvent = null;
         }
         #endregion
 
