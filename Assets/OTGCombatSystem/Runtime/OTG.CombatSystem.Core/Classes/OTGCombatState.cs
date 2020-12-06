@@ -39,27 +39,26 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateEnter(OTGCombatSMC _controller, bool _reentry = false)
         {
+            SetAnimationData(_controller);
+            SetHurtColliderData(_controller);
+            SetHitColliderData(_controller);
+
             if (_reentry)
             {
                 Debug.Log("State Re-entry: " + name + "State time: " + m_stateTime);
                 return;
             }
-                
 
-            
             ResetStateTime();
-            Debug.Log("state entered + " + name + "State Time: " + m_stateTime);
             UpdateHandlerStateTime(_controller);
 
-            SetAnimationData(_controller);
-            SetHurtColliderData(_controller);
-            SetHitColliderData(_controller);
+            Debug.Log(name + "Entered : ComboCounter " + _controller.Handler_Combat.ConsecutiveHit);
+           
             PlayAnimation(_controller);
             PerformActions(m_onEnterActions, _controller);
         }
         public void OnStateUpdate(OTGCombatSMC _controller)
         {
-            Debug.Log("State Name: " + name + " State Time: " + m_stateTime);
             UpdateHandlerStateTime(_controller);
             CountdownComboTimer(_controller);
             PerformActions(m_onUpdateActions, _controller);
@@ -73,6 +72,7 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateExit(OTGCombatSMC _controller)
         {
+            Debug.Log(name + "Exited : ComboCounter " + _controller.Handler_Combat.ConsecutiveHit);
             PerformActions(m_onExitActions, _controller);
         }
         #endregion

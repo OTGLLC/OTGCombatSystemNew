@@ -43,9 +43,11 @@ MonoBehaviour:
   m_stateTransitions:
   - m_nextState: {fileID: 11400000, guid: 03d3e404bb1ccf846a247b06a104ecea, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: d3c111ff46e452b4a80bd6888f6f9ac3, type: 2}
+    - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}
+    - {fileID: 11400000, guid: d38c9542553867d47994769661c5ba9c, type: 2}
     m_usePreviousState: 0
-  - m_nextState: {fileID: 11400000, guid: 03d3e404bb1ccf846a247b06a104ecea, type: 2}
+  - m_nextState: {fileID: 11400000, guid: 5e12ce7e6b704c54c97a8b597584b7d9, type: 2}
     m_decisions:
     - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}
+    - {fileID: 11400000, guid: 48b567d41add81c478a947bf7afa77de, type: 2}
     m_usePreviousState: 0

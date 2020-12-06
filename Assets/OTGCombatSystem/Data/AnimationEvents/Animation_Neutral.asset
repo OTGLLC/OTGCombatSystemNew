@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9a7da4762233ef4da7f5168ff8bfe22, type: 3}
-  m_Name: HasConsecutiveHits_Four
+  m_Script: {fileID: 11500000, guid: 28a976bf646154a42b44d4908ae3804b, type: 3}
+  m_Name: Animation_Neutral
   m_EditorClassIdentifier: 
-  m_transitionDecisionType: 0
-  m_combatSystemType: 0
-  m_hitCount: 4
+  m_vfxID: {fileID: 0}
+  m_hurtColliderID: {fileID: 0}

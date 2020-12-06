@@ -33,8 +33,12 @@ namespace OTG.CombatSM.Core
         public void CountdownComboTimer()
         {
             if (ComboTimer <= 0)
+            {
+                ConsecutiveHit = 0;
                 return;
-            ConsecutiveHit = 0;
+            }
+                
+            
             ComboTimer -= Time.deltaTime;
         }
         #endregion

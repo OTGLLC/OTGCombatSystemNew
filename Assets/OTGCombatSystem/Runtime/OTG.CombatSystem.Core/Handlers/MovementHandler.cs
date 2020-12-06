@@ -78,7 +78,7 @@ namespace OTG.CombatSM.Core
             HorizontalSpeed = impactForce.x;
             VerticalSpeed = impactForce.y;
             DepthSpeed = impactForce.z;
-            Debug.Log("Impact force " + impactForce);
+           
         }
     }
 }

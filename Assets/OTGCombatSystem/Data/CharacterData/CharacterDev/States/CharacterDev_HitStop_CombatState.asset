@@ -44,7 +44,3 @@ MonoBehaviour:
     m_decisions:
     - {fileID: 11400000, guid: c2df3eb764862f346a22ab3bac4ee1ba, type: 2}
     m_usePreviousState: 1
-  - m_nextState: {fileID: 11400000, guid: 087bf88b9231b284eb9b37161d5025c3, type: 2}
-    m_decisions:
-    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
-    m_usePreviousState: 0

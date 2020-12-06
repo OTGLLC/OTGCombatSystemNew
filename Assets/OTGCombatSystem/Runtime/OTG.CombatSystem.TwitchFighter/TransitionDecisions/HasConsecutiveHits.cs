@@ -18,6 +18,7 @@ namespace OTG.CombatSM.TwitchFighter
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
             CombatHandler combatHand = _controller.Handler_Combat;
 
+            Debug.Log("Consecutive hit counter " + combatHand.ConsecutiveHit);
             return combatHand.ConsecutiveHit == m_hitCount; 
 
         }
