@@ -114,7 +114,7 @@ namespace OTG.CombatSM.EditorTools
         {
             m_config = _editorConfig;
             CreateNewData();
-            GetAllCharactersInScene();
+            //GetAllCharactersInScene();
             GatherVisualElements();
             CreateViews(_editorConfig);
             SwitchSubViews(m_charDetailsSubView);
@@ -122,7 +122,7 @@ namespace OTG.CombatSM.EditorTools
         protected override void Refresh()
         {
             CreateNewData();
-            GetAllCharactersInScene();
+            //GetAllCharactersInScene();
             GatherVisualElements();
             CreateViews(m_config);
             SwitchSubViews(m_charDetailsSubView);

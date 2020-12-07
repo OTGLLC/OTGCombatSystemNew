@@ -14,9 +14,11 @@
 	flex: .8;
 	flex-direction: column;
 }
-
-#graph-area
+#new-state-name-textfield
 {
+	flex-grow : 1;
+}
+#graph-area {
 	flex: .8;
 }
 #action-transition-container

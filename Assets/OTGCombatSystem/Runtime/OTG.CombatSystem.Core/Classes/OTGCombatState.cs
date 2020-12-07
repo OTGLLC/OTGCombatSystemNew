@@ -51,16 +51,12 @@ namespace OTG.CombatSM.Core
 
             ResetStateTime();
             UpdateHandlerStateTime(_controller);
-
-            Debug.Log(name + "Entered : ComboCounter " + _controller.Handler_Combat.ConsecutiveHit);
-           
             PlayAnimation(_controller);
             PerformActions(m_onEnterActions, _controller);
         }
         public void OnStateUpdate(OTGCombatSMC _controller)
         {
             UpdateHandlerStateTime(_controller);
-            CountdownComboTimer(_controller);
             PerformActions(m_onUpdateActions, _controller);
             EvaluateTransitions(_controller);
             IncrementStateTime();
@@ -72,7 +68,7 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateExit(OTGCombatSMC _controller)
         {
-            Debug.Log(name + "Exited : ComboCounter " + _controller.Handler_Combat.ConsecutiveHit);
+           
             PerformActions(m_onExitActions, _controller);
         }
         #endregion
@@ -128,10 +124,6 @@ namespace OTG.CombatSM.Core
                 return;
 
             _controller.Handler_Animation.UpdateAnimData(m_combatAnim.AnimData);
-        }
-        private void CountdownComboTimer(OTGCombatSMC _controller)
-        {
-            _controller.Handler_Combat.CountdownComboTimer();
         }
         #endregion
 

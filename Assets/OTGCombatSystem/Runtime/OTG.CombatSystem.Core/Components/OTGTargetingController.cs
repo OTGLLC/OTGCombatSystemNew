@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace OTG.CombatSM.Core
 {
+    [RequireComponent(typeof(BoxCollider))]
     public class OTGTargetingController : MonoBehaviour
     {
         #region Properties

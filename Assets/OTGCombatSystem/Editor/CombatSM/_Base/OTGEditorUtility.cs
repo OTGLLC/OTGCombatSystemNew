@@ -10,8 +10,10 @@ using OTG.CombatSM.TwitchFighter;
 
 namespace OTG.CombatSM.EditorTools
 {
+   
     public static class OTGEditorUtility
     {
+        
         public enum E_CombatTemplate
         {
             TwitchFighter,
@@ -284,6 +286,12 @@ namespace OTG.CombatSM.EditorTools
             _targetListView = _ownerContainer.Query<ListView>(_listAreaName).First();
 
             _targetListView.Clear();
+           
+            _targetListView.Unbind();
+
+            if (_targetListView.itemsSource != null)
+                _targetListView.itemsSource.Clear();
+
             _targetListView.makeItem = () => new Label();
 
 
@@ -293,6 +301,10 @@ namespace OTG.CombatSM.EditorTools
             _targetListView.selectionType = SelectionType.Single;
         }
 
+        public static void PopulateStateByTemplate(E_NewCombatStateTemplate _stateTemplate, ref StateDataCache _cache )
+        {
+
+        }
         #endregion
 
         #region --Twitch Fighter---
@@ -315,7 +327,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ConsumeCurrentAnimationEvent>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<TakeInDamage>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ScanForAdjacentTarget>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCounterOnHit>());
+            
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -332,7 +344,6 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRecievedDamage>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeExpired>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasAnAdjacentTarget>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasConsecutiveHits>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<DirectionInputDoesNotMatchFaceDirection>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<DirectionInputMatchesFaceDirection>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<DoesNotHaveAdjacentTarget>());

@@ -13,8 +13,14 @@ namespace OTG.CombatSM.EditorTools
     public class CharacterGraphSubview : CharacterSubViewBase
     {
 
+        #region Controls
+        private ToolbarButton m_copyPasteStateButton;
+        private ToolbarButton m_newStateButton;
+        private EnumField m_stateTemplateEnumField;
+        #endregion
+
         #region Fields
-        
+
         private CharacterStateGraph m_stateGraph;
         private ListView m_actionListView;
         private ListView m_transitionListView;
@@ -22,15 +28,22 @@ namespace OTG.CombatSM.EditorTools
         private ListView m_animationListView;
         private CharacterStateNode m_selectedNode;
         private TextField m_animFilterField;
-        
+        private StateDataCache m_copiedStateCache;
         #endregion
 
         #region Public API
         public void OnStateSelected(CharacterStateNode _selectedNode)
         {
+            if(m_copiedStateCache != null)
+            {
+                m_copiedStateCache.Cleanup();
+                m_copiedStateCache = null;
+
+            }
+
             m_selectedNode = _selectedNode;
             PopulateStateDetailsView(_selectedNode.OwningSerializedObject);
-            
+            DisplayCopyPasteButton();
         }
         #endregion
 
@@ -61,6 +74,8 @@ namespace OTG.CombatSM.EditorTools
         {
             CleanupGraph();
             CreateNewGraph();
+            LinkControls();
+            HideCopyPasteButton();
             OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatAction>(ref m_actionListView,ref m_containerElement, OTGEditorUtility.ActionsInstantiated ,"action-list-area");
             OTGEditorUtility.PopulateListViewScriptableObject<OTGTransitionDecision>(ref m_transitionListView,ref m_containerElement, OTGEditorUtility.TransitionsInstantiated, "transition-list-area");
             OTGEditorUtility.PopulateListView<string>(ref m_animationListView, ref m_containerElement, OTGEditorUtility.AvailableAnimationClips, "animation-list-area",true);
@@ -78,6 +93,7 @@ namespace OTG.CombatSM.EditorTools
       
         protected override void HandleViewLostFocus()
         {
+            
             RemoveCallbacksFromListView(ref m_actionListView);
             RemoveCallbacksFromListView(ref m_transitionListView);
             RemoveCallbacksFromListView(ref m_availabeStatesListView);
@@ -93,6 +109,7 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<VisualElement>("state-details-area").Clear();
             CleanupGraph();
             UnSubscribeFromButtonCallBacks();
+            CleanupControls();
 
             m_animFilterField.UnregisterValueChangedCallback(OnTextChanged);
         }
@@ -109,6 +126,43 @@ namespace OTG.CombatSM.EditorTools
         #endregion
 
         #region Utility
+        private void LinkControls()
+        {
+            m_newStateButton = ContainerElement.Q<ToolbarButton>("new-state-button");
+            m_copyPasteStateButton = ContainerElement.Q<ToolbarButton>("copy-state-button");
+            m_stateTemplateEnumField = ContainerElement.Q<EnumField>("new-state-template");
+        }
+        private void CleanupControls()
+        {
+            m_newStateButton = null;
+            m_copyPasteStateButton = null;
+            m_stateTemplateEnumField = null;
+        }
+        private void HideCopyPasteButton()
+        {
+            m_copyPasteStateButton.style.visibility = Visibility.Hidden;
+        }
+        private void DisplayCopyPasteButton()
+        {
+            if (m_selectedNode == null)
+                return;
+            m_copyPasteStateButton.style.visibility = Visibility.Visible;
+            m_copyPasteStateButton.clickable.clicked -= OnCopyState;
+            m_copyPasteStateButton.clickable.clicked -= OnPasteState;
+            if (m_copiedStateCache == null)
+            {
+                m_copyPasteStateButton.text = "Copy State";
+                m_copyPasteStateButton.clickable.clicked += OnCopyState;
+               
+            }
+            else
+            {
+
+                m_copyPasteStateButton.text = "Paste State";
+                m_copyPasteStateButton.clickable.clicked += OnPasteState;
+            }
+
+        }
         private void CreateNewGraph()
         {
             m_stateGraph = new CharacterStateGraph(m_charViewData,this)
@@ -134,14 +188,15 @@ namespace OTG.CombatSM.EditorTools
 
             ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked += OnRefreshActions;
             ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked += OnRefreshTransitions;
-            ContainerElement.Q<Button>("new-state-button").clickable.clicked += OnNewStateClicked;
+           m_newStateButton.clickable.clicked += OnNewStateClicked;
+            m_stateTemplateEnumField.RegisterCallback<ChangeEvent<System.Enum>>(evt => { SetTemplateData(evt.newValue); });
 
         }
         private void UnSubscribeFromButtonCallBacks()
         {
             ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked -= OnRefreshActions;
             ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked -= OnRefreshTransitions;
-            ContainerElement.Q<Button>("new-state-button").clickable.clicked -= OnNewStateClicked;
+            m_newStateButton.clickable.clicked -= OnNewStateClicked;
         }
         private void PopulateStateDetailsView(SerializedObject _targetState)
         {
@@ -180,7 +235,28 @@ namespace OTG.CombatSM.EditorTools
             OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatState>(ref m_availabeStatesListView,ref m_containerElement, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
         }
         
-       
+       private void CreateNewState(string _stateName, StateDataCache _startingData = null)
+        {
+            string folder = OTGEditorUtility.GetCharacterStateFolder(m_charViewData.SelectedCharacter.name, m_editorConfig.CharacterPathRoot);
+            string stateName = OTGEditorUtility.GetCombatStateName(m_charViewData.SelectedCharacter.name, _stateName);
+            OTGCombatState newState = ScriptableObject.CreateInstance<OTGCombatState>();
+            newState.name = stateName;
+
+            if (_startingData != null)
+            {
+                PopulateStateWithStartingActionsAndTransitions(ref newState,_startingData);
+            }
+
+            AssetDatabase.CreateAsset(newState, folder + "/" + stateName + ".asset");
+
+            PopulateAvailableStates();
+            m_stateGraph.OnNewStateButtonPressed();
+
+        }
+        private void PopulateStateWithStartingActionsAndTransitions(ref OTGCombatState _state, StateDataCache _data)
+        {
+            _data.PopulateState(ref _state);
+        }
         #endregion
 
         #region Callbacks
@@ -233,14 +309,12 @@ namespace OTG.CombatSM.EditorTools
         private void OnNewStateClicked()
         {
             string textBoxValue = ContainerElement.Q<TextField>("new-state-name-textfield").text;
-            string folder =    OTGEditorUtility.GetCharacterStateFolder(m_charViewData.SelectedCharacter.name, m_editorConfig.CharacterPathRoot);
-            string stateName = OTGEditorUtility.GetCombatStateName(m_charViewData.SelectedCharacter.name, textBoxValue);
-            OTGCombatState newState = ScriptableObject.CreateInstance<OTGCombatState>();
-            newState.name = stateName;
-            AssetDatabase.CreateAsset(newState, folder + "/" + stateName + ".asset");
+            if (string.IsNullOrEmpty(textBoxValue))
+                return;
 
-            PopulateAvailableStates();
-            m_stateGraph.OnNewStateButtonPressed();
+            CreateNewState(textBoxValue);
+           
+            
         }
         private void OnTextChanged(ChangeEvent<string> changeEv)
         {
@@ -250,7 +324,110 @@ namespace OTG.CombatSM.EditorTools
 
             OTGEditorUtility.PopulateListView<string>(ref m_animationListView, ref m_containerElement, OTGEditorUtility.AvailableAnimationClipsFilteredList, "animation-list-area", true);
         }
+        private void OnCopyState()
+        {
+            m_copiedStateCache = new StateDataCache(m_selectedNode);
+
+            DisplayCopyPasteButton();
+        }
+        private void OnPasteState()
+        {
+            string textBoxValue = ContainerElement.Q<TextField>("new-state-name-textfield").text;
+            if (string.IsNullOrEmpty(textBoxValue))
+                return;
+
+            CreateNewState(textBoxValue, m_copiedStateCache);
+
+            m_copiedStateCache.Cleanup();
+            m_copiedStateCache = null;
+            DisplayCopyPasteButton();
+        }
+        private void SetTemplateData(System.Enum _incEnum)
+        {
+            
+
+            if (_incEnum.GetType() == typeof(E_NewCombatStateTemplate))
+            {
+                E_NewCombatStateTemplate template = (E_NewCombatStateTemplate)_incEnum;
+                switch (template)
+                {
+
+                    case E_NewCombatStateTemplate.Attack:
+                        break;
+                    case E_NewCombatStateTemplate.Dash:
+                        break;
+                    case E_NewCombatStateTemplate.HitStop:
+                        break;
+                    case E_NewCombatStateTemplate.HitStun:
+                        break;
+                    case E_NewCombatStateTemplate.Idle:
+                        break;
+                    case E_NewCombatStateTemplate.KnockBack:
+                        break;
+                    case E_NewCombatStateTemplate.Knockdown:
+                        break;
+
+                }
+            }
+        }
         #endregion
+    }
+    
+    public class StateDataCache
+    {
+        private SerializedProperty[] m_onEnterActions;
+        private SerializedProperty[] m_onUpdateActions;
+        private SerializedProperty[] m_onAnimatorMoveActions;
+        private SerializedProperty[] m_onExitActions;
+
+
+        public StateDataCache(CharacterStateNode _node)
+        {
+            GetPropertyValues(ref m_onEnterActions, _node.OwningSerializedObject, "m_onEnterActions");
+            GetPropertyValues(ref m_onUpdateActions, _node.OwningSerializedObject, "m_onUpdateActions");
+            GetPropertyValues(ref m_onAnimatorMoveActions, _node.OwningSerializedObject, "m_animUpdateActions");
+            GetPropertyValues(ref m_onExitActions, _node.OwningSerializedObject, "m_onExitActions");
+
+        }
+
+        public void PopulateState(ref OTGCombatState _state)
+        {
+            SerializedObject obj = new SerializedObject(_state);
+            SetPropertyValues(obj, "m_onEnterActions", m_onEnterActions);
+            SetPropertyValues(obj, "m_onUpdateActions", m_onUpdateActions);
+            SetPropertyValues(obj, "m_animUpdateActions", m_onAnimatorMoveActions);
+            SetPropertyValues(obj, "m_onExitActions", m_onExitActions);
+
+        }
+        public void Cleanup()
+        {
+            
+        }
+
+        private void GetPropertyValues(ref SerializedProperty[] _target, SerializedObject _source, string _propName)
+        {
+            var props = _source.FindProperty(_propName);
+            int size = props.arraySize;
+            _target = new SerializedProperty[size];
+
+            for(int i = 0; i < size; i++)
+            {
+                _target[i] = props.GetArrayElementAtIndex(i);
+            }
+        }
+        private void SetPropertyValues(SerializedObject _source, string _propName, SerializedProperty[] _items )
+        {
+            var props = _source.FindProperty(_propName);
+            
+            for(int i = 0; i < _items.Length; i++)
+            {
+                props.InsertArrayElementAtIndex(i);
+                props.GetArrayElementAtIndex(i).objectReferenceValue = _items[i].objectReferenceValue;
+            }
+            _source.ApplyModifiedProperties();
+        }
+
+        
     }
 
 }

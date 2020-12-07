@@ -182,6 +182,7 @@ namespace OTG.CombatSM.EditorTools
         {
             if(m_currentView != null)
             {
+                m_currentView.OnOnHierarchyChanged();
                 m_currentView.OnRefreshButtonClicked();
             }
         }

@@ -10,6 +10,8 @@
 	<engine:VisualElement name="graph-containter">
 		<editor:Toolbar name="graph-toolbar">
 			<editor:ToolbarButton name="new-state-button" text="New State"/>
+      <editor:ToolbarButton name ="copy-state-button" text ="Copy Values"/>
+      <editor:EnumField name="new-state-template" type="OTG.CombatSM.Core.E_NewCombatStateTemplate, Assembly-CSharp"/>
 			<engine:TextField name ="new-state-name-textfield" label="New State Name"/>
 		</editor:Toolbar>
 		<engine:VisualElement name ="graph-area"/>

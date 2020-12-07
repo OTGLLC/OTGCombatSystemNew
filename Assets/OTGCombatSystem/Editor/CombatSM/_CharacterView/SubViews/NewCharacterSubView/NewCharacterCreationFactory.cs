@@ -11,6 +11,7 @@ namespace OTG.CombatSM.EditorTools
         #region Fields
         private GameObject m_characterGameObject;
         private OTGHitColliderController m_hitColliderObj;
+        private OTGTargetingController m_targetingObj;
         private SerializedObject m_characterSMCObj;
         #endregion
 
@@ -25,6 +26,7 @@ namespace OTG.CombatSM.EditorTools
             ApplyCharacterModel(_data);
             AdjustCharacterControllerCapsule();
             AddHitBoxCollider();
+            AddTargetingBox(_data);
 
             SetLayers(_data);
             FocusOnAddedCharacter();
@@ -118,6 +120,27 @@ namespace OTG.CombatSM.EditorTools
             collider.name = "HitBoxCollider";
             collider.transform.parent = m_characterGameObject.transform;
             collider.transform.position = new Vector3(0, 1, 0);
+        }
+        private void AddTargetingBox(NewCharacterCreationData _data)
+        {
+            GameObject targeting = new GameObject();
+            m_targetingObj = targeting.AddComponent<OTGTargetingController>();
+            targeting.GetComponent<BoxCollider>().isTrigger = true;
+            targeting.name = "TargetingController";
+            targeting.transform.parent = m_characterGameObject.transform;
+            targeting.transform.position = new Vector3(1, 1, 0);
+
+            SerializedObject obj = new SerializedObject(m_targetingObj);
+            SerializedProperty prop = obj.FindProperty("m_validTargets");
+            if(_data.CharacterType == e_CombatantType.Player)
+            {
+                prop.intValue = OTGCombatSystemConfig.LAYER_ENEMY_PUSH;
+            }
+            if(_data.CharacterType == e_CombatantType.Enemy)
+            {
+                prop.intValue = OTGCombatSystemConfig.LAYER_PLAYER_PUSH;
+            }
+            obj.ApplyModifiedProperties();
         }
         private void SetLayers(NewCharacterCreationData _data)
         {

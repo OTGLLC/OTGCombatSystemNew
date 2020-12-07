@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: CharacterDev_Idle_CombatState
+  m_Name: fdgdfgdf_HitStop_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: f616a2e271f109447b49d45d058a4084, type: 3}
+    m_animClip: {fileID: 0}
     m_animData:
       m_HorizontalImpactForce: 0
-      m_VerticalImpactForce: 1.53
-      m_DepthImpactForce: 0.96
-      m_onConnectPauseTime: 1.35
-      m_onConnectBaseDamage: 1.48
+      m_VerticalImpactForce: 0
+      m_DepthImpactForce: 0
+      m_onConnectPauseTime: 0
+      m_onConnectBaseDamage: 0
       m_vfxID: {fileID: 0}
       m_hitStopTime: 0
     m_hitCollisionData:
@@ -30,12 +30,17 @@ MonoBehaviour:
       m_validTargets:
         serializedVersion: 2
         m_Bits: 0
-  m_onEnterActions: []
+  m_onEnterActions:
+  - {fileID: 11400000, guid: 290aa0cfb8f70db46a6bf12a876bc4c5, type: 2}
+  - {fileID: 11400000, guid: 25344bb64403288489f708b0a8e91d92, type: 2}
+  - {fileID: 11400000, guid: 3330c7f32cef26a44be9b90b18b5eee6, type: 2}
+  - {fileID: 0}
   m_onUpdateActions: []
   m_animUpdateActions: []
-  m_onExitActions: []
+  m_onExitActions:
+  - {fileID: 11400000, guid: a89c2ac96327b9348aa806af6d884b85, type: 2}
   m_stateTransitions:
-  - m_nextState: {fileID: 11400000, guid: 087bf88b9231b284eb9b37161d5025c3, type: 2}
+  - m_nextState: {fileID: 0}
     m_decisions:
-    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
-    m_usePreviousState: 0
+    - {fileID: 11400000, guid: c2df3eb764862f346a22ab3bac4ee1ba, type: 2}
+    m_usePreviousState: 1
