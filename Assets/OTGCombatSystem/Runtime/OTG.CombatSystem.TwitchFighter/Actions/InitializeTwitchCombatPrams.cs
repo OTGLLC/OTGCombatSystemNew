@@ -33,6 +33,7 @@ namespace OTG.CombatSM.TwitchFighter
         private void InitializeHealth(TwitchFighterCombatParams _twitchCombat)
         {
             _twitchCombat.CurrentHealth = _twitchCombat.Data.MaxHealth;
+            _twitchCombat.UpdateHealthBar();
         }
         private void InitializeEnergy(TwitchFighterCombatParams _twitchCombat)
         {

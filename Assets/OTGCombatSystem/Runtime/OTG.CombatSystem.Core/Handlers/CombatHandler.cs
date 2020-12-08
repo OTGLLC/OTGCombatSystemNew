@@ -42,6 +42,9 @@ namespace OTG.CombatSM.Core
     }
     public class TwitchFighterCombatParams
     {
+        public delegate void OnHealthUpdate(int _current, int _max);
+        public event OnHealthUpdate HealthUpdateEvent;
+
         public OTGCombatSMC NearestTarget { get; set; }
         public Vector3 NearestTargetPosition { get; set; }
         public CombatHandlerData Data { get; private set; }
@@ -75,15 +78,18 @@ namespace OTG.CombatSM.Core
         {
             CurrentHealth -= (int)_payload.GetDamage();
             CheckifDead();
+            UpdateHealth();
         }
-
+        public void UpdateHealthBar()
+        {
+            UpdateHealth();
+        }
         #endregion
 
         #region Utility
         private void Initialize(HandlerDataGroup _datGroup)
         {
             Data = _datGroup.CombatsHandlerData;
-            
         }
        
         private void CheckifDead()
@@ -93,7 +99,13 @@ namespace OTG.CombatSM.Core
             else
                 IsDead = false;
         }
-
+        void UpdateHealth()
+        {
+            if(HealthUpdateEvent!= null)
+            {
+                HealthUpdateEvent(CurrentHealth, Data.MaxHealth);
+            }
+        }
         #endregion
     }
 }
