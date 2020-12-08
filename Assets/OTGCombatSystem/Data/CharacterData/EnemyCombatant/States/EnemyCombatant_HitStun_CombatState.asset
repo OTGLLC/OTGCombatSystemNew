@@ -30,16 +30,20 @@ MonoBehaviour:
       m_validTargets:
         serializedVersion: 2
         m_Bits: 0
-  m_onEnterActions: []
-  m_onUpdateActions: []
-  m_animUpdateActions: []
-  m_onExitActions: []
+  m_onEnterActions:
+  - {fileID: 11400000, guid: 2020011f39eef37429fc3e38418ba5de, type: 2}
+  m_onUpdateActions:
+  - {fileID: 11400000, guid: 2020011f39eef37429fc3e38418ba5de, type: 2}
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 14a48d8d408d1f949ac2e075a4f96021, type: 2}
+  m_onExitActions:
+  - {fileID: 11400000, guid: 6cd22fe456c71b149a9fb3624e1e7962, type: 2}
   m_stateTransitions:
-  - m_nextState: {fileID: 11400000, guid: 8363df005ece2004488ae25357115d1b, type: 2}
-    m_decisions:
-    - {fileID: 11400000, guid: 5beb40f86ef449b42b5a9058dcc4382e, type: 2}
-    m_usePreviousState: 0
   - m_nextState: {fileID: 11400000, guid: 0718702f148533b48be6a4c5b0497bff, type: 2}
     m_decisions:
     - {fileID: 11400000, guid: 165b1547aae5bc842a058a6cdce6a257, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: 8363df005ece2004488ae25357115d1b, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 5beb40f86ef449b42b5a9058dcc4382e, type: 2}
     m_usePreviousState: 0

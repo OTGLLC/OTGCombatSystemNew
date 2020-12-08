@@ -22,5 +22,8 @@
       <editor:ToolbarButton name="open-character-file-picker" class="file-picker" text="Open"/>
     </editor:Toolbar>
   </engine:VisualElement>
+  <engine:VisualElement name="global-config-area">
+    
+  </engine:VisualElement>
     
 </engine:UXML>

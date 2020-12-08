@@ -31,8 +31,10 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 0
   m_onEnterActions: []
-  m_onUpdateActions: []
-  m_animUpdateActions: []
+  m_onUpdateActions:
+  - {fileID: 11400000, guid: 2020011f39eef37429fc3e38418ba5de, type: 2}
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 14a48d8d408d1f949ac2e075a4f96021, type: 2}
   m_onExitActions: []
   m_stateTransitions:
   - m_nextState: {fileID: 11400000, guid: c1315b689f5376048a0fb27472301b71, type: 2}

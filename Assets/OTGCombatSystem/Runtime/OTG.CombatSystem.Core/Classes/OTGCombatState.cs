@@ -43,6 +43,7 @@ namespace OTG.CombatSM.Core
             SetAnimationData(_controller);
             SetHurtColliderData(_controller);
             SetHitColliderData(_controller);
+            PerformActions(m_onEnterActions, _controller);
 
             if (_reentry)
             {
@@ -53,7 +54,7 @@ namespace OTG.CombatSM.Core
             ResetStateTime();
             UpdateHandlerStateTime(_controller);
             PlayAnimation(_controller);
-            PerformActions(m_onEnterActions, _controller);
+            
         }
         public void OnStateUpdate(OTGCombatSMC _controller)
         {

@@ -10,6 +10,7 @@ namespace OTG.CombatSM.Core
     public class OTGCombatSMC : MonoBehaviour
     {
         #region Inspector Vars
+        [SerializeField] private OTGGlobalCombatConfig m_globalConfig;
         [SerializeField] private HandlerDataGroup m_handlerDataGroup;
         [SerializeField] private OTGCombatState m_startingState;
         [SerializeField] private e_CombatantType m_combatantType;
@@ -105,9 +106,9 @@ namespace OTG.CombatSM.Core
         private void InitializeHandlers()
         {
             Handler_Animation = new AnimationHandler(m_handlerDataGroup, GetComponent<Animator>());
-            Handler_Movement = new MovementHandler(m_handlerDataGroup, GetComponent<CharacterController>(), GetComponent<Transform>());
+            Handler_Movement = new MovementHandler(m_handlerDataGroup, GetComponent<CharacterController>(), GetComponent<Transform>(),m_globalConfig);
             Handler_Input = new InputHandler(m_handlerDataGroup);
-            Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>(), GetComponentsInChildren<OTGHurtColliderController>(), GetComponentInChildren<OTGTargetingController>());
+            Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>(), GetComponentsInChildren<OTGHurtColliderController>(), GetComponentInChildren<OTGTargetingController>(),m_globalConfig);
             Handler_Combat = new CombatHandler(m_handlerDataGroup);
             Handler_VFX = new VFXHandler(GetComponentsInChildren<OTGVFXController>());
         }

@@ -1907,6 +1907,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 471645974813490714, guid: daabd408ca2f3f7499ce36f6834ad589, type: 3}
+      propertyPath: m_globalConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: a02c4edc002cb5045b7418dd006549c6, type: 2}
     - target: {fileID: 471645974813490715, guid: daabd408ca2f3f7499ce36f6834ad589, type: 3}
       propertyPath: m_Name
       value: DevPlayerTwo
@@ -1955,6 +1959,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 471645974911185973, guid: daabd408ca2f3f7499ce36f6834ad589, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683810603015615933, guid: daabd408ca2f3f7499ce36f6834ad589, type: 3}
+      propertyPath: m_Size.y
+      value: 1.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 2683810603015615933, guid: daabd408ca2f3f7499ce36f6834ad589, type: 3}
+      propertyPath: m_Size.z
+      value: 1.61
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: daabd408ca2f3f7499ce36f6834ad589, type: 3}
 --- !u!1001 &3514520071939729228
@@ -1964,6 +1980,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3514520070960886332, guid: edd97c71b36faeb44adb4291681dcb92, type: 3}
+      propertyPath: m_Layer
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 3514520070971046801, guid: edd97c71b36faeb44adb4291681dcb92, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2012,5 +2032,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyCombatant
       objectReference: {fileID: 0}
+    - target: {fileID: 3514520070971046806, guid: edd97c71b36faeb44adb4291681dcb92, type: 3}
+      propertyPath: m_globalConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: a02c4edc002cb5045b7418dd006549c6, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: edd97c71b36faeb44adb4291681dcb92, type: 3}

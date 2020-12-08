@@ -22,7 +22,7 @@ namespace OTG.CombatSM.Core
         {
             m_targetingCollider = GetComponent<BoxCollider>();
             m_trans = GetComponent<Transform>();
-            TargetingResults = new Collider[OTGCombatSystemConfig.MAX_HIT_SCAN_ELEMENTS];
+            
         }
         private void OnDisable()
         {
@@ -33,6 +33,10 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Public API
+        public void InitController(int _maxScanElements)
+        {
+            TargetingResults = new Collider[_maxScanElements];
+        }
         public void ScanForTargets()
         {
             ValidTargets = Physics.OverlapBoxNonAlloc(m_trans.position, m_targetingCollider.size / 2, TargetingResults, m_trans.localToWorldMatrix.rotation, m_validTargets);

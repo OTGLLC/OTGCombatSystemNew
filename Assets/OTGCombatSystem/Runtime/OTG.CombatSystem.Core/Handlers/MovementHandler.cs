@@ -11,9 +11,9 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Public API
-        public MovementHandler(HandlerDataGroup _dataGroup, CharacterController _charControl, Transform _trans)
+        public MovementHandler(HandlerDataGroup _dataGroup, CharacterController _charControl, Transform _trans, OTGGlobalCombatConfig _globalConfig)
         {
-            TwitchParams = new TwitchMovementParams(_trans,_charControl, _dataGroup.MoveHandlerData);
+            TwitchParams = new TwitchMovementParams(_trans,_charControl, _dataGroup.MoveHandlerData, _globalConfig);
         }
         public void CleanupHandler()
         {
@@ -37,6 +37,7 @@ namespace OTG.CombatSM.Core
         public Transform Comp_Transform { get; private set; }
         public CharacterController Comp_CharacterControl { get; private set; }
         public TwitchMovementData Data { get; private set; }
+        public OTGGlobalCombatConfig GlobalCombatConfig { get; private set; }
 
         public Vector3 DashStartPosition;
         public float DesiredDashDistance;
@@ -48,17 +49,19 @@ namespace OTG.CombatSM.Core
         public float VerticalSpeed;
         public float DepthSpeed;
         
-        public TwitchMovementParams(Transform _trans, CharacterController _control, MovementHandlerData _data)
+        public TwitchMovementParams(Transform _trans, CharacterController _control, MovementHandlerData _data, OTGGlobalCombatConfig _globalCOnfig)
         {
             Comp_Transform = _trans;
             Comp_CharacterControl = _control;
             Data = _data.TwitchData;
+            GlobalCombatConfig = _globalCOnfig;
         }
         public void Cleanup()
         {
             Comp_Transform = null;
             Comp_CharacterControl = null;
             Data = null;
+            GlobalCombatConfig = null;
 
             ResetParams();
         }

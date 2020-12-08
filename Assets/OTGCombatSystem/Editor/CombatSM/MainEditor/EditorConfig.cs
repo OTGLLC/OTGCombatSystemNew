@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+using OTG.CombatSM.Core;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -19,6 +19,9 @@ namespace OTG.CombatSM.EditorTools
         public string CharacterPathRoot { get { return m_characterPAthRoot; } }
         [SerializeField] private string m_templatesPath;
         public string TemplatesPaths { get { return m_templatesPath; } }
+
+        [SerializeField] private OTGGlobalCombatConfig m_globalCombatConfig;
+        public OTGGlobalCombatConfig GlobalCombatConfig { get { return m_globalCombatConfig; } }
         
     }
 

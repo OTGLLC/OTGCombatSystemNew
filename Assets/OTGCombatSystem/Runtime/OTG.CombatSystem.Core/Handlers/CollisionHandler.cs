@@ -19,11 +19,12 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Public API
-        public CollisionHandler(HandlerDataGroup _dataGroup, OTGHitColliderController _hitCollider, OTGHurtColliderController[] _hurtColliders, OTGTargetingController _targetingController)
+        public CollisionHandler(HandlerDataGroup _dataGroup, OTGHitColliderController _hitCollider, OTGHurtColliderController[] _hurtColliders, OTGTargetingController _targetingController,OTGGlobalCombatConfig _globalConfig)
         {
-            InitHandler(_dataGroup, _hitCollider);
+            InitHandler(_dataGroup, _hitCollider, _globalConfig);
             InitHurtColliderLookup(_hurtColliders);
             TargetingController = _targetingController;
+            TargetingController.InitController(_globalConfig.MaxScanElemements);
         }
         public void CleanupHandler()
         {
@@ -50,11 +51,11 @@ namespace OTG.CombatSM.Core
         #endregion
 
         #region Utility
-        private void InitHandler(HandlerDataGroup _dataGroup, OTGHitColliderController _hitCollider)
+        private void InitHandler(HandlerDataGroup _dataGroup, OTGHitColliderController _hitCollider, OTGGlobalCombatConfig _globalConfig)
         {
             m_handlerData = _dataGroup.CollisionHandlerData;
             HitCollider = _hitCollider;
-            ScanResults = new Collider[OTGCombatSystemConfig.MAX_HIT_SCAN_ELEMENTS];
+            ScanResults = new Collider[_globalConfig.MaxScanElemements];
         }
         private void InitHurtColliderLookup(OTGHurtColliderController[] _hurtColliders)
         {

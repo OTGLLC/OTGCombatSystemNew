@@ -21,8 +21,6 @@ namespace OTG.CombatSM.EditorTools
         public OptionsView(ref EditorConfig _config):base()
         {
             m_viewData = new OptionsViewData(ref _config);
-
-            
             
         }
         protected override void Refresh()

@@ -26,9 +26,9 @@ namespace OTG.CombatSM.EditorTools
             ApplyCharacterModel(_data);
             AdjustCharacterControllerCapsule();
             AddHitBoxCollider();
-            AddTargetingBox(_data);
+            AddTargetingBox(_data,_config);
 
-            SetLayers(_data);
+            SetLayers(_data,_config);
             FocusOnAddedCharacter();
 
 
@@ -121,7 +121,7 @@ namespace OTG.CombatSM.EditorTools
             collider.transform.parent = m_characterGameObject.transform;
             collider.transform.position = new Vector3(0, 1, 0);
         }
-        private void AddTargetingBox(NewCharacterCreationData _data)
+        private void AddTargetingBox(NewCharacterCreationData _data, EditorConfig _config)
         {
             GameObject targeting = new GameObject();
             m_targetingObj = targeting.AddComponent<OTGTargetingController>();
@@ -134,26 +134,26 @@ namespace OTG.CombatSM.EditorTools
             SerializedProperty prop = obj.FindProperty("m_validTargets");
             if(_data.CharacterType == e_CombatantType.Player)
             {
-                prop.intValue = OTGCombatSystemConfig.LAYER_ENEMY_PUSH;
+                prop.intValue = _config.GlobalCombatConfig.EnemyPushBox;
             }
             if(_data.CharacterType == e_CombatantType.Enemy)
             {
-                prop.intValue = OTGCombatSystemConfig.LAYER_PLAYER_PUSH;
+                prop.intValue = _config.GlobalCombatConfig.PlayerPushBox;
             }
             obj.ApplyModifiedProperties();
         }
-        private void SetLayers(NewCharacterCreationData _data)
+        private void SetLayers(NewCharacterCreationData _data, EditorConfig _config)
         {
             if(_data.CharacterType == e_CombatantType.Player)
             {
-                m_characterGameObject.layer = OTGCombatSystemConfig.LAYER_PLAYER_PUSH;
-                m_hitColliderObj.gameObject.layer = OTGCombatSystemConfig.LAYER_PLAYER_HIT;
+                m_characterGameObject.layer = _config.GlobalCombatConfig.PlayerPushBox;
+                m_hitColliderObj.gameObject.layer = _config.GlobalCombatConfig.PlayerHitBox;
             }
             else if(_data.CharacterType == e_CombatantType.Enemy)
             {
 
-                m_characterGameObject.layer = OTGCombatSystemConfig.LAYER_ENEMY_PUSH;
-                m_hitColliderObj.gameObject.layer = OTGCombatSystemConfig.LAYER_ENEMY_HIT;
+                m_characterGameObject.layer = _config.GlobalCombatConfig.EnemyPushBox;
+                m_hitColliderObj.gameObject.layer = _config.GlobalCombatConfig.EnemyHitBox;
             }
         }
         private void Cleanup()

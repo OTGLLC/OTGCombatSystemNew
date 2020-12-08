@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac65d4e824ac414449b2ab5718c881ec, type: 3}
+  m_Name: GlobalCOmbatConfig
+  m_EditorClassIdentifier: 
+  m_maxScanElements: 10
+  m_gravitySetting: 10
+  m_stickingForce: 1
+  m_playerPushBox:
+    serializedVersion: 2
+    m_Bits: 512
+  m_playerHitBox:
+    serializedVersion: 2
+    m_Bits: 1024
+  m_playerHurtBox:
+    serializedVersion: 2
+    m_Bits: 2048
+  m_enemyPushBox:
+    serializedVersion: 2
+    m_Bits: 4096
+  m_enemyHitBox:
+    serializedVersion: 2
+    m_Bits: 8192
+  m_enemyHurtBox:
+    serializedVersion: 2
+    m_Bits: 16384
+  m_targetingBox:
+    serializedVersion: 2
+    m_Bits: 32768

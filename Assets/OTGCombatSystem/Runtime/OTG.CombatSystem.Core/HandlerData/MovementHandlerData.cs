@@ -22,6 +22,7 @@ namespace OTG.CombatSM.Core
         [SerializeField] private float m_dashDistanceMinThreshold;
         [SerializeField] private AnimationCurve m_dashCurve;
         
+        
         public float MaxDashDistance { get { return m_maxDashDistance; } }
         public float DashSpeed { get { return m_dashSpeed; } }
         public float Acceleration { get { return m_acceleration; } }
