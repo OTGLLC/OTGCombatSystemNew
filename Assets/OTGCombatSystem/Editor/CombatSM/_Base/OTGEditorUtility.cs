@@ -341,6 +341,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<TakeInDamage>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ScanForAdjacentTarget>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateVerticalMovement>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<InitializeTwitchCombatPrams>());
 
         }
         private static void RegisterTwitchFighterTransitions()
@@ -363,6 +364,7 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<DoesNotHaveAdjacentTarget>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsGrounded>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsNotGrounded>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsDead>());
         }
         #endregion
 

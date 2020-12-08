@@ -17,9 +17,10 @@ namespace OTG.CombatSM.TwitchFighter
             AnimationHandler animHandler = _controller.Handler_Animation;
             CollisionHandler collisionHandler = _controller.Handler_Collision;
             TwitchMovementParams twitchMove = _controller.Handler_Movement.TwitchParams;
+            TwitchFighterCombatParams twitchCombat = _controller.Handler_Combat.TwitchCombat;
 
             int faceDirection = DetermineFacingDirection(twitchMove);
-            IDamagePayload payload = PrepareDamagePayload(animHandler, faceDirection);
+            IDamagePayload payload = PrepareDamagePayload(animHandler, faceDirection,twitchCombat);
             SendDamageToContacts(collisionHandler, payload);
             ResetNumberOfContacts(collisionHandler);
 
@@ -38,9 +39,9 @@ namespace OTG.CombatSM.TwitchFighter
             }
             return faceDirection;
         }
-        private IDamagePayload PrepareDamagePayload(AnimationHandler _animHandler, int _faceDirection)
+        private IDamagePayload PrepareDamagePayload(AnimationHandler _animHandler, int _faceDirection, TwitchFighterCombatParams _twitchCombat)
         {
-            TwitchFighterDamagePayload dPayload = new TwitchFighterDamagePayload(_animHandler.CurrentAnimData, _faceDirection);
+            TwitchFighterDamagePayload dPayload = new TwitchFighterDamagePayload(_animHandler.CurrentAnimData, _faceDirection,_twitchCombat);
 
             return dPayload;
         }

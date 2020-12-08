@@ -8,12 +8,18 @@ namespace OTG.CombatSM.TwitchFighter
     {
         float m_stunTime;
         Vector3 m_impactForce;
-        public TwitchFighterDamagePayload(CombatAnimData _combatData, int _faceDirection)
+        float m_physicalDamage;
+        float m_energyDamage;
+        public TwitchFighterDamagePayload(CombatAnimData _combatData, int _faceDirection, TwitchFighterCombatParams _handler)
         {
             m_stunTime = 0;
             m_impactForce = Vector3.zero;
+            m_physicalDamage = 0;
+            m_energyDamage = 0;
+
            CalculateStunTime(_combatData);
             CalculateImpactForce(_combatData, _faceDirection);
+            CalculateDamage(_handler);
         }
         #region Interface Implementation
         public Vector3 GetImpactForce()
@@ -26,7 +32,7 @@ namespace OTG.CombatSM.TwitchFighter
         }
         public float GetDamage()
         {
-            return 0;   
+            return m_physicalDamage;   
         }
 
         #endregion
@@ -45,6 +51,10 @@ namespace OTG.CombatSM.TwitchFighter
 
             m_impactForce = new Vector3(xForce, yForce, zForce);
             
+        }
+        private void CalculateDamage(TwitchFighterCombatParams _combatHandler)
+        {
+             m_physicalDamage = _combatHandler.CurrentPhysicalAttack * (_combatHandler.CombatLevel + _combatHandler.CurrentComboCount);
         }
         #endregion
     }

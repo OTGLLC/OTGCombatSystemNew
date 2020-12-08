@@ -32,4 +32,8 @@ MonoBehaviour:
   m_collisionHandlerData:
     m_test: 0
   m_combatHandlerData:
-    m_test: 0
+    m_maxHealth: 10
+    m_maxEnergy: 10
+    m_basePhysicalAttack: 1
+    m_baseEnergyAttack: 1
+    m_comboBreakPoint: 4

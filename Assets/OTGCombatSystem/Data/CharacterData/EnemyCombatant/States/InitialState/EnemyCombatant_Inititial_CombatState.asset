@@ -30,7 +30,8 @@ MonoBehaviour:
       m_validTargets:
         serializedVersion: 2
         m_Bits: 0
-  m_onEnterActions: []
+  m_onEnterActions:
+  - {fileID: 11400000, guid: 359889be3ca028c4690df9a2281cb84d, type: 2}
   m_onUpdateActions: []
   m_animUpdateActions: []
   m_onExitActions: []

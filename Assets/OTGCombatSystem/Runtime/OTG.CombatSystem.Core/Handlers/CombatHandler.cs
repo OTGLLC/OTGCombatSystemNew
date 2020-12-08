@@ -44,10 +44,20 @@ namespace OTG.CombatSM.Core
     {
         public OTGCombatSMC NearestTarget { get; set; }
         public Vector3 NearestTargetPosition { get; set; }
+        public CombatHandlerData Data { get; private set; }
+        public int CurrentHealth { get; set; }
+        public int CurrentEnergy { get; set; }
+        public int CurrentPhysicalAttack { get; set; }
+        public int CurrentEnergyAttack { get; set; }
+        public int CurrentComboBreakPoint { get; set; }
+        public int CurrentComboCount { get; set; }
+        public int CombatLevel { get; set; }
+        public bool IsDead { get; private set; }
 
+        #region Public API
         public TwitchFighterCombatParams(HandlerDataGroup _datGroup)
         {
-            Initialize();
+            Initialize( _datGroup);
         }
 
         public void CleanupParams()
@@ -57,15 +67,33 @@ namespace OTG.CombatSM.Core
         public void ResetParams()
         {
             NearestTarget = null;
+            NearestTargetPosition = Vector3.zero;
+            Data = null;
         }
+        
         public void RecieveDamagePayload(IDamagePayload _payload)
         {
-            Debug.Log("Recieved damage payload");
+            CurrentHealth -= (int)_payload.GetDamage();
+            CheckifDead();
         }
 
-        private void Initialize()
+        #endregion
+
+        #region Utility
+        private void Initialize(HandlerDataGroup _datGroup)
         {
-
+            Data = _datGroup.CombatsHandlerData;
+            
         }
+       
+        private void CheckifDead()
+        {
+            if (CurrentHealth <= 0)
+                IsDead = true;
+            else
+                IsDead = false;
+        }
+
+        #endregion
     }
 }

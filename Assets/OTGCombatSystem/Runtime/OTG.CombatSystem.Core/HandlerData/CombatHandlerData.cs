@@ -8,6 +8,16 @@ namespace OTG.CombatSM.Core
     [System.Serializable]
     public class CombatHandlerData
     {
-        [SerializeField] private float m_test;
+        [SerializeField] private int m_maxHealth;
+        public int MaxHealth { get { return m_maxHealth; } }
+        [SerializeField] private int m_maxEnergy;
+        public int MaxEnergy { get { return m_maxEnergy; } }
+        [SerializeField] private int m_basePhysicalAttack;
+        public int BasePhysicalAttack { get { return m_basePhysicalAttack; } }
+        [SerializeField] private int m_baseEnergyAttack;
+        public int BaseEnergyAttack { get { return m_basePhysicalAttack; } }
+        [SerializeField] private int m_comboBreakPoint;
+        public int ComboBreakPoint { get { return m_comboBreakPoint; } }
+        
     }
 }
