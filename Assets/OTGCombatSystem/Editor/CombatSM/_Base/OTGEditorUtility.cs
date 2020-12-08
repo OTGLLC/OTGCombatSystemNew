@@ -301,13 +301,26 @@ namespace OTG.CombatSM.EditorTools
             _targetListView.selectionType = SelectionType.Single;
         }
 
-        public static void PopulateStateByTemplate(E_NewCombatStateTemplate _stateTemplate, ref StateDataCache _cache )
+        public static void PopulateStateByTemplate(E_NewCombatStateTemplate _stateTemplate, ref StateDataCache _cache, EditorConfig _config )
         {
-
+            switch(CurrentCombatTemplate)
+            {
+                case E_CombatTemplate.TwitchFighter:
+                    CreateTwitchFighterStateTemplate(_stateTemplate, ref _cache, _config);
+                    break;
+                case E_CombatTemplate.SideScrollBeatemUpWithLanes:
+                    break;
+            }
         }
         #endregion
 
         #region --Twitch Fighter---
+        private static void CreateTwitchFighterStateTemplate(E_NewCombatStateTemplate _template, ref StateDataCache _cache, EditorConfig _config)
+        {
+            SerializedObject obj = new SerializedObject(AssetDatabase.LoadAssetAtPath<OTGCombatState>(_config.TemplatesPaths + "/" + _template.ToString() + ".asset"));
+            _cache.CreateTemplate(obj);
+        }
+       
         private static void RegisterTwitchFighterActions()
         {
             ActionsAvailable.Add(ScriptableObject.CreateInstance<SetDashDistance>());

@@ -39,6 +39,7 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateEnter(OTGCombatSMC _controller, bool _reentry = false)
         {
+            Debug.Log("State entry: " + name + "State time: " + m_stateTime);
             SetAnimationData(_controller);
             SetHurtColliderData(_controller);
             SetHitColliderData(_controller);

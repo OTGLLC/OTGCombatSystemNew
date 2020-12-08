@@ -17,7 +17,8 @@ namespace OTG.CombatSM.EditorTools
         public string CombatTransitionsPath { get { return m_combatTransitionsPath; } }
         [SerializeField] private string m_characterPAthRoot;
         public string CharacterPathRoot { get { return m_characterPAthRoot; } }
-
+        [SerializeField] private string m_templatesPath;
+        public string TemplatesPaths { get { return m_templatesPath; } }
         
     }
 

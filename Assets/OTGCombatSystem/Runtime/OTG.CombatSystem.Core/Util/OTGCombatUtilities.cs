@@ -5,13 +5,13 @@ namespace OTG.CombatSM.Core
 {
     public enum E_NewCombatStateTemplate
     {
-        Attack,
-        Idle,
-        Dash,
-        HitStun,
-        HitStop,
-        Knockdown,
-        KnockBack
+        AttackTemplate,
+        IdleTemplate,
+        DashTemplate,
+        HitStunTemplate,
+        HitStopTemplate,
+        KnockdownTemplate,
+        KnockBackTemplate
     }
 
 

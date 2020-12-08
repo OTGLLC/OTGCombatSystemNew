@@ -18,6 +18,8 @@ namespace OTG.CombatSM.TwitchFighter
             TwitchFighterInput input = _controller.Handler_Input.TwitchInput;
 
             int faceDirection = (twitch.Comp_Transform.rotation.eulerAngles.y == 180) ? -1 : 1;
+            if (!input.HasRightInput && !input.HasLeftInput)
+                return false;
 
             bool value = true;
 

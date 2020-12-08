@@ -235,16 +235,16 @@ namespace OTG.CombatSM.EditorTools
             OTGEditorUtility.PopulateListViewScriptableObject<OTGCombatState>(ref m_availabeStatesListView,ref m_containerElement, OTGEditorUtility.AvailableCharacterStates, "state-list-area");
         }
         
-       private void CreateNewState(string _stateName, StateDataCache _startingData = null)
+       private void CreateNewState(string _stateName)
         {
             string folder = OTGEditorUtility.GetCharacterStateFolder(m_charViewData.SelectedCharacter.name, m_editorConfig.CharacterPathRoot);
             string stateName = OTGEditorUtility.GetCombatStateName(m_charViewData.SelectedCharacter.name, _stateName);
             OTGCombatState newState = ScriptableObject.CreateInstance<OTGCombatState>();
             newState.name = stateName;
 
-            if (_startingData != null)
+            if (m_copiedStateCache != null)
             {
-                PopulateStateWithStartingActionsAndTransitions(ref newState,_startingData);
+                PopulateStateWithStartingActionsAndTransitions(ref newState, m_copiedStateCache);
             }
 
             AssetDatabase.CreateAsset(newState, folder + "/" + stateName + ".asset");
@@ -326,8 +326,8 @@ namespace OTG.CombatSM.EditorTools
         }
         private void OnCopyState()
         {
-            m_copiedStateCache = new StateDataCache(m_selectedNode);
-
+            m_copiedStateCache = new StateDataCache();
+            m_copiedStateCache.CopyNode(m_selectedNode);
             DisplayCopyPasteButton();
         }
         private void OnPasteState()
@@ -336,7 +336,7 @@ namespace OTG.CombatSM.EditorTools
             if (string.IsNullOrEmpty(textBoxValue))
                 return;
 
-            CreateNewState(textBoxValue, m_copiedStateCache);
+            CreateNewState(textBoxValue);
 
             m_copiedStateCache.Cleanup();
             m_copiedStateCache = null;
@@ -349,25 +349,11 @@ namespace OTG.CombatSM.EditorTools
             if (_incEnum.GetType() == typeof(E_NewCombatStateTemplate))
             {
                 E_NewCombatStateTemplate template = (E_NewCombatStateTemplate)_incEnum;
-                switch (template)
-                {
+                m_copiedStateCache?.Cleanup();
+                m_copiedStateCache = new StateDataCache();
 
-                    case E_NewCombatStateTemplate.Attack:
-                        break;
-                    case E_NewCombatStateTemplate.Dash:
-                        break;
-                    case E_NewCombatStateTemplate.HitStop:
-                        break;
-                    case E_NewCombatStateTemplate.HitStun:
-                        break;
-                    case E_NewCombatStateTemplate.Idle:
-                        break;
-                    case E_NewCombatStateTemplate.KnockBack:
-                        break;
-                    case E_NewCombatStateTemplate.Knockdown:
-                        break;
-
-                }
+                OTGEditorUtility.PopulateStateByTemplate(template, ref m_copiedStateCache, m_editorConfig);
+                ContainerElement.Q<TextField>("new-state-name-textfield").value = template.ToString() + "template selected";
             }
         }
         #endregion
@@ -375,13 +361,26 @@ namespace OTG.CombatSM.EditorTools
     
     public class StateDataCache
     {
-        private SerializedProperty[] m_onEnterActions;
-        private SerializedProperty[] m_onUpdateActions;
-        private SerializedProperty[] m_onAnimatorMoveActions;
-        private SerializedProperty[] m_onExitActions;
+        private OTGCombatAction[] m_onEnterActions;
+        private OTGCombatAction[] m_onUpdateActions;
+        private OTGCombatAction[] m_onAnimatorMoveActions;
+        private OTGCombatAction[] m_onExitActions;
 
 
-        public StateDataCache(CharacterStateNode _node)
+        public StateDataCache()
+        {
+            
+        }
+
+        public void CreateTemplate(SerializedObject _obj)
+        {
+            GetPropertyValues(ref m_onEnterActions, _obj, "m_onEnterActions");
+            GetPropertyValues(ref m_onUpdateActions, _obj, "m_onUpdateActions");
+            GetPropertyValues(ref m_onAnimatorMoveActions, _obj, "m_animUpdateActions");
+            GetPropertyValues(ref m_onExitActions, _obj, "m_onExitActions");
+
+        }
+        public void CopyNode(CharacterStateNode _node)
         {
             GetPropertyValues(ref m_onEnterActions, _node.OwningSerializedObject, "m_onEnterActions");
             GetPropertyValues(ref m_onUpdateActions, _node.OwningSerializedObject, "m_onUpdateActions");
@@ -389,7 +388,6 @@ namespace OTG.CombatSM.EditorTools
             GetPropertyValues(ref m_onExitActions, _node.OwningSerializedObject, "m_onExitActions");
 
         }
-
         public void PopulateState(ref OTGCombatState _state)
         {
             SerializedObject obj = new SerializedObject(_state);
@@ -404,29 +402,34 @@ namespace OTG.CombatSM.EditorTools
             
         }
 
-        private void GetPropertyValues(ref SerializedProperty[] _target, SerializedObject _source, string _propName)
+        private void GetPropertyValues(ref OTGCombatAction[] _target, SerializedObject _source, string _propName)
         {
             var props = _source.FindProperty(_propName);
             int size = props.arraySize;
-            _target = new SerializedProperty[size];
+            _target = new OTGCombatAction[size];
 
             for(int i = 0; i < size; i++)
             {
-                _target[i] = props.GetArrayElementAtIndex(i);
+                _target[i] = props.GetArrayElementAtIndex(i).objectReferenceValue as OTGCombatAction;
             }
         }
-        private void SetPropertyValues(SerializedObject _source, string _propName, SerializedProperty[] _items )
+        private void SetPropertyValues(SerializedObject _source, string _propName, OTGCombatAction[] _items )
         {
             var props = _source.FindProperty(_propName);
             
             for(int i = 0; i < _items.Length; i++)
             {
                 props.InsertArrayElementAtIndex(i);
-                props.GetArrayElementAtIndex(i).objectReferenceValue = _items[i].objectReferenceValue;
+                props.GetArrayElementAtIndex(i).objectReferenceValue = (OTGCombatAction)_items[i];
             }
             _source.ApplyModifiedProperties();
         }
+        private void PopulateProprtyValuesDirectly(ref OTGCombatAction[] _target, List<OTGCombatAction> _source)
+        {
+            _target = new OTGCombatAction[_source.Count];
+            _target = _source.ToArray();
 
+        }
         
     }
 

@@ -16,3 +16,4 @@ MonoBehaviour:
   m_combatActionsPath: Assets/OTGCombatSystem/Data/Actions
   m_combatTransitionsPath: Assets/OTGCombatSystem/Data/Transitions
   m_characterPAthRoot: Assets/OTGCombatSystem/Data/CharacterData
+  m_templatesPath: Assets/OTGCombatSystem/Data/Templates/CombatStateTemplates/TwitchFighter

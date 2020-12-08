@@ -1098,17 +1098,31 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.39436975
+      - time: 0.36449668
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {fileID: 11400000, guid: 8ba23cc7d88b8bb44bf0ed4b6275c5bd, type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.41586024
+      - time: 0.3971896
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {fileID: 11400000, guid: 367b22bd5d851ad40bc62dfc610176f0, type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4187982
+        functionName: OnAnimationEvent
+        data: 
+        objectReferenceParameter: {fileID: 11400000, guid: 3f5a5292508591c4485e85ca083ef46d, type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.9204319
+        functionName: OnAnimationEvent
+        data: 
+        objectReferenceParameter: {fileID: 11400000, guid: a40c7606c8be8104f9e0cdddf308bd3a, type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
@@ -1116,20 +1130,6 @@ ModelImporter:
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {fileID: 11400000, guid: b54a7e938da2901489401835cff61a5d, type: 2}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.6458333
-        functionName: OnAnimationEvent
-        data: 
-        objectReferenceParameter: {fileID: 11400000, guid: 3f5a5292508591c4485e85ca083ef46d, type: 2}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
-      - time: 0.7083333
-        functionName: OnAnimationEvent
-        data: 
-        objectReferenceParameter: {fileID: 11400000, guid: a40c7606c8be8104f9e0cdddf308bd3a, type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

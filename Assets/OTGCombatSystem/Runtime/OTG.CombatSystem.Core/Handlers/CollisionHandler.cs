@@ -41,7 +41,11 @@ namespace OTG.CombatSM.Core
             Debug.Log("Collision Event " + _ev.HurtColliderID);
 
             if (HurtColliders.ContainsKey(_ev.HurtColliderID))
-                NumberOfContacts = HurtColliders[_ev.HurtColliderID].OnPerformDamageScan( ScanResults , m_hurtData);
+            {
+                NumberOfContacts = HurtColliders[_ev.HurtColliderID].OnPerformDamageScan(ScanResults, m_hurtData);
+                Debug.Log("Found contacts " + NumberOfContacts);
+            }
+                
         }
         #endregion
 

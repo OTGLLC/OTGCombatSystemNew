@@ -16,11 +16,11 @@ MonoBehaviour:
     m_test: 0
   m_moveHandlerData:
     m_twitchData:
-      m_maxDashDistance: 0
-      m_dashSpeed: 0
-      m_acceleration: 0
-      m_changeLaneSpeed: 0
-      m_dashDistanceMinThreshold: 0
+      m_maxDashDistance: 30
+      m_dashSpeed: 20
+      m_acceleration: 0.05
+      m_changeLaneSpeed: 0.1
+      m_dashDistanceMinThreshold: 0.1
       m_dashCurve:
         serializedVersion: 2
         m_Curve: []
