@@ -42,3 +42,7 @@ MonoBehaviour:
       m_sfxType: 0
     - m_sfxID: {fileID: 11400000, guid: 87b869cd0f0cd0a47be4efc88546c2af, type: 2}
       m_sfxType: 0
+    - m_sfxID: {fileID: 11400000, guid: 5c22ae33836b2d342b4abfb1ab401a0f, type: 2}
+      m_sfxType: 3
+    - m_sfxID: {fileID: 11400000, guid: af9f7ba2f84ff424f8be9026ee292131, type: 2}
+      m_sfxType: 1

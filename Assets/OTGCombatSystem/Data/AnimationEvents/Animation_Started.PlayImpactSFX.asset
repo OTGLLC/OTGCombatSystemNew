@@ -10,5 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28a976bf646154a42b44d4908ae3804b, type: 3}
-  m_Name: Animation_Started
+  m_Name: Animation_Started.PlayImpactSFX
   m_EditorClassIdentifier: 
+  m_vfxID: {fileID: 0}
+  m_hurtColliderID: {fileID: 0}
+  m_sfxID: {fileID: 11400000, guid: 5c22ae33836b2d342b4abfb1ab401a0f, type: 2}
