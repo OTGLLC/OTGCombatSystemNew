@@ -1029,7 +1029,7 @@ ModelImporter:
       - time: 0
         functionName: OnAnimationEvent
         data: 
-        objectReferenceParameter: {fileID: 11400000, guid: 614d21c227ad2a746a5d41d56cd90671, type: 2}
+        objectReferenceParameter: {fileID: 11400000, guid: d67a4fd0f57882e419f6459c2bef5cb7, type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
