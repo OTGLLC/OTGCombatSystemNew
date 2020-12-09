@@ -3,6 +3,7 @@
 using UnityEngine;
 using UnityEditor;
 using OTG.CombatSM.Core;
+using System;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -27,6 +28,7 @@ namespace OTG.CombatSM.EditorTools
             AdjustCharacterControllerCapsule();
             AddHitBoxCollider();
             AddTargetingBox(_data,_config);
+            AddSFXControllers();
 
             SetLayers(_data,_config);
             FocusOnAddedCharacter();
@@ -142,18 +144,36 @@ namespace OTG.CombatSM.EditorTools
             }
             obj.ApplyModifiedProperties();
         }
+        private void AddSFXControllers()
+        {
+            foreach(E_SoundFXType type in Enum.GetValues(typeof(E_SoundFXType)))
+            {
+                GameObject obj = new GameObject();
+                obj.name = "OTGSFXController." + type.ToString();
+
+                OTGSoundFXController ctrl = obj.AddComponent<OTGSoundFXController>();
+                ctrl.GetComponent<AudioSource>().playOnAwake = false;
+               
+                SerializedObject sObj = new SerializedObject(ctrl);
+                sObj.FindProperty("m_sfxType").intValue = (int)type;
+                sObj.ApplyModifiedProperties();
+
+                obj.transform.parent = m_characterGameObject.transform;
+                obj.transform.position = Vector3.zero;
+            }
+        }
         private void SetLayers(NewCharacterCreationData _data, EditorConfig _config)
         {
             if(_data.CharacterType == e_CombatantType.Player)
             {
-                m_characterGameObject.layer = _config.GlobalCombatConfig.PlayerPushBox;
-                m_hitColliderObj.gameObject.layer = _config.GlobalCombatConfig.PlayerHitBox;
+                m_characterGameObject.layer = Mathf.RoundToInt(Mathf.Log(_config.GlobalCombatConfig.PlayerPushBox.value,2));
+                m_hitColliderObj.gameObject.layer = Mathf.RoundToInt(Mathf.Log(_config.GlobalCombatConfig.PlayerHitBox.value,2));
             }
             else if(_data.CharacterType == e_CombatantType.Enemy)
             {
 
-                m_characterGameObject.layer = _config.GlobalCombatConfig.EnemyPushBox;
-                m_hitColliderObj.gameObject.layer = _config.GlobalCombatConfig.EnemyHitBox;
+                m_characterGameObject.layer = Mathf.RoundToInt(Mathf.Log(_config.GlobalCombatConfig.EnemyPushBox.value,2));
+                m_hitColliderObj.gameObject.layer = Mathf.RoundToInt(Mathf.Log(_config.GlobalCombatConfig.EnemyHitBox.value,2));
             }
         }
         private void Cleanup()

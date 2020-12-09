@@ -60,5 +60,6 @@ namespace OTG.CombatSM.Core
         WeaponSFX,
         LocomotionSFX,
         VocalSFX,
+        ImpactSFX
     }
 }
