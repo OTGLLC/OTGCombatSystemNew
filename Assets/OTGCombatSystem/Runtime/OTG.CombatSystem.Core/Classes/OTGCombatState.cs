@@ -44,6 +44,7 @@ namespace OTG.CombatSM.Core
             SetHurtColliderData(_controller);
             SetHitColliderData(_controller);
             PerformActions(m_onEnterActions, _controller);
+            SetSoundFXData(_controller);
 
             if (_reentry)
             {
@@ -126,6 +127,12 @@ namespace OTG.CombatSM.Core
                 return;
 
             _controller.Handler_Animation.UpdateAnimData(m_combatAnim.AnimData);
+        }
+        private void SetSoundFXData(OTGCombatSMC _controller)
+        {
+            if (m_combatAnim.AnimClip == null)
+                return;
+            _controller.Handler_SFX.SetData(m_combatAnim.SoundFX);
         }
         #endregion
 

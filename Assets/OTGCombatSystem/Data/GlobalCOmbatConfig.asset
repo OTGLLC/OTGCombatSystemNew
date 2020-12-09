@@ -36,3 +36,9 @@ MonoBehaviour:
   m_targetingBox:
     serializedVersion: 2
     m_Bits: 32768
+  m_soundHandlerData:
+    m_soundIDToTypes:
+    - m_sfxID: {fileID: 11400000, guid: cc711e3afbaa183419963e5994a7d850, type: 2}
+      m_sfxType: 0
+    - m_sfxID: {fileID: 11400000, guid: 87b869cd0f0cd0a47be4efc88546c2af, type: 2}
+      m_sfxType: 0

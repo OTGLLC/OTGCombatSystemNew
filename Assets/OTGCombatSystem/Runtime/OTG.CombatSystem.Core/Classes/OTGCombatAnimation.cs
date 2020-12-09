@@ -14,6 +14,8 @@ namespace OTG.CombatSM.Core
         [SerializeField] private CombatAnimData m_animData;
         [SerializeField] private CombatAnimHitCollisionData m_hitCollisionData;
         [SerializeField] private CombatAnimHurtCollisionData m_hurtCollisionData;
+        [SerializeField] private SoundFXData[] m_soundFXData;
+
         #endregion
 
         #region Properties
@@ -21,6 +23,7 @@ namespace OTG.CombatSM.Core
         public CombatAnimData AnimData { get { return m_animData; } }
         public CombatAnimHitCollisionData HitCollisionData { get { return m_hitCollisionData; } }
         public CombatAnimHurtCollisionData HurtCollisionData { get { return m_hurtCollisionData; } }
+        public SoundFXData[] SoundFX { get { return m_soundFXData; } }
         #endregion
 
     }
@@ -36,6 +39,7 @@ namespace OTG.CombatSM.Core
         [SerializeField] private float m_onConnectPauseTime;
         [SerializeField] private float m_onConnectBaseDamage;
         [SerializeField] private OTGVFXIdentification m_vfxID;
+       
         [SerializeField] private float m_hitStopTime;
         #endregion
 
@@ -49,6 +53,18 @@ namespace OTG.CombatSM.Core
         #endregion
 
        
+    }
+    [System.Serializable]
+    public class SoundFXData
+    {
+        [SerializeField] private E_SoundFXType m_sfxType;
+        [SerializeField] private OTGSFXIdentification m_id;
+        [SerializeField] private AudioClip m_audioClip;
+        
+
+        public OTGSFXIdentification ID { get { return m_id; } }
+        public AudioClip ClipToPlay { get { return m_audioClip; } }
+        public E_SoundFXType SFXType { get { return m_sfxType; } }
     }
     [System.Serializable]
     public class CombatAnimHitCollisionData

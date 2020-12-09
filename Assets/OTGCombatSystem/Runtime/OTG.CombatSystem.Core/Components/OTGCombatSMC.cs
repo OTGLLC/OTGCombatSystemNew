@@ -32,6 +32,7 @@ namespace OTG.CombatSM.Core
         public CollisionHandler Handler_Collision { get; private set; }
         public CombatHandler Handler_Combat { get; private set; }
         public VFXHandler Handler_VFX { get; private set; }
+        public SFXHandler Handler_SFX { get; private set; }
         #endregion
 
         #region Unity API
@@ -74,6 +75,7 @@ namespace OTG.CombatSM.Core
             Handler_Animation.UpdateAnimationEvent(_event);
             Handler_VFX.OnAnimationEvent(_event);
             Handler_Collision.OnAnimationEvent(_event);
+            Handler_SFX.OnAnimationEventUpdate(_event);
         }
         #endregion
 
@@ -111,6 +113,7 @@ namespace OTG.CombatSM.Core
             Handler_Collision = new CollisionHandler(m_handlerDataGroup, GetComponentInChildren<OTGHitColliderController>(), GetComponentsInChildren<OTGHurtColliderController>(), GetComponentInChildren<OTGTargetingController>(),m_globalConfig);
             Handler_Combat = new CombatHandler(m_handlerDataGroup);
             Handler_VFX = new VFXHandler(GetComponentsInChildren<OTGVFXController>());
+            Handler_SFX = new SFXHandler(m_globalConfig.SoundHandleData,GetComponentsInChildren<OTGSoundFXController>());
         }
         private void CleanupHandlers()
         {
@@ -131,6 +134,9 @@ namespace OTG.CombatSM.Core
 
             Handler_VFX.CleanupHandler();
             Handler_VFX = null;
+
+            Handler_SFX.CleanupHandler();
+            Handler_SFX = null;
         }
         #endregion
     }

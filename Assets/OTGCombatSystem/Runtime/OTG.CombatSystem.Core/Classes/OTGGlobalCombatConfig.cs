@@ -18,6 +18,7 @@ namespace OTG.CombatSM.Core
         [SerializeField] private LayerMask m_enemyHitBox;
         [SerializeField] private LayerMask m_enemyHurtBox;
         [SerializeField] private LayerMask m_targetingBox;
+        [SerializeField] private SoundHandlerData m_soundHandlerData;
 
         public int MaxScanElemements { get { return m_maxScanElements; } }
         public LayerMask PlayerPushBox { get { return m_playerPushBox; } }
@@ -29,7 +30,7 @@ namespace OTG.CombatSM.Core
         public LayerMask TargetingBox { get { return m_targetingBox; } }
         public float GravitySetting { get { return m_gravitySetting; } }
         public float StickingForce { get { return m_stickingForce; } }
-
+        public SoundHandlerData SoundHandleData { get { return m_soundHandlerData; } }
         //public const int MaxHitScanElements = 10;
 
 

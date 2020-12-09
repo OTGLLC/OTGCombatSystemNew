@@ -30,6 +30,10 @@ MonoBehaviour:
       m_validTargets:
         serializedVersion: 2
         m_Bits: 8192
+    m_soundFXData:
+    - m_sfxType: 0
+      m_id: {fileID: 11400000, guid: cc711e3afbaa183419963e5994a7d850, type: 2}
+      m_audioClip: {fileID: 8300000, guid: 13a498a7fe42b644cb34f52505e5d8d9, type: 3}
   m_onEnterActions: []
   m_onUpdateActions: []
   m_animUpdateActions:
