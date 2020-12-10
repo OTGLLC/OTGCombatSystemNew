@@ -104,7 +104,7 @@ namespace OTG.CombatSM.EditorTools
             CharacterStateNode n = new CharacterStateNode(_nodeData);
             AddElement(n);
 
-            Rect parentPosition = new Rect((n.NodeData.Level * 150) + 150, (n.NodeData.Order * 150) + 150, 150, 150);
+            Rect parentPosition = new Rect((n.NodeData.Level * 200) + 150, (n.NodeData.Order * 150) + 150, 150, 150);
             n.SetPosition(parentPosition);
 
             return n;
@@ -116,7 +116,8 @@ namespace OTG.CombatSM.EditorTools
                
 
                 Port outPort = _startingNode.InstantiatePort(Orientation.Horizontal, Direction.Output, Port.Capacity.Single, typeof(OTGCombatState));
-                outPort.portName = "Next State";
+                string portName = pair.Value.Transition.OwnerState.name.Split('_')[1];
+                outPort.portName = portName;
                 _startingNode.outputContainer.Add(outPort);
                 _startingNode.RefreshExpandedState();
                 _startingNode.RefreshPorts();
@@ -124,12 +125,14 @@ namespace OTG.CombatSM.EditorTools
 
                 if(pair.Value.ShouldReturnToAnExistingState)
                 {
-                    CharacterStateNode n = GenerateNode(pair.Value.Transition);
-                    outPort.ConnectTo(n.InputPort);
-                    e.input = n.InputPort;
-                    e.output = outPort;
-                    n.SetPosition(new Rect((n.NodeData.Level * 150) + 150, (n.NodeData.Order * 150) + 150, 150, 150));
-                    AddElement(e);
+                   
+                    outPort.portColor = Color.red;
+                    //CharacterStateNode n = GenerateNode(pair.Value.Transition);
+                    //outPort.ConnectTo(n.InputPort);
+                    //e.input = n.InputPort;
+                    //e.output = outPort;
+                    //n.SetPosition(new Rect((n.NodeData.Level * 150) + 150, (n.NodeData.Order * 150) + 150, 150, 150));
+                    //AddElement(e);
                 }
                 else
                 {

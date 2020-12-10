@@ -1,3 +1,6 @@
 ﻿#node-border{
-    width: 200px;
+    width: 300px;
+}
+#title{
+    --unity-font-style: bold;
 }

@@ -20,16 +20,16 @@ namespace OTG.CombatSM.EditorTools
             SideScrollBeatemUpWithLanes,
             None
         }
-        public static List<OTGCombatAction> ActionsAvailable { get; private set; } = new List<OTGCombatAction>();
-        public static List<OTGCombatAction> ActionsInstantiated { get; private set; } = new List<OTGCombatAction>();
-        public static List<OTGTransitionDecision> TransitionsAvailable { get; private set; } = new List<OTGTransitionDecision>();
-        public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; } = new List<OTGTransitionDecision>();
-        public static List<OTGCombatState> AvailableCharacterStates { get; private set; } = new List<OTGCombatState>();
-        public static List<OTGAnimationEvent> AvailableAnimationEvents { get; private set; } = new List<OTGAnimationEvent>();
+        public static List<OTGCombatAction> ActionsAvailable { get; private set; }
+        public static List<OTGCombatAction> ActionsInstantiated { get; private set; }
+        public static List<OTGTransitionDecision> TransitionsAvailable { get; private set; } 
+        public static List<OTGTransitionDecision> TransitionsInstantiated { get; private set; }
+        public static List<OTGCombatState> AvailableCharacterStates { get; private set; }
+        public static List<OTGAnimationEvent> AvailableAnimationEvents { get; private set; } 
        
-        public static List<string> AvailableAnimationClips { get; private set; } = new List<string>();
-        public static List<string> AvailableAnimationClipsFilteredList { get; private set; } = new List<string>();
-        public static E_CombatTemplate CurrentCombatTemplate { get; private set; } = E_CombatTemplate.TwitchFighter;
+        public static List<string> AvailableAnimationClips { get; private set; }
+        public static List<string> AvailableAnimationClipsFilteredList { get; private set; }
+        public static E_CombatTemplate CurrentCombatTemplate { get; private set; }
 
         public static void SetCombatTemplate(E_CombatTemplate _template, EditorConfig _config)
         {
@@ -50,6 +50,22 @@ namespace OTG.CombatSM.EditorTools
             FindAllTransitions(_config);
             FindAllAnimationEvents();
         }
+
+        #region Utility
+        static OTGEditorUtility()
+        {
+            ActionsAvailable = new List<OTGCombatAction>();
+            ActionsInstantiated = new List<OTGCombatAction>();
+            TransitionsAvailable = new List<OTGTransitionDecision>();
+            TransitionsInstantiated = new List<OTGTransitionDecision>();
+            AvailableCharacterStates = new List<OTGCombatState>();
+            AvailableAnimationEvents = new List<OTGAnimationEvent>();
+            AvailableAnimationClips = new List<string>();
+            AvailableAnimationClipsFilteredList = new List<string>();
+            CurrentCombatTemplate = E_CombatTemplate.None;
+        }
+        #endregion
+
         #region Folder and Data
         public static void SubscribeToolbarButtonCallback(VisualElement _container, string _buttonName,  Action _callback)
         {
@@ -289,8 +305,8 @@ namespace OTG.CombatSM.EditorTools
            
             _targetListView.Unbind();
 
-            if (_targetListView.itemsSource != null)
-                _targetListView.itemsSource.Clear();
+            //if (_targetListView.itemsSource != null)
+            //    _targetListView.itemsSource.Clear();
 
             _targetListView.makeItem = () => new Label();
 
@@ -345,6 +361,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<IncrementComboCounter>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCount>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboCounterUpdateEvent>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<DebugPauseError>());
 
         }
         private static void RegisterTwitchFighterTransitions()

@@ -21,6 +21,7 @@ namespace OTG.CombatSM.Core
         AnimationBased,
         MovementBased_Twitch,
         CombatBased,
+        Debuging,
         Misc,
         All
     }
@@ -29,6 +30,7 @@ namespace OTG.CombatSM.Core
         Calculation,
         Perform,
         SetParameter,
+        Debuging,
         All
     }
     public enum E_Template
