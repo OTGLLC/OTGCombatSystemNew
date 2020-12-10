@@ -368,6 +368,7 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsGrounded>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsNotGrounded>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsDead>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboCountValue>());
         }
         #endregion
 

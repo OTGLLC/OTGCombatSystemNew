@@ -53,8 +53,24 @@ MonoBehaviour:
   - m_nextState: {fileID: 11400000, guid: 99024fcea5b7a714eb8b5605d3464efb, type: 2}
     m_decisions:
     - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}
+    - {fileID: 11400000, guid: 8ccf6cbd4ad814c4db5015f67286c3c7, type: 2}
     m_usePreviousState: 0
   - m_nextState: {fileID: 11400000, guid: 621bf9a57b8459e4c8ca931a7a024616, type: 2}
     m_decisions:
     - {fileID: 11400000, guid: 64f3468538da6f74693f17fcdb44f884, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: 3a3ceb6eabf64474e8b5b1a4fdf2611a, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}
+    - {fileID: 11400000, guid: e7a5cec2734d0ca469b40a2ccf39b16c, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: c7f3456853d6bd94bafaae9fdd61decc, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}
+    - {fileID: 11400000, guid: a0e16a91b739d2b4ab5eb16c02a6b98a, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: de440a7d7cf6fd8428e4e856f1fbc9c8, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}
+    - {fileID: 11400000, guid: 53b6e43fa85ed7a41801ee85d1370063, type: 2}
     m_usePreviousState: 0

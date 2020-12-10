@@ -4,7 +4,7 @@
 using OTG.CombatSM.Core;
 using UnityEngine;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class SetDashDistance:TwitchFighterBaseAction
     {
@@ -33,7 +33,7 @@ namespace OTG.CombatSM.TwitchFighter
 using OTG.CombatSM.Core;
 using UnityEngine;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class HasReachedDesiredDashDistance : TwitchFighterBaseTransition
     {
@@ -45,7 +45,7 @@ namespace OTG.CombatSM.TwitchFighter
         public override bool Decide(OTGCombatSMC _controller)
         {
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
-
+             TwitchFighterCombatParams twitchCOmbat = _controller.Handler_Combat.TwitchCombat;
             
         }
     }
@@ -57,7 +57,7 @@ namespace OTG.CombatSM.TwitchFighter
 
 using OTG.EventSystem.Core;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
 
     [CreateAssetMenu(menuName = "TwitchFighter/Events/ComboCounterUpdatedEvent")]
@@ -82,7 +82,7 @@ using UnityEngine;
 using OTG.EventSystem.Core;
 using UnityEngine.Events;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class ComboCounterEventListener : OTGEventListener<int>
     {

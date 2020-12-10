@@ -47,21 +47,11 @@ MonoBehaviour:
     m_usePreviousState: 0
   - m_nextState: {fileID: 11400000, guid: 76f1f620b5cda274aac3d95585c37bb8, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: a27610ec42d4bfc4487f71de47c9eec2, type: 2}
     - {fileID: 11400000, guid: 6c09ca230d441ed43b0b30f5f5c205ad, type: 2}
+    - {fileID: 11400000, guid: a27610ec42d4bfc4487f71de47c9eec2, type: 2}
     m_usePreviousState: 0
-  - m_nextState: {fileID: 11400000, guid: de440a7d7cf6fd8428e4e856f1fbc9c8, type: 2}
+  - m_nextState: {fileID: 11400000, guid: 621bf9a57b8459e4c8ca931a7a024616, type: 2}
     m_decisions:
+    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
     - {fileID: 11400000, guid: cd8ac37d41ab9054bb57c73bdae26227, type: 2}
-    - {fileID: 11400000, guid: d9e7b664248593640a9aa9429f8ffe5b, type: 2}
-    m_usePreviousState: 0
-  - m_nextState: {fileID: 11400000, guid: de440a7d7cf6fd8428e4e856f1fbc9c8, type: 2}
-    m_decisions:
-    - {fileID: 11400000, guid: d8fe23814e324db4b9f674dd251c0579, type: 2}
-    - {fileID: 11400000, guid: d9e7b664248593640a9aa9429f8ffe5b, type: 2}
-    m_usePreviousState: 0
-  - m_nextState: {fileID: 11400000, guid: de440a7d7cf6fd8428e4e856f1fbc9c8, type: 2}
-    m_decisions:
-    - {fileID: 11400000, guid: 81eb5b96cfb3b8e42a98d438db618ef5, type: 2}
-    - {fileID: 11400000, guid: d9e7b664248593640a9aa9429f8ffe5b, type: 2}
     m_usePreviousState: 0
