@@ -5,7 +5,7 @@ using System.Collections;
 using OTG.CombatSM.Core;
 using System;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class TwitchFighterInputController : MonoBehaviour
     {

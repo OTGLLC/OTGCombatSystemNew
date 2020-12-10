@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using OTG.CombatSM.Core;
-using OTG.CombatSM.TwitchFighter;
+using OTG.TwitchFighter;
 
 namespace OTG.CombatSM.EditorTools
 {

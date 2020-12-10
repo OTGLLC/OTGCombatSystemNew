@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using OTG.CombatSM.Core;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class OTGLifeBar : MonoBehaviour
     {

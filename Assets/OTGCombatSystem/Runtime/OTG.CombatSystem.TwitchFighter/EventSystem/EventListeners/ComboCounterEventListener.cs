@@ -3,7 +3,7 @@ using UnityEngine;
 using OTG.EventSystem.Core;
 using UnityEngine.Events;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class ComboCounterEventListener : OTGEventListener<int>
     {

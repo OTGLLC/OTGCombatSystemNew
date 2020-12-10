@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.Utilities;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class @TwitchFighterInputProfile : IInputActionCollection, IDisposable
     {

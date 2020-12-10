@@ -3,7 +3,7 @@
 using OTG.CombatSM.Core;
 using UnityEngine;
 
-namespace OTG.CombatSM.TwitchFighter
+namespace OTG.TwitchFighter
 {
     public class IsGrounded : TwitchFighterBaseTransition
     {
