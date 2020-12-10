@@ -51,3 +51,58 @@ namespace OTG.CombatSM.TwitchFighter
     }
 }
 
+
+##################################################
+
+
+using OTG.EventSystem.Core;
+
+namespace OTG.CombatSM.TwitchFighter
+{
+
+    [CreateAssetMenu(menuName = "TwitchFighter/Events/ComboCounterUpdatedEvent")]
+    public class ComboCounterUpdatedEvent : OTGEvent<int>
+    {
+        
+        public override void Raise(int t)
+        {
+            for(int i = 0; i < m_listeners.Count; i++)
+            {
+                m_listeners[i].OnEventRaised(t);
+            }
+        }
+    }
+}
+
+
+#################################################
+
+
+using UnityEngine;
+using OTG.EventSystem.Core;
+using UnityEngine.Events;
+
+namespace OTG.CombatSM.TwitchFighter
+{
+    public class ComboCounterEventListener : OTGEventListener<int>
+    {
+        [SerializeField] private ComboCounterUnityEvent m_unityEvent;
+        [SerializeField] private ComboCounterUpdatedEvent m_event;
+
+        public override void OnDisable()
+        {
+            m_event.RemoveListener(this);
+        }
+
+        public override void OnEnable()
+        {
+            m_event.AddListener(this);
+        }
+
+        public override void OnEventRaised(int t)
+        {
+            m_unityEvent.Invoke(t);
+        }
+    }
+
+    public class ComboCounterUnityEvent : UnityEvent<int> { }

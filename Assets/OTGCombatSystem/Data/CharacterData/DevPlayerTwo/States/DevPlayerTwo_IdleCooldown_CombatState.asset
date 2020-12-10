@@ -30,10 +30,13 @@ MonoBehaviour:
       m_validTargets:
         serializedVersion: 2
         m_Bits: 0
+    m_soundFXData: []
   m_onEnterActions: []
   m_onUpdateActions: []
   m_animUpdateActions: []
-  m_onExitActions: []
+  m_onExitActions:
+  - {fileID: 11400000, guid: 6c954d5c37a862d468ac27f202446e44, type: 2}
+  - {fileID: 11400000, guid: 22c91f4237bda0e4da5f4498e133ecfa, type: 2}
   m_stateTransitions:
   - m_nextState: {fileID: 11400000, guid: e016362a4d13a344eb8e283efb77eee4, type: 2}
     m_decisions:

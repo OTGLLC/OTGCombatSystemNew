@@ -342,6 +342,9 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ScanForAdjacentTarget>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateVerticalMovement>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<InitializeTwitchCombatPrams>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<IncrementComboCounter>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCount>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboCounterUpdateEvent>());
 
         }
         private static void RegisterTwitchFighterTransitions()

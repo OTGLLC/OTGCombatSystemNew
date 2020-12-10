@@ -47,6 +47,11 @@ MonoBehaviour:
     m_usePreviousState: 0
   - m_nextState: {fileID: 11400000, guid: 76f1f620b5cda274aac3d95585c37bb8, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: a27610ec42d4bfc4487f71de47c9eec2, type: 2}
+    - {fileID: 11400000, guid: d8fe23814e324db4b9f674dd251c0579, type: 2}
+    - {fileID: 11400000, guid: 6c09ca230d441ed43b0b30f5f5c205ad, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: 76f1f620b5cda274aac3d95585c37bb8, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 81eb5b96cfb3b8e42a98d438db618ef5, type: 2}
     - {fileID: 11400000, guid: 6c09ca230d441ed43b0b30f5f5c205ad, type: 2}
     m_usePreviousState: 0
