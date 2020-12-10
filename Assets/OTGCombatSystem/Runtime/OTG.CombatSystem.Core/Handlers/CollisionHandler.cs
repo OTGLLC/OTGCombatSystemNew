@@ -33,20 +33,23 @@ namespace OTG.CombatSM.Core
         public void SetHurtColliderData(CombatAnimHurtCollisionData _data)
         {
             m_hurtData = _data;
+#if UNITY_EDITOR
+            HasCollisionID = false;
+#endif
         }
         public void OnAnimationEvent(OTGAnimationEvent _ev)
         {
             if (_ev.HurtColliderID == null)
                 return;
 
-            Debug.Log("Collision Event " + _ev.HurtColliderID);
+#if UNITY_EDITOR
+            HasCollisionID = true;
+#endif
 
             if (HurtColliders.ContainsKey(_ev.HurtColliderID))
             {
                 NumberOfContacts = HurtColliders[_ev.HurtColliderID].OnPerformDamageScan(ScanResults, m_hurtData);
-                Debug.Log("Found contacts " + NumberOfContacts);
             }
-                
         }
         #endregion
 
@@ -79,6 +82,11 @@ namespace OTG.CombatSM.Core
         }
         #endregion
 
-        
+        #region Unity Editor Only
+#if UNITY_EDITOR
+        public bool HasCollisionID { get; set; }
+#endif
+#endregion
+
     }
 }

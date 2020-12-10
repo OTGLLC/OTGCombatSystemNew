@@ -1080,14 +1080,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.15830411
+      - time: 0.16668734
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {fileID: 11400000, guid: 8ba23cc7d88b8bb44bf0ed4b6275c5bd, type: 2}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.18392146
+      - time: 0.17913103
         functionName: OnAnimationEvent
         data: 
         objectReferenceParameter: {fileID: 11400000, guid: 367b22bd5d851ad40bc62dfc610176f0, type: 2}

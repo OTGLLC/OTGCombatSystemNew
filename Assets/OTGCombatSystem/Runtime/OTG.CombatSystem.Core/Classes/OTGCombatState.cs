@@ -29,6 +29,7 @@ namespace OTG.CombatSM.Core
 
         #region Fields
         private float m_stateTime;
+        private bool m_stateReEntered;
         #endregion
 
 
@@ -39,7 +40,7 @@ namespace OTG.CombatSM.Core
         }
         public void OnStateEnter(OTGCombatSMC _controller, bool _reentry = false)
         {
-            Debug.Log("State entry: " + name + "State time: " + m_stateTime);
+            m_stateReEntered = _reentry;
             SetAnimationData(_controller);
             SetHurtColliderData(_controller);
             SetHitColliderData(_controller);
@@ -48,7 +49,6 @@ namespace OTG.CombatSM.Core
 
             if (_reentry)
             {
-                Debug.Log("State Re-entry: " + name + "State time: " + m_stateTime);
                 return;
             }
 
@@ -73,6 +73,7 @@ namespace OTG.CombatSM.Core
         {
            
             PerformActions(m_onExitActions, _controller);
+            m_stateReEntered = false;
         }
         #endregion
 
@@ -134,6 +135,13 @@ namespace OTG.CombatSM.Core
                 return;
             _controller.Handler_SFX.SetData(m_combatAnim.SoundFX);
         }
+        #endregion
+
+        #region Unity Editor Only
+#if UNITY_EDITOR
+        public float StateTime { get { return m_stateTime; } }
+        public bool StateReEntered { get { return m_stateReEntered; } }
+#endif
         #endregion
 
     }

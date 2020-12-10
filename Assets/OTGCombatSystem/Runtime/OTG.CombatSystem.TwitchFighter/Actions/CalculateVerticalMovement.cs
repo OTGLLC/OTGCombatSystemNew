@@ -20,7 +20,6 @@ namespace OTG.TwitchFighter
             TwitchFighterInput twitchInput = _controller.Handler_Input.TwitchInput;
 
             bool isGrounded = twitch.Comp_CharacterControl.isGrounded;
-            Debug.Log("Chgecking ground before vertical movement " + isGrounded);
 
             if(isGrounded)
             {

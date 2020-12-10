@@ -22,8 +22,9 @@ namespace OTG.CombatSM.Core
         private OTGCombatState m_currentState;
 
         private OTGCombatState m_previousState;
-        
+
         #endregion
+
 
         #region Handlers
         public AnimationHandler Handler_Animation { get; private set; }
@@ -39,7 +40,6 @@ namespace OTG.CombatSM.Core
         private void OnEnable()
         {
             InitializeHandlers();
-            //OTGCombatantManager.SubscribeToCombatantUpdateLoop(this);
         }
         private void Start()
         {
@@ -85,9 +85,6 @@ namespace OTG.CombatSM.Core
         {
             if(_usePrevious && m_previousState != null)
             {
-
-                Debug.Log("Changing to previous state");
-
                 m_currentState.OnStateExit(this);
                 m_currentState = m_previousState;
                 m_currentState.OnStateEnter(this, true);
@@ -138,6 +135,15 @@ namespace OTG.CombatSM.Core
             Handler_SFX.CleanupHandler();
             Handler_SFX = null;
         }
+
+        #endregion
+
+        #region Unity Editor Only
+#if UNITY_EDITOR
+        public OTGCombatState CurrentState { get { return m_currentState; } }
+
+#endif
+
         #endregion
     }
     public enum e_CombatantType
@@ -147,4 +153,6 @@ namespace OTG.CombatSM.Core
         Prop,
         None
     }
+
+  
 }

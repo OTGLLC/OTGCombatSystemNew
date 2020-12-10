@@ -41,7 +41,6 @@ namespace OTG.CombatSM.Core
         {
             CurrendPayload = _payload;
             HasRecievedDamage = true;
-            Debug.Log("Damage Recieved");
         }
         #endregion
         private void SetColliderSizeAndPosition(CombatAnimHitCollisionData _data)

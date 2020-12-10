@@ -16,7 +16,6 @@ namespace OTG.TwitchFighter
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
             AnimationHandler animHandler = _controller.Handler_Animation;
 
-            Debug.Log("Transition: StunTimeExpired. Current State Time " + animHandler.StateTime +"Max Stun Time: "+animHandler.CurrentAnimData.HitStopTime);
             return (animHandler.StateTime >= animHandler.CurrentAnimData.HitStopTime);
 
         }

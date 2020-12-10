@@ -361,7 +361,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<IncrementComboCounter>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCount>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboCounterUpdateEvent>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<DebugPauseError>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<CombatDebugLogging>());
 
         }
         private static void RegisterTwitchFighterTransitions()

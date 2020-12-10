@@ -34,7 +34,8 @@ MonoBehaviour:
     - m_sfxType: 0
       m_id: {fileID: 11400000, guid: 87b869cd0f0cd0a47be4efc88546c2af, type: 2}
       m_audioClip: {fileID: 8300000, guid: 0fd06aca5cefd0841bc204510b5da94f, type: 3}
-  m_onEnterActions: []
+  m_onEnterActions:
+  - {fileID: 11400000, guid: 608081a7367d8b54c98c9c0476770704, type: 2}
   m_onUpdateActions: []
   m_animUpdateActions:
   - {fileID: 11400000, guid: 660e7c7e675a06b41b0048029268b922, type: 2}
