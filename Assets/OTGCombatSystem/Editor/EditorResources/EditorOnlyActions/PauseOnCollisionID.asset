@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c5b3e1d9cdf18dc46a8a411d01f606e0, type: 3}
-  m_Name: PauseOnAction
+  m_Name: PauseOnCollisionID
   m_EditorClassIdentifier: 
   m_combatActionType: 4
   m_processType: 3
   m_SystemTemplate: 0
-  m_stateStatus: 0
-  m_loggingType: 1
+  m_stateStatus: 1
+  m_loggingType: 0
   m_shouldPause: 1

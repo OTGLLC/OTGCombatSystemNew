@@ -17,6 +17,7 @@ namespace OTG.TwitchFighter
             TwitchFighterCombatParams twitchCombat = _controller.Handler_Combat.TwitchCombat;
 
             twitchCombat.CurrentComboCount++;
+            twitchCombat.CurrentComboCount %= twitchCombat.CurrentComboBreakPoint;
 
         }
     }

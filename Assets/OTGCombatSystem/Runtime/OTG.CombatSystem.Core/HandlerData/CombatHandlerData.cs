@@ -16,8 +16,8 @@ namespace OTG.CombatSM.Core
         public int BasePhysicalAttack { get { return m_basePhysicalAttack; } }
         [SerializeField] private int m_baseEnergyAttack;
         public int BaseEnergyAttack { get { return m_basePhysicalAttack; } }
-        [SerializeField] private int m_comboBreakPoint;
-        public int ComboBreakPoint { get { return m_comboBreakPoint; } }
+        [SerializeField] private int m_maxComboLevel;
+        public int MaxComboLevel { get { return m_maxComboLevel; } }
         
     }
 }

@@ -21,6 +21,7 @@ namespace OTG.CombatSM.Core
         AnimationBased,
         MovementBased_Twitch,
         CombatBased,
+        EventBased,
         Debuging,
         Misc,
         All

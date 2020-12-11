@@ -24,7 +24,6 @@ namespace OTG.TwitchFighter
             InitializeEnergy(twitchCombat);
             InitializePhysicalAttack(twitchCombat);
             InitializeEnergyAttack(twitchCombat);
-            InitializeComboBreakPoint(twitchCombat);
         }
         private void InitializeLevel(TwitchFighterCombatParams _twitchCombat)
         {
@@ -47,10 +46,5 @@ namespace OTG.TwitchFighter
         {
             _twitchCombat.CurrentEnergyAttack = _twitchCombat.Data.BaseEnergyAttack;
         }
-        private void InitializeComboBreakPoint(TwitchFighterCombatParams _twitchCombat)
-        {
-            _twitchCombat.CurrentComboBreakPoint = _twitchCombat.Data.ComboBreakPoint;
-        }
-       
     }
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
       m_DepthImpactForce: 0
       m_onConnectPauseTime: 0
       m_onConnectBaseDamage: 0
-      m_vfxID: {fileID: 0}
+      m_vfxID: {fileID: 11400000, guid: 84f418e0ac99cc741a95d3c50bd31ad6, type: 2}
       m_hitStopTime: 0.2
     m_hitCollisionData:
       m_colliderPosition: {x: 0, y: 0, z: 0}

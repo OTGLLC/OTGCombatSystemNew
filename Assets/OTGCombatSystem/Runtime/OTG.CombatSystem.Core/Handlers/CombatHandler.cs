@@ -55,6 +55,7 @@ namespace OTG.CombatSM.Core
         public int CurrentComboBreakPoint { get; set; }
         public int CurrentComboCount { get; set; }
         public int CombatLevel { get; set; }
+        public int ComboLevel { get; set; }
         public bool IsDead { get; private set; }
 
         #region Public API

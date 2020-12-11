@@ -37,6 +37,7 @@ MonoBehaviour:
   m_onEnterActions:
   - {fileID: 11400000, guid: 02720a001afd07d479041c585276c3a8, type: 2}
   - {fileID: 11400000, guid: ce518a72f2ff31744832d3b3491d5a18, type: 2}
+  - {fileID: 11400000, guid: 2e8b78f9738fd684290f7a3e012ee306, type: 2}
   m_onUpdateActions:
   - {fileID: 11400000, guid: 84f025474630f3347af91d4c0e3ef03c, type: 2}
   - {fileID: 11400000, guid: 44b84a85d8abc9d44b97aad544424cf3, type: 2}
@@ -46,10 +47,6 @@ MonoBehaviour:
   m_onExitActions:
   - {fileID: 11400000, guid: 6cd22fe456c71b149a9fb3624e1e7962, type: 2}
   m_stateTransitions:
-  - m_nextState: {fileID: 11400000, guid: c4a8c905f76a69e45aad94b8a9a0ef16, type: 2}
-    m_decisions:
-    - {fileID: 11400000, guid: d3c111ff46e452b4a80bd6888f6f9ac3, type: 2}
-    m_usePreviousState: 0
   - m_nextState: {fileID: 11400000, guid: 99024fcea5b7a714eb8b5605d3464efb, type: 2}
     m_decisions:
     - {fileID: 11400000, guid: c38dbb5b2b1c3e241be40344d3f2dafa, type: 2}

@@ -54,7 +54,7 @@ namespace OTG.TwitchFighter
 
 ##################################################
 
-
+using UnityEngine;
 using OTG.EventSystem.Core;
 
 namespace OTG.TwitchFighter
@@ -105,4 +105,7 @@ namespace OTG.TwitchFighter
         }
     }
 
+     [System.Serializable]
     public class ComboCounterUnityEvent : UnityEvent<int> { }
+
+}

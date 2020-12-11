@@ -362,7 +362,12 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCount>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboCounterUpdateEvent>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<CombatDebugLogging>());
-
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<DespawnObject>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<IncrementComboLevel>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboLevel>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<DecrementComboLevel>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboLevelUpdatedEvent>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetComboBreakPoint>());
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -386,6 +391,8 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsNotGrounded>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsDead>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboCountValue>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<TimerExpired>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboLevelValue>());
         }
         #endregion
 

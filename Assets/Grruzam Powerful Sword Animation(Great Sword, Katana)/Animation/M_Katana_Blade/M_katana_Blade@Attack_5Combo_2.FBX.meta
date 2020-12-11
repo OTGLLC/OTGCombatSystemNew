@@ -1098,6 +1098,34 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 0.28176796
+        functionName: OnAnimationEvent
+        data: 
+        objectReferenceParameter: {fileID: 11400000, guid: 367b22bd5d851ad40bc62dfc610176f0, type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.2679558
+        functionName: OnAnimationEvent
+        data: 
+        objectReferenceParameter: {fileID: 11400000, guid: 8ba23cc7d88b8bb44bf0ed4b6275c5bd, type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.20165746
+        functionName: OnAnimationEvent
+        data: 
+        objectReferenceParameter: {fileID: 11400000, guid: 12987838f0aaf3b419cb13e96eb093de, type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.4198895
+        functionName: OnAnimationEvent
+        data: 
+        objectReferenceParameter: {fileID: 11400000, guid: 3f5a5292508591c4485e85ca083ef46d, type: 2}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask:
       - path: 
         weight: 1

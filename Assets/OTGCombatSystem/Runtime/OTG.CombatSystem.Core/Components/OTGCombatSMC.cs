@@ -22,7 +22,7 @@ namespace OTG.CombatSM.Core
         private OTGCombatState m_currentState;
 
         private OTGCombatState m_previousState;
-
+        private bool m_flaggedForDespawn;
         #endregion
 
 
@@ -39,6 +39,7 @@ namespace OTG.CombatSM.Core
         #region Unity API
         private void OnEnable()
         {
+            m_flaggedForDespawn = false;
             InitializeHandlers();
         }
         private void Start()
@@ -47,6 +48,13 @@ namespace OTG.CombatSM.Core
         }
         private void Update()
         {
+            if (m_flaggedForDespawn)
+            {
+                Destroy(this.gameObject);
+                return;
+            }
+                
+
             m_currentState.OnStateUpdate(this);
       
         }
@@ -76,6 +84,10 @@ namespace OTG.CombatSM.Core
             Handler_VFX.OnAnimationEvent(_event);
             Handler_Collision.OnAnimationEvent(_event);
             Handler_SFX.OnAnimationEventUpdate(_event);
+        }
+        public void SetFlaggedForDespawn(bool _value)
+        {
+            m_flaggedForDespawn = _value;
         }
         #endregion
 

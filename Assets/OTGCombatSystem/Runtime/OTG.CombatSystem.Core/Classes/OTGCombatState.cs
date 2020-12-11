@@ -129,6 +129,7 @@ namespace OTG.CombatSM.Core
 
             _controller.Handler_Animation.UpdateAnimData(m_combatAnim.AnimData);
         }
+       
         private void SetSoundFXData(OTGCombatSMC _controller)
         {
             if (m_combatAnim.AnimClip == null)

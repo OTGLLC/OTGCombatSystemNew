@@ -11,8 +11,8 @@ namespace OTG.TwitchFighter
         [SerializeField] private ComboCounterUpdatedEvent m_event;
         protected override void Awake()
         {
-            m_combatActionType = E_ActionType.MovementBased;
-            m_processType = E_ProcessType.SetParameter;
+            m_combatActionType = E_ActionType.EventBased;
+            m_processType = E_ProcessType.Perform;
             base.Awake();
         }
         public override void Act(OTGCombatSMC _controller)

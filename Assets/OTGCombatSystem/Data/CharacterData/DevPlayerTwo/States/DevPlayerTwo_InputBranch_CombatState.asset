@@ -39,4 +39,10 @@ MonoBehaviour:
   - m_nextState: {fileID: 11400000, guid: 22c4a515fa7317e48acc65b814154bf1, type: 2}
     m_decisions:
     - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
+    - {fileID: 11400000, guid: 100884f4de46f6643a0d92e81761981e, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: c88b9fa6af2675149903b8f0159f92a5, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
+    - {fileID: 11400000, guid: 669f4a77d51d64b459f2420032295c28, type: 2}
     m_usePreviousState: 0

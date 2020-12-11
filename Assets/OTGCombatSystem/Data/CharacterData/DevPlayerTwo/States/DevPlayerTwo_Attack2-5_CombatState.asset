@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
+  m_Name: DevPlayerTwo_Attack2-5_CombatState
+  m_EditorClassIdentifier: 
+  m_combatAnim:
+    m_animClip: {fileID: 7400000, guid: c602f00c43168bf4eab643c3f02df739, type: 3}
+    m_animData:
+      m_HorizontalImpactForce: 0
+      m_VerticalImpactForce: 0
+      m_DepthImpactForce: 0
+      m_onConnectPauseTime: 0
+      m_onConnectBaseDamage: 0
+      m_vfxID: {fileID: 11400000, guid: 84f418e0ac99cc741a95d3c50bd31ad6, type: 2}
+      m_hitStopTime: 0.4
+    m_hitCollisionData:
+      m_colliderPosition: {x: 0, y: 0, z: 0}
+      m_colliderSize: {x: 0, y: 0, z: 0}
+    m_hurtCollisionData:
+      m_hurtColliderID: {fileID: 11400000, guid: 1b3851ba10e392344929733913f77434, type: 2}
+      m_validTargets:
+        serializedVersion: 2
+        m_Bits: 8192
+    m_soundFXData:
+    - m_sfxType: 0
+      m_id: {fileID: 11400000, guid: 87b869cd0f0cd0a47be4efc88546c2af, type: 2}
+      m_audioClip: {fileID: 8300000, guid: 2c59920d2636fb84db4da6c8bcae595f, type: 3}
+  m_onEnterActions: []
+  m_onUpdateActions: []
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 660e7c7e675a06b41b0048029268b922, type: 2}
+  m_onExitActions:
+  - {fileID: 11400000, guid: 6cd22fe456c71b149a9fb3624e1e7962, type: 2}
+  m_stateTransitions:
+  - m_nextState: {fileID: 11400000, guid: c4a8c905f76a69e45aad94b8a9a0ef16, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 5beb40f86ef449b42b5a9058dcc4382e, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: dca1d42a3160f714181b8d42eb6d7790, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 6c09ca230d441ed43b0b30f5f5c205ad, type: 2}
+    - {fileID: 11400000, guid: a27610ec42d4bfc4487f71de47c9eec2, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: 621bf9a57b8459e4c8ca931a7a024616, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
+    - {fileID: 11400000, guid: cd8ac37d41ab9054bb57c73bdae26227, type: 2}
+    m_usePreviousState: 0
