@@ -20,7 +20,7 @@ namespace OTG.TwitchFighter
 
             AnimationHandler animHandler = _controller.Handler_Animation;
 
-            Vector3 deltaMotion = new Vector3(animHandler.Comp_Anim.deltaPosition.z,0,0);
+            Vector3 deltaMotion = new Vector3(animHandler.Comp_Anim.deltaPosition.z,0, animHandler.Comp_Anim.deltaPosition.x);
 
 
             twitch.Comp_CharacterControl.Move(deltaMotion);

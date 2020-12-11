@@ -368,6 +368,9 @@ namespace OTG.CombatSM.EditorTools
             ActionsAvailable.Add(ScriptableObject.CreateInstance<DecrementComboLevel>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboLevelUpdatedEvent>());
             ActionsAvailable.Add(ScriptableObject.CreateInstance<SetComboBreakPoint>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<LockZpositionToCurrentLane>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<ManuallySetDirectionInput>());
+
         }
         private static void RegisterTwitchFighterTransitions()
         {
@@ -393,6 +396,11 @@ namespace OTG.CombatSM.EditorTools
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboCountValue>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<TimerExpired>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboLevelValue>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsFacingLeft>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsFacingRight>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLaneInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesUp>());
         }
         #endregion
 

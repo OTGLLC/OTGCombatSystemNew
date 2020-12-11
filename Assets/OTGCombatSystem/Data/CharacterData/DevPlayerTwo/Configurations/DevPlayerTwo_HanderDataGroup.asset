@@ -19,7 +19,7 @@ MonoBehaviour:
       m_maxDashDistance: 30
       m_dashSpeed: 20
       m_acceleration: 0.05
-      m_changeLaneSpeed: 0.1
+      m_changeLaneSpeed: 0
       m_dashDistanceMinThreshold: 0.1
       m_dashCurve:
         serializedVersion: 2
@@ -36,5 +36,4 @@ MonoBehaviour:
     m_maxEnergy: 10
     m_basePhysicalAttack: 1
     m_baseEnergyAttack: 1
-    m_comboBreakPoint: 4
     m_maxComboLevel: 5

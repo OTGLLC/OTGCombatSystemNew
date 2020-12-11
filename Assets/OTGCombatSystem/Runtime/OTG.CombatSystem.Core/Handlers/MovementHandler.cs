@@ -34,6 +34,10 @@ namespace OTG.CombatSM.Core
     }
     public class TwitchMovementParams
     {
+        public const int FRONT_LANE = -1;
+        public const int BACK_LANE = 1;
+        public const int MIDDLE_LANE = 0;
+       
         public Transform Comp_Transform { get; private set; }
         public CharacterController Comp_CharacterControl { get; private set; }
         public TwitchMovementData Data { get; private set; }
@@ -44,7 +48,10 @@ namespace OTG.CombatSM.Core
         public float CurrentDashDistance;
         public float DesiredDashSpeed;
         public float PercentageDistanceTraveled;
-      
+
+        public int CurrentLane;
+        public int TargetLane;
+
         public float HorizontalSpeed;
         public float VerticalSpeed;
         public float DepthSpeed;

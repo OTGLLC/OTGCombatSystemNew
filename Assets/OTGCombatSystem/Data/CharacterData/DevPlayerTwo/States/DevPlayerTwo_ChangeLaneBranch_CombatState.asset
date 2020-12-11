@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: DevPlayerTwo_Idle_CombatState
+  m_Name: DevPlayerTwo_ChangeLaneBranch_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: 738b43c856812d44485cce817b79ea06, type: 3}
+    m_animClip: {fileID: 0}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
@@ -36,15 +36,23 @@ MonoBehaviour:
   m_animUpdateActions: []
   m_onExitActions: []
   m_stateTransitions:
-  - m_nextState: {fileID: 11400000, guid: 621bf9a57b8459e4c8ca931a7a024616, type: 2}
+  - m_nextState: {fileID: 11400000, guid: 350ffec113138e1419d9d3e143644ac5, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
+    - {fileID: 11400000, guid: 5030de4c41e60a0489110c11a6489376, type: 2}
+    - {fileID: 11400000, guid: bfc2f0af6a1652247a89c08609727e0a, type: 2}
     m_usePreviousState: 0
-  - m_nextState: {fileID: 11400000, guid: 33e018e333d52df43961bb28e6feede1, type: 2}
+  - m_nextState: {fileID: 11400000, guid: 250b072439a56bc439cb8918ac433455, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: 165b1547aae5bc842a058a6cdce6a257, type: 2}
+    - {fileID: 11400000, guid: cb268ae1b4b5ca242b52a68f6fedd8ae, type: 2}
+    - {fileID: 11400000, guid: bfc2f0af6a1652247a89c08609727e0a, type: 2}
     m_usePreviousState: 0
-  - m_nextState: {fileID: 11400000, guid: 41b2ad440b262b5448e19bd96c3dc948, type: 2}
+  - m_nextState: {fileID: 11400000, guid: 250b072439a56bc439cb8918ac433455, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: b64d0806720a4174392c6e77fb5cbb6d, type: 2}
+    - {fileID: 11400000, guid: 5030de4c41e60a0489110c11a6489376, type: 2}
+    - {fileID: 11400000, guid: fc5f92078ff24864db1e394d77750432, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: 350ffec113138e1419d9d3e143644ac5, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: cb268ae1b4b5ca242b52a68f6fedd8ae, type: 2}
+    - {fileID: 11400000, guid: fc5f92078ff24864db1e394d77750432, type: 2}
     m_usePreviousState: 0

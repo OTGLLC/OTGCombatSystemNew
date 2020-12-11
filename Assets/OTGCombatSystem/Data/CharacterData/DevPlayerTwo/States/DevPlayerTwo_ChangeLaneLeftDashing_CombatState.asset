@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 64a6a43e6de3c2a4db9d61bdd3637502, type: 3}
-  m_Name: EnemyCombatant_Idle_CombatState
+  m_Name: DevPlayerTwo_ChangeLaneLeftDashing_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 7400000, guid: fe9e9976ffea9fd44bc10cebee1d4609, type: 3}
+    m_animClip: {fileID: 7400000, guid: 044c5a94fd6e2de418677db856ac2c25, type: 3}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
@@ -23,8 +23,8 @@ MonoBehaviour:
       m_vfxID: {fileID: 0}
       m_hitStopTime: 0
     m_hitCollisionData:
-      m_colliderPosition: {x: 0, y: 1, z: 0}
-      m_colliderSize: {x: 1, y: 1, z: 1}
+      m_colliderPosition: {x: 0, y: 0, z: 0}
+      m_colliderSize: {x: 0, y: 0, z: 0}
     m_hurtCollisionData:
       m_hurtColliderID: {fileID: 0}
       m_validTargets:
@@ -32,12 +32,17 @@ MonoBehaviour:
         m_Bits: 0
     m_soundFXData: []
   m_onEnterActions: []
-  m_onUpdateActions:
-  - {fileID: 11400000, guid: 2020011f39eef37429fc3e38418ba5de, type: 2}
-  m_animUpdateActions: []
+  m_onUpdateActions: []
+  m_animUpdateActions:
+  - {fileID: 11400000, guid: 660e7c7e675a06b41b0048029268b922, type: 2}
   m_onExitActions: []
   m_stateTransitions:
-  - m_nextState: {fileID: 11400000, guid: c1315b689f5376048a0fb27472301b71, type: 2}
+  - m_nextState: {fileID: 11400000, guid: c4a8c905f76a69e45aad94b8a9a0ef16, type: 2}
     m_decisions:
-    - {fileID: 11400000, guid: 165b1547aae5bc842a058a6cdce6a257, type: 2}
+    - {fileID: 11400000, guid: 5beb40f86ef449b42b5a9058dcc4382e, type: 2}
+    m_usePreviousState: 0
+  - m_nextState: {fileID: 11400000, guid: e016362a4d13a344eb8e283efb77eee4, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 8cadec9b553ef804ca8b9f4f565851fb, type: 2}
+    - {fileID: 11400000, guid: cd8ac37d41ab9054bb57c73bdae26227, type: 2}
     m_usePreviousState: 0

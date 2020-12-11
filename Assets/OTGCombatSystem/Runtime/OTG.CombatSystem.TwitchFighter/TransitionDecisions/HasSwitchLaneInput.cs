@@ -1,11 +1,10 @@
 ﻿
-
 using OTG.CombatSM.Core;
 using UnityEngine;
 
 namespace OTG.TwitchFighter
 {
-    public class HasInput : TwitchFighterBaseTransition
+    public class HasSwitchLaneInput : TwitchFighterBaseTransition
     {
         protected override void Awake()
         {
@@ -17,7 +16,7 @@ namespace OTG.TwitchFighter
             TwitchMovementParams twitch = _controller.Handler_Movement.TwitchParams;
             TwitchFighterInput twitchInput = _controller.Handler_Input.TwitchInput;
 
-            return twitchInput.HasRightInput || twitchInput.HasLeftInput;
+            return twitchInput.HasSwitchLanesDownInpu || twitchInput.HasSwitchLanesUpInput;
 
 
 
