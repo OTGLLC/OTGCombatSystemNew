@@ -18,6 +18,8 @@ namespace OTG.CombatSM.EditorTools
         private CharacterStateNode m_selectedNode;
         private CharacterViewData m_charViewData;
         private CharacterGraphSubview m_subView;
+        private CharacterSavedGraph m_savedGraph;
+
         #endregion
 
         
@@ -101,12 +103,16 @@ namespace OTG.CombatSM.EditorTools
         }
         private CharacterStateNode GenerateNode(StateNode _nodeData)
         {
+            
             CharacterStateNode n = new CharacterStateNode(_nodeData);
             AddElement(n);
 
-            Rect parentPosition = new Rect((n.NodeData.Level * 200) + 150, (n.NodeData.Order * 150) + 150, 150, 150);
-            n.SetPosition(parentPosition);
+            Vector2 position = m_savedGraph.GetNodePosition(_nodeData);
 
+
+            Rect parentPosition = new Rect(position.x,position.y, 150, 150);
+            n.SetPosition(parentPosition);
+            
             return n;
         }
         private void GenerateChildrenNodes(CharacterStateNode _startingNode)

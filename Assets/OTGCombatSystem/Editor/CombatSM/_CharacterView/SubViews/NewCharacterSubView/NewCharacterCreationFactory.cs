@@ -20,6 +20,7 @@ namespace OTG.CombatSM.EditorTools
         {
             CreateCharacterDataFolders(_data,_config);
             CreateCharacterGameObject(_data);
+            CreateCharacterSavedGraphFile(_data, _config);
             AttachCombatSMC();
             CreateAndAttachHandlerDataGroup(_data,_config);
             CreateInitialState(_data, _config);
@@ -67,6 +68,12 @@ namespace OTG.CombatSM.EditorTools
             AssetDatabase.CreateFolder(rootCharfolder, "Prefabs");
             AssetDatabase.CreateFolder(rootCharfolder,"States");
 
+        }
+        private void CreateCharacterSavedGraphFile(NewCharacterCreationData _data,EditorConfig _config)
+        {
+            CharacterSavedGraph savedGraph = ScriptableObject.CreateInstance<CharacterSavedGraph>();
+            string path = _config.CharacterSavedGraphsPath + "/" + _data.CharacterName.ToString() + ".asset";
+            AssetDatabase.CreateAsset(savedGraph, path);
         }
         private void CreateAndAttachHandlerDataGroup(NewCharacterCreationData _data, EditorConfig _config)
         {

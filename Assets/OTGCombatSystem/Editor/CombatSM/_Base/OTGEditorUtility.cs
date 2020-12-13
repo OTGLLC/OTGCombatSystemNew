@@ -328,6 +328,7 @@ namespace OTG.CombatSM.EditorTools
                     break;
             }
         }
+       
         #endregion
 
         #region --Twitch Fighter---

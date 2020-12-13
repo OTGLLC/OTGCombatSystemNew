@@ -74,6 +74,8 @@ namespace OTG.CombatSM.EditorTools
         }
         #endregion
     }
+
+    [System.Serializable]
     public class StateNode
     {
         public OTGCombatState OwnerState { get; private set; }
