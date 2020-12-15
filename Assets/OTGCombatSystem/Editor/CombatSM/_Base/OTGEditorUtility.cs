@@ -18,6 +18,7 @@ namespace OTG.CombatSM.EditorTools
         {
             TwitchFighter,
             SideScrollBeatemUpWithLanes,
+            InfiniteRunner,
             None
         }
         public static List<OTGCombatAction> ActionsAvailable { get; private set; }
@@ -118,6 +119,9 @@ namespace OTG.CombatSM.EditorTools
                     break;
                 case E_CombatTemplate.SideScrollBeatemUpWithLanes:
                     break;
+                case E_CombatTemplate.InfiniteRunner:
+                    RegisterInfinteRunnerActions();
+                    break;
                         
             }
             
@@ -134,6 +138,9 @@ namespace OTG.CombatSM.EditorTools
                     RegisterTwitchFighterTransitions();
                     break;
                 case E_CombatTemplate.SideScrollBeatemUpWithLanes:
+                    break;
+                case E_CombatTemplate.InfiniteRunner:
+                    RegisterInfiniteRunnerTransitions();
                     break;
 
             }
@@ -353,7 +360,20 @@ namespace OTG.CombatSM.EditorTools
         }
         #endregion
 
-       
+        #region --Infinite Runner---
+        private static void RegisterInfinteRunnerActions()
+        {
+            //ActionsAvailable.Add(ScriptableObject.CreateInstance<SetDashDistance>());
+        }
+        private static void RegisterInfiniteRunnerTransitions()
+        {
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.PassThrough>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.MatchesAnimationEvent>());
+           
+        }
+        #endregion
+
+
     }
 
 

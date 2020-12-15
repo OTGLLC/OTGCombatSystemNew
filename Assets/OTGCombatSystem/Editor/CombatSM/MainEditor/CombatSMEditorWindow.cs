@@ -36,7 +36,7 @@ namespace OTG.CombatSM.EditorTools
             InitializeMenuBar();
             CreateViews();
             SubscribeButtonsToCallbacks();
-            OTGEditorUtility.SetCombatTemplate(OTGEditorUtility.E_CombatTemplate.TwitchFighter, m_editorConfig);
+            OTGEditorUtility.SetCombatTemplate(OTGEditorUtility.E_CombatTemplate.InfiniteRunner, m_editorConfig);
         }
 
         private void OnGUI()

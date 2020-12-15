@@ -37,6 +37,7 @@ namespace OTG.CombatSM.Core
     public enum E_Template
     {
         TwitchFighter,
+        InfiniteRunner,
         None
     }
 }
