@@ -41,6 +41,7 @@ namespace OTG.CombatSM.Core
         [SerializeField] private OTGVFXIdentification m_vfxID;
        
         [SerializeField] private float m_hitStopTime;
+        [SerializeField] private Vector3 m_rootMotionModifier;
         #endregion
 
         #region Properties
@@ -49,6 +50,7 @@ namespace OTG.CombatSM.Core
         public float OnConnectBaseDamage { get { return m_onConnectBaseDamage; } }
         public OTGVFXIdentification VFX_ID { get { return m_vfxID; } }
         public float HitStopTime { get { return m_hitStopTime; } }
+        public Vector3 RootMotionModifier { get { return m_rootMotionModifier; } }
        
         #endregion
 

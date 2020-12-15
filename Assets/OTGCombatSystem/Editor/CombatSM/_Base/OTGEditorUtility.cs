@@ -6,7 +6,7 @@ using UnityEditor;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
 using OTG.CombatSM.Core;
-using OTG.TwitchFighter;
+//using OTG.TwitchFighter;
 
 namespace OTG.CombatSM.EditorTools
 {
@@ -344,68 +344,12 @@ namespace OTG.CombatSM.EditorTools
        
         private static void RegisterTwitchFighterActions()
         {
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetDashDistance>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformMovement>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculatePercentageDistanceTraveled>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetAnimationPlaybackTime>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ApplyDashCurveToSpeed>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetMovementParameters>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetAnimationEvent>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<RotateToMatchInputDirection>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateCurrentDashDistance>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<AquireTarget>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ApplyRootMotion>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<PauseAnimation>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<UnpauseAnimation>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<PerformDamageCalculations>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ConsumeCurrentAnimationEvent>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<TakeInDamage>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ScanForAdjacentTarget>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CalculateVerticalMovement>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<InitializeTwitchCombatPrams>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<IncrementComboCounter>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboCount>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboCounterUpdateEvent>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<CombatDebugLogging>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<DespawnObject>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<IncrementComboLevel>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ResetComboLevel>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<DecrementComboLevel>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<PostComboLevelUpdatedEvent>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<SetComboBreakPoint>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<LockZpositionToCurrentLane>());
-            ActionsAvailable.Add(ScriptableObject.CreateInstance<ManuallySetDirectionInput>());
+           
 
         }
         private static void RegisterTwitchFighterTransitions()
         {
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasReachedDesiredDashDistance>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<PassThrough>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasInput>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRightInput>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasLeftInput>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesUp>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<MatchAnimationEvent>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasDamageContacts>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HitStopTimeExpired>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasRecievedDamage>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<StunTimeExpired>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasAnAdjacentTarget>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<DirectionInputDoesNotMatchFaceDirection>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<DirectionInputMatchesFaceDirection>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<DoesNotHaveAdjacentTarget>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsGrounded>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsNotGrounded>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsDead>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboCountValue>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<TimerExpired>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasComboLevelValue>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsFacingLeft>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<IsFacingRight>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLaneInput>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesDown>());
-            TransitionsAvailable.Add(ScriptableObject.CreateInstance<HasSwitchLanesUp>());
+            
         }
         #endregion
 

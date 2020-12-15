@@ -23,6 +23,7 @@ namespace OTG.CombatSM.EditorTools
             CreateCharacterSavedGraphFile(_data, _config);
             AttachCombatSMC();
             CreateAndAttachHandlerDataGroup(_data,_config);
+            LinkGlobalCombatConfig(_data, _config);
             CreateInitialState(_data, _config);
             ApplyCharacterType(_data);
             ApplyCharacterModel(_data);
@@ -84,6 +85,13 @@ namespace OTG.CombatSM.EditorTools
                         AssetDatabase.CreateAsset(dataGrp, path + dataGrp.name + ".asset");
 
             m_characterSMCObj.FindProperty("m_handlerDataGroup").objectReferenceValue = dataGrp;
+            m_characterSMCObj.ApplyModifiedProperties();
+        }
+        private void LinkGlobalCombatConfig(NewCharacterCreationData _data, EditorConfig _config)
+        {
+            
+
+            m_characterSMCObj.FindProperty("m_globalConfig").objectReferenceValue = _config.GlobalCombatConfig;
             m_characterSMCObj.ApplyModifiedProperties();
         }
         private void CreateInitialState(NewCharacterCreationData _data, EditorConfig _config)
