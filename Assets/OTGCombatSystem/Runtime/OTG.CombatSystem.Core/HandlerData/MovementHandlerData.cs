@@ -7,27 +7,21 @@ namespace OTG.CombatSM.Core
     [System.Serializable]
     public class MovementHandlerData
     {
-        [SerializeField] private TwitchMovementData m_twitchData;
+        #region Inspector Vars
+        [SerializeField] private float m_groundAcceleration;
+        [SerializeField] private float m_airAcceleration;
+        [SerializeField] private float m_maxXAxisSpeed;
+        [SerializeField] private float m_maxYAxisSpeed;
+        [SerializeField] private float m_maxZAxisSpeed;
+        #endregion
 
-
-        public TwitchMovementData TwitchData { get { return m_twitchData; } }
+        #region Properties
+        public float GroundAccelreration { get { return m_groundAcceleration; } }
+        public float AirAcceleration { get { return m_airAcceleration; } }
+        public float MaxXaxisSpeed { get { return m_maxXAxisSpeed; } }
+        public float MaxYaxisSpeed { get { return m_maxYAxisSpeed; } }
+        public float MaxZaxisSpeed { get { return m_maxZAxisSpeed; } }
+        #endregion
     }
-    [System.Serializable]
-    public class TwitchMovementData
-    {
-        [SerializeField] private float m_maxDashDistance;
-        [SerializeField] private float m_dashSpeed;
-        [SerializeField] private float m_acceleration;
-        [SerializeField] private float m_changeLaneSpeed;
-        [SerializeField] private float m_dashDistanceMinThreshold;
-        [SerializeField] private AnimationCurve m_dashCurve;
-        
-        
-        public float MaxDashDistance { get { return m_maxDashDistance; } }
-        public float DashSpeed { get { return m_dashSpeed; } }
-        public float Acceleration { get { return m_acceleration; } }
-        public float ChangeLaneSpeed { get { return m_changeLaneSpeed; } }
-        public float DashDistanceMinThreshold { get { return m_dashDistanceMinThreshold; } }
-        public AnimationCurve DashCurve { get { return m_dashCurve; } }
-    }
+    
 }
