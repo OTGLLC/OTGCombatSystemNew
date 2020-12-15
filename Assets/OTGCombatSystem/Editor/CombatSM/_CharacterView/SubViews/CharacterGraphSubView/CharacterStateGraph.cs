@@ -18,8 +18,7 @@ namespace OTG.CombatSM.EditorTools
         private CharacterStateNode m_selectedNode;
         private CharacterViewData m_charViewData;
         private CharacterGraphSubview m_subView;
-        private CharacterSavedGraph m_savedGraph;
-
+        private List<CharacterStateNode> m_nodesInGraph;
         #endregion
 
         
@@ -28,6 +27,7 @@ namespace OTG.CombatSM.EditorTools
         {
             m_charViewData = _charViewData;
             m_subView = _subView;
+            m_nodesInGraph = new List<CharacterStateNode>();
 
             AddManipulators();
             ConstructGridBackground();
@@ -46,6 +46,10 @@ namespace OTG.CombatSM.EditorTools
         public void OnNewStateButtonPressed()
         {
 
+        }
+        public void OnSaveGraph()
+        {
+            SaveNodePositions();
         }
         #endregion
 
@@ -81,6 +85,7 @@ namespace OTG.CombatSM.EditorTools
             this.AddManipulator(new ContentDragger());
             this.AddManipulator(new SelectionDragger());
             this.AddManipulator(new RectangleSelector());
+            this.AddManipulator(new ContentZoomer());
         }
         private void ConstructGridBackground()
         {
@@ -107,13 +112,20 @@ namespace OTG.CombatSM.EditorTools
             CharacterStateNode n = new CharacterStateNode(_nodeData);
             AddElement(n);
 
-            Vector2 position = m_savedGraph.GetNodePosition(_nodeData);
-
+            Vector2 position = m_charViewData.CharacterStateGraph.GetNodePosition(_nodeData);
+            AddStateNodeToStack(n);
 
             Rect parentPosition = new Rect(position.x,position.y, 150, 150);
             n.SetPosition(parentPosition);
             
             return n;
+        }
+        private void AddStateNodeToStack(CharacterStateNode _node)
+        {
+            if(!m_nodesInGraph.Contains(_node))
+            {
+                m_nodesInGraph.Add(_node);
+            }
         }
         private void GenerateChildrenNodes(CharacterStateNode _startingNode)
         {
@@ -149,6 +161,16 @@ namespace OTG.CombatSM.EditorTools
                     AddElement(e);
                     GenerateChildrenNodes(n);
                 }
+            }
+        }
+        private void SaveNodePositions()
+        {
+            for(int i = 0; i < m_nodesInGraph.Count; i++)
+            {
+                CharacterStateNode n = m_nodesInGraph[i];
+                Vector2 position = new Vector2(n.GetPosition().x, n.GetPosition().y);
+                m_charViewData.CharacterStateGraph.SaveNodePosition(n.NodeData.OwnerState.name, position);
+
             }
         }
         #endregion

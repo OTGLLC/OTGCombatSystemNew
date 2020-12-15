@@ -15,6 +15,7 @@ namespace OTG.CombatSM.EditorTools
         public SerializedObject EditorOptionsObject { get; private set; }
         public SerializedProperty ActionsPathProp { get; private set; }
         public SerializedProperty TransitionsPathProperty { get; private set; }
+        public SerializedProperty SavedGraphsPathProperty { get; private set; }
         public SerializedProperty CharacterDataPathProperty { get; private set; }
         #endregion
 
@@ -41,6 +42,11 @@ namespace OTG.CombatSM.EditorTools
             SetPropertyStringValue(CharacterDataPathProperty, _val);
             EditorOptionsObject.ApplyModifiedProperties();
         }
+        public void SetSavedGraphStringValue(string _val)
+        {
+            SetPropertyStringValue(SavedGraphsPathProperty, _val);
+            EditorOptionsObject.ApplyModifiedProperties();
+        }
         #endregion
 
         #region Utility
@@ -53,6 +59,7 @@ namespace OTG.CombatSM.EditorTools
             ActionsPathProp = EditorOptionsObject.FindProperty("m_combatActionsPath");
             TransitionsPathProperty = EditorOptionsObject.FindProperty("m_combatTransitionsPath");
             CharacterDataPathProperty = EditorOptionsObject.FindProperty("m_characterPAthRoot");
+            SavedGraphsPathProperty = EditorOptionsObject.FindProperty("m_characterSavedGraphsPath");
         }
         private void InitializeEditorConfig(ref EditorConfig _config)
         {

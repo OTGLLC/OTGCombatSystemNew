@@ -21,6 +21,11 @@
       <engine:TextField name="character-path-field-area" class ="path-field" label="CharacterData"/>
       <editor:ToolbarButton name="open-character-file-picker" class="file-picker" text="Open"/>
     </editor:Toolbar>
+	  <editor:Toolbar name="savedGraphs-path-toolbar" class="path-toolbar">
+		  <engine:Image name="savedGraphs-path-folder-icon" class ="folder-icon"/>
+		  <engine:TextField name="savedGraphs-path-field-area" class ="path-field" label="Character Graphs"/>
+		  <editor:ToolbarButton name="open-savedGraphs-file-picker" class="file-picker" text="Open"/>
+	  </editor:Toolbar>
   </engine:VisualElement>
   <engine:VisualElement name="global-config-area">
     

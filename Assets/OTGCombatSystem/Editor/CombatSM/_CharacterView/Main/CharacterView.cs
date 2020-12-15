@@ -46,9 +46,9 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<ToolbarButton>("graph-sub-view-button").clickable.clicked -= SwitchToGraphsubView;
             ContainerElement.Q<ToolbarButton>("animation-sub-view-button").clickable.clicked -= SwitchToAnimationSubView;
         }
-        private void CreateNewData()
+        private void CreateNewData(EditorConfig _editorConfig)
         {
-            m_viewData = new CharacterViewData();
+            m_viewData = new CharacterViewData(_editorConfig);
         }
         private void GetAllCharactersInScene()
         {
@@ -113,7 +113,7 @@ namespace OTG.CombatSM.EditorTools
         public CharacterView(EditorConfig _editorConfig):base()
         {
             m_config = _editorConfig;
-            CreateNewData();
+            CreateNewData(m_config);
             //GetAllCharactersInScene();
             GatherVisualElements();
             CreateViews(_editorConfig);
@@ -121,7 +121,7 @@ namespace OTG.CombatSM.EditorTools
         }
         protected override void Refresh()
         {
-            CreateNewData();
+            CreateNewData(m_config);
             //GetAllCharactersInScene();
             GatherVisualElements();
             CreateViews(m_config);

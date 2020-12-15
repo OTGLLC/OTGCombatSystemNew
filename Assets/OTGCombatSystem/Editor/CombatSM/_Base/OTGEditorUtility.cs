@@ -94,6 +94,10 @@ namespace OTG.CombatSM.EditorTools
 
 
         }
+        public static string GetCharacterSavedGraphPath(string _characterName, string _rootFolder)
+        {
+            return _rootFolder + "/" + _characterName + ".asset";
+        }
         public static string GetCombatStateName(string _characterName, string _stateType)
         {
             string nameFormat = "{0}_{1}_CombatState";

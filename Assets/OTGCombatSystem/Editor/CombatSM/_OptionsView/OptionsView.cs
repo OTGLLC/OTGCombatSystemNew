@@ -64,18 +64,21 @@ namespace OTG.CombatSM.EditorTools
             OTGEditorUtility.SubscribeToolbarButtonCallback(ContainerElement, "open-actions-file-picker", OnActionFolderButton);
             OTGEditorUtility.SubscribeToolbarButtonCallback(ContainerElement, "open-transitions-file-picker", OnTransitionFolderButton);
             OTGEditorUtility.SubscribeToolbarButtonCallback(ContainerElement, "open-character-file-picker", OnCharacterDataFolderButton);
+            OTGEditorUtility.SubscribeToolbarButtonCallback(ContainerElement, "open-savedGraphs-file-picker", OnSavedGraphFolderButton);
         }
         private void UnSubscribeAllCallbacks()
         {
             OTGEditorUtility.UnSubscribeToolbarButtonCallback(ContainerElement, "open-actions-file-picker", OnActionFolderButton);
             OTGEditorUtility.UnSubscribeToolbarButtonCallback(ContainerElement, "open-transitions-file-picker", OnTransitionFolderButton);
             OTGEditorUtility.UnSubscribeToolbarButtonCallback(ContainerElement, "open-character-file-picker", OnCharacterDataFolderButton);
+            OTGEditorUtility.UnSubscribeToolbarButtonCallback(ContainerElement, "open-savedGraphs-file-picker", OnSavedGraphFolderButton);
         }
         private void BindPathTextField()
         {
             ContainerElement.Q<TextField>("action-path-field-area").BindProperty(m_viewData.ActionsPathProp);
             ContainerElement.Q<TextField>("transitions-path-field-area").BindProperty(m_viewData.TransitionsPathProperty);
             ContainerElement.Q<TextField>("character-path-field-area").BindProperty(m_viewData.CharacterDataPathProperty);
+            ContainerElement.Q<TextField>("savedGraphs-path-field-area").BindProperty(m_viewData.SavedGraphsPathProperty);
 
         }
         private void UnBindPathTextField()
@@ -83,7 +86,7 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<TextField>("action-path-field-area").Unbind();
             ContainerElement.Q<TextField>("transitions-path-field-area").Unbind();
             ContainerElement.Q<TextField>("character-path-field-area").Unbind();
-
+            ContainerElement.Q<TextField>("savedGraphs-path-field-area").Unbind();
         }
         private void OnActionFolderButton()
         {
@@ -99,6 +102,11 @@ namespace OTG.CombatSM.EditorTools
         private void OnCharacterDataFolderButton()
         {
             string path = EditorUtility.OpenFolderPanel("Select Character Data Root Folder", "", "");
+            m_viewData.SetCharacterPathStringValue(path);
+        }
+        private void OnSavedGraphFolderButton()
+        {
+            string path = EditorUtility.OpenFolderPanel("Select Character Graph Data Root Folder", "", "");
             m_viewData.SetCharacterPathStringValue(path);
         }
         #endregion

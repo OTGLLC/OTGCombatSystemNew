@@ -19,7 +19,7 @@ namespace OTG.CombatSM.EditorTools
         public string CharacterPathRoot { get { return m_characterPAthRoot; } }
         [SerializeField] private string m_templatesPath;
         public string TemplatesPaths { get { return m_templatesPath; } }
-        [SerializeField] private string m_characterSavedGraphsPath = "Assets/OTGCombatSystem/Editor/CharacterSavedGraphs";
+        [SerializeField] private string m_characterSavedGraphsPath;
         public string CharacterSavedGraphsPath { get { return m_characterSavedGraphsPath; } }
 
         [SerializeField] private OTGGlobalCombatConfig m_globalCombatConfig;

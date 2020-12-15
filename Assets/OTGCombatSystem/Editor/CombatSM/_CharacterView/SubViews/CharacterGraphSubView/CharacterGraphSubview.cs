@@ -17,6 +17,7 @@ namespace OTG.CombatSM.EditorTools
         private ToolbarButton m_copyPasteStateButton;
         private ToolbarButton m_newStateButton;
         private EnumField m_stateTemplateEnumField;
+        private ToolbarButton m_saveGraphButton;
         #endregion
 
         #region Fields
@@ -131,12 +132,14 @@ namespace OTG.CombatSM.EditorTools
             m_newStateButton = ContainerElement.Q<ToolbarButton>("new-state-button");
             m_copyPasteStateButton = ContainerElement.Q<ToolbarButton>("copy-state-button");
             m_stateTemplateEnumField = ContainerElement.Q<EnumField>("new-state-template");
+            m_saveGraphButton = ContainerElement.Q<ToolbarButton>("save-graph-button");
         }
         private void CleanupControls()
         {
             m_newStateButton = null;
             m_copyPasteStateButton = null;
             m_stateTemplateEnumField = null;
+            m_saveGraphButton = null;
         }
         private void HideCopyPasteButton()
         {
@@ -189,6 +192,7 @@ namespace OTG.CombatSM.EditorTools
             ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked += OnRefreshActions;
             ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked += OnRefreshTransitions;
            m_newStateButton.clickable.clicked += OnNewStateClicked;
+            m_saveGraphButton.clickable.clicked += OnSaveGraph;
             m_stateTemplateEnumField.RegisterCallback<ChangeEvent<System.Enum>>(evt => { SetTemplateData(evt.newValue); });
 
         }
@@ -196,6 +200,7 @@ namespace OTG.CombatSM.EditorTools
         {
             ContainerElement.Q<Button>("refresh-actions-button").clickable.clicked -= OnRefreshActions;
             ContainerElement.Q<Button>("refresh-transitions-button").clickable.clicked -= OnRefreshTransitions;
+            m_saveGraphButton.clickable.clicked -= OnSaveGraph;
             m_newStateButton.clickable.clicked -= OnNewStateClicked;
         }
         private void PopulateStateDetailsView(SerializedObject _targetState)
@@ -355,6 +360,10 @@ namespace OTG.CombatSM.EditorTools
                 OTGEditorUtility.PopulateStateByTemplate(template, ref m_copiedStateCache, m_editorConfig);
                 ContainerElement.Q<TextField>("new-state-name-textfield").value = template.ToString() + "template selected";
             }
+        }
+        private void OnSaveGraph()
+        {
+            m_stateGraph.OnSaveGraph();
         }
         #endregion
     }

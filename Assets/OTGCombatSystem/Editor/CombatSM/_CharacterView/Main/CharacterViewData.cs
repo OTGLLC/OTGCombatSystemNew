@@ -8,6 +8,10 @@ namespace OTG.CombatSM.EditorTools
 {
     public class CharacterViewData
     {
+        #region Fields
+        private EditorConfig m_editorConfig;
+        #endregion
+
         #region Properties
         public List<OTGCombatSMC> CharactersInScene { get; private set; }
         public OTGCombatSMC SelectedCharacter { get; private set; }
@@ -20,11 +24,13 @@ namespace OTG.CombatSM.EditorTools
         public SerializedProperty CollisionHandlerDataProp { get; private set; }
         public SerializedProperty CombatHandlerDataProp { get; private set; }
         public CharacterStateTree StateTree { get; private set; }
+        public CharacterSavedGraph CharacterStateGraph { get; private set; }
         #endregion
 
         #region Public API
-        public CharacterViewData()
+        public CharacterViewData(EditorConfig _editorConfig)
         {
+            m_editorConfig = _editorConfig;
             CharactersInScene = new List<OTGCombatSMC>();
         }
         public void GetAllCharactersInScene()
@@ -49,6 +55,7 @@ namespace OTG.CombatSM.EditorTools
             GetStartingState();
             GetCharacterHandlerData();
             GetHandlerDataProperties();
+            GetCharacterSavedGraph();
             StateTree = new CharacterStateTree(StartingState);
         }
 
@@ -71,6 +78,19 @@ namespace OTG.CombatSM.EditorTools
             InputHandlerDataProp = CharacterHandlerDataObj.FindProperty("m_inputHandlerData");
             CollisionHandlerDataProp = CharacterHandlerDataObj.FindProperty("m_collisionHandlerData");
             CombatHandlerDataProp = CharacterHandlerDataObj.FindProperty("m_combatHandlerData");
+        }
+        private void GetCharacterSavedGraph()
+        {
+            string path = OTGEditorUtility.GetCharacterSavedGraphPath(SelectedCharacter.name, m_editorConfig.CharacterSavedGraphsPath);
+            CharacterSavedGraph graph = AssetDatabase.LoadAssetAtPath<CharacterSavedGraph>(path);
+
+            if(graph == null)
+            {
+                graph = ScriptableObject.CreateInstance<CharacterSavedGraph>();
+                AssetDatabase.CreateAsset(graph, path);
+            }
+
+            CharacterStateGraph = graph;
         }
         #endregion
     }
