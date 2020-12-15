@@ -363,7 +363,8 @@ namespace OTG.CombatSM.EditorTools
         #region --Infinite Runner---
         private static void RegisterInfinteRunnerActions()
         {
-            //ActionsAvailable.Add(ScriptableObject.CreateInstance<SetDashDistance>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.CalculateRunningMovement>());
+            ActionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.PerformMovement>());
         }
         private static void RegisterInfiniteRunnerTransitions()
         {

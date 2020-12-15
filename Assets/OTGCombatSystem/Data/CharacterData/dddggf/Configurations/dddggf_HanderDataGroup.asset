@@ -15,18 +15,11 @@ MonoBehaviour:
   m_animHandlerData:
     m_test: 0
   m_moveHandlerData:
-    m_twitchData:
-      m_maxDashDistance: 0
-      m_dashSpeed: 0
-      m_acceleration: 0
-      m_changeLaneSpeed: 0
-      m_dashDistanceMinThreshold: 0
-      m_dashCurve:
-        serializedVersion: 2
-        m_Curve: []
-        m_PreInfinity: 2
-        m_PostInfinity: 2
-        m_RotationOrder: 4
+    m_groundAcceleration: 10
+    m_airAcceleration: 0
+    m_maxXAxisSpeed: 10
+    m_maxYAxisSpeed: 0
+    m_maxZAxisSpeed: 0
   m_inputHandlerData:
     m_test: 0
   m_collisionHandlerData:

@@ -21,3 +21,21 @@ namespace OTG.InfiniteRunner
 
 
 #######Action
+
+
+
+using UnityEngine;
+using OTG.CombatSM.Core;
+
+
+namespace OTG.InfiniteRunner
+{
+    public class CalculateRunningMovement : OTGCombatAction
+    {
+        public override void Act(OTGCombatSMC _controller)
+        {
+            MovementHandler moveHandler = _controller.Handler_Movement;
+        }
+    }
+
+}

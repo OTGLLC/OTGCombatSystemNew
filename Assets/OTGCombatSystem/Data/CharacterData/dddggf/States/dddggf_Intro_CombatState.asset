@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: dddggf_Intro_CombatState
   m_EditorClassIdentifier: 
   m_combatAnim:
-    m_animClip: {fileID: 0}
+    m_animClip: {fileID: 7400000, guid: af5e97a7b3911fe4d93337bf22a947a7, type: 3}
     m_animData:
       m_HorizontalImpactForce: 0
       m_VerticalImpactForce: 0
@@ -36,4 +36,8 @@ MonoBehaviour:
   m_onUpdateActions: []
   m_animUpdateActions: []
   m_onExitActions: []
-  m_stateTransitions: []
+  m_stateTransitions:
+  - m_nextState: {fileID: 11400000, guid: 2097a70af5827a04e91f2bd43c1f7625, type: 2}
+    m_decisions:
+    - {fileID: 11400000, guid: 846f393fc6e561b4088590aec13917c3, type: 2}
+    m_usePreviousState: 0
