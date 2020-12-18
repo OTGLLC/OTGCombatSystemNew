@@ -10,9 +10,10 @@ namespace OTG.Input.Touch
     /// Controller that interprets takes pointer input from <see cref="PointerInputManager"/> and detects
     /// directional swipes and detects taps.
     /// </summary>
+    [RequireComponent(typeof(PointerInputManager))]
     public class GestureController : MonoBehaviour
     {
-        [SerializeField]
+      
         private PointerInputManager inputManager;
 
         // Maximum duration of a press before it can no longer be considered a tap.
@@ -26,7 +27,7 @@ namespace OTG.Input.Touch
 
         // Maximum duration of a swipe before it is no longer considered to be a valid swipe.
         [SerializeField]
-        private float maxSwipeDuration = 0.5f;
+        private float maxSwipeDuration = 0.2f;
 
         // Minimum distance in screen units that a swipe must move before it is considered a swipe.
         // Note that if this is smaller or equal to maxTapDrift, then it is possible for a user action to be
@@ -66,18 +67,30 @@ namespace OTG.Input.Touch
 
         protected virtual void Awake()
         {
+            inputManager = GetComponent<PointerInputManager>();
             inputManager.Pressed += OnPressed;
             inputManager.Dragged += OnDragged;
             inputManager.Released += OnReleased;
         }
-
+        private void OnDisable()
+        {
+            inputManager.Pressed -= OnPressed;
+            inputManager.Dragged -= OnDragged;
+            inputManager.Released -= OnReleased;
+            inputManager = null;
+        }
         /// <summary>
         /// Checks whether a given active gesture will be a valid swipe.
         /// </summary>
         private bool IsValidSwipe(ref ActiveGesture gesture)
         {
+            bool travelDistCheck = (gesture.TravelDistance >= minSwipeDistance);
+            bool durationCheck = (gesture.EndTime - gesture.StartTime) <= maxSwipeDuration;
+            bool swipeSamenessCheck = gesture.SwipeDirectionSameness >= swipeDirectionSamenessThreshold;
+
+
             return gesture.TravelDistance >= minSwipeDistance &&
-                (gesture.StartTime - gesture.EndTime) <= maxSwipeDuration &&
+                (gesture.EndTime - gesture.StartTime) <= maxSwipeDuration &&
                 gesture.SwipeDirectionSameness >= swipeDirectionSamenessThreshold;
         }
 
@@ -92,12 +105,12 @@ namespace OTG.Input.Touch
 
         private void OnPressed(PointerInput input, double time)
         {
-            Debug.Assert(!activeGestures.ContainsKey(input.InputId));
+            //Debug.Assert(!activeGestures.ContainsKey(input.InputId));
 
             var newGesture = new ActiveGesture(input.InputId, input.Position, time);
             activeGestures.Add(input.InputId, newGesture);
 
-            DebugInfo(newGesture);
+            //DebugInfo(newGesture);
 
             Pressed?.Invoke(new SwipeInput(newGesture));
         }
@@ -112,12 +125,12 @@ namespace OTG.Input.Touch
 
             existingGesture.SubmitPoint(input.Position, time);
 
-            if (IsValidSwipe(ref existingGesture))
-            {
-                PotentiallySwiped?.Invoke(new SwipeInput(existingGesture));
-            }
+            //if (IsValidSwipe(ref existingGesture))
+            //{
+            //    PotentiallySwiped?.Invoke(new SwipeInput(existingGesture));
+           //}
 
-            DebugInfo(existingGesture);
+            //DebugInfo(existingGesture);
         }
 
         private void OnReleased(PointerInput input, double time)
@@ -148,6 +161,9 @@ namespace OTG.Input.Touch
         {
             if (label == null) return;
 
+            bool validTap = IsValidTap(ref gesture);
+            bool validSwipe = IsValidSwipe(ref gesture);
+
             var builder = new StringBuilder();
 
             builder.AppendFormat("ID: {0}", gesture.InputId);
@@ -170,6 +186,9 @@ namespace OTG.Input.Touch
             builder.AppendLine();
             builder.AppendFormat("Ending Timestamp: {0}", gesture.EndTime);
             builder.AppendLine();
+            builder.AppendFormat("Valid Tap: {0}", validTap);
+            builder.AppendLine();
+            builder.AppendFormat("Valid Swipe: {0}", validSwipe);
 
             label.text = builder.ToString();
 

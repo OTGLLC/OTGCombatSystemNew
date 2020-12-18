@@ -37,6 +37,7 @@ namespace OTG.CombatSM.Core
         public float LaneDistance { get { return m_laneDistance; } }
         public float FacingRightRotation { get { return m_facingRightRotation; } }
         public float FacingLeftRotation { get { return m_facingLeftRotation; } }
+  
         //public const int MaxHitScanElements = 10;
 
 
