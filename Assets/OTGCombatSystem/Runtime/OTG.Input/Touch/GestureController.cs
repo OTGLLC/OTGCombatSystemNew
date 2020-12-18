@@ -84,11 +84,7 @@ namespace OTG.Input.Touch
         /// </summary>
         private bool IsValidSwipe(ref ActiveGesture gesture)
         {
-            bool travelDistCheck = (gesture.TravelDistance >= minSwipeDistance);
-            bool durationCheck = (gesture.EndTime - gesture.StartTime) <= maxSwipeDuration;
-            bool swipeSamenessCheck = gesture.SwipeDirectionSameness >= swipeDirectionSamenessThreshold;
-
-
+          
             return gesture.TravelDistance >= minSwipeDistance &&
                 (gesture.EndTime - gesture.StartTime) <= maxSwipeDuration &&
                 gesture.SwipeDirectionSameness >= swipeDirectionSamenessThreshold;
@@ -125,10 +121,10 @@ namespace OTG.Input.Touch
 
             existingGesture.SubmitPoint(input.Position, time);
 
-            //if (IsValidSwipe(ref existingGesture))
-            //{
-            //    PotentiallySwiped?.Invoke(new SwipeInput(existingGesture));
-           //}
+            if (IsValidSwipe(ref existingGesture))
+            {
+                PotentiallySwiped?.Invoke(new SwipeInput(existingGesture));
+           }
 
             //DebugInfo(existingGesture);
         }
@@ -189,6 +185,8 @@ namespace OTG.Input.Touch
             builder.AppendFormat("Valid Tap: {0}", validTap);
             builder.AppendLine();
             builder.AppendFormat("Valid Swipe: {0}", validSwipe);
+            builder.AppendLine();
+            builder.AppendFormat("Swipe Direction: {0}", (gesture.EndPosition - gesture.StartPosition).normalized);
 
             label.text = builder.ToString();
 

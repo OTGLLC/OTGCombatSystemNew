@@ -8,8 +8,17 @@ namespace OTG.InfiniteRunner
     [RequireComponent(typeof(GestureController))]
     public class OTGTouchInputHandler : MonoBehaviour
     {
+        #region enum
+        private enum SwipeDirection
+        {
+            SwipeUp,
+            SwipeDown,
+            none
+        }
+        #endregion
+
         #region Inspector Vars
-        
+
         [SerializeField] private float m_inputDelay;
         [SerializeField] private UnityEngine.UI.Text m_debugText;
         #endregion
@@ -68,7 +77,7 @@ namespace OTG.InfiniteRunner
         #region Input Callbacks
         private void OnSwiped(SwipeInput _input)
         {
-            m_debugText.text = "Swiped";
+            m_debugText.text = DetermineSwipeDirection(_input).ToString();
         }
         private void OnTapped(TapInput _input)
         {
@@ -76,8 +85,23 @@ namespace OTG.InfiniteRunner
         }
         #endregion
 
+        #region Utility
+        private SwipeDirection DetermineSwipeDirection(SwipeInput _input)
+        {
+            SwipeDirection dir = SwipeDirection.none;
+            if (_input.SwipeDirection.y > 0)
+                dir = SwipeDirection.SwipeUp;
+            if (_input.SwipeDirection.y < 0)
+                dir = SwipeDirection.SwipeDown;
+           
+            return dir;
+        }
+        #endregion
+
+
         #region Debuging
 
         #endregion
     }
+
 }
