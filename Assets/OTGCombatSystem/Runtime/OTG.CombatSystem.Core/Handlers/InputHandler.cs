@@ -11,14 +11,14 @@ namespace OTG.CombatSM.Core
 
         #region Properties
         public Vector2 MovementVector { get; set; }
-        public TwitchFighterInput TwitchInput { get; set; }
+        public InfiniteRunnerInput RunnerInput { get; set; }
         #endregion
 
         #region Public API
         public InputHandler(HandlerDataGroup _dataGroup)
         {
             InitializeData(_dataGroup);
-            TwitchInput = new TwitchFighterInput();
+            RunnerInput = new InfiniteRunnerInput();
         }
         public void CleanupHandler()
         {
@@ -39,7 +39,7 @@ namespace OTG.CombatSM.Core
 
     }
 
-    public class TwitchFighterInput
+    public class InfiniteRunnerInput
     {
         public bool HasRightInput { get; set; }
         public bool HasLeftInput { get; set; }

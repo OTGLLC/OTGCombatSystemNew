@@ -150,7 +150,7 @@ namespace OTG.Input.Touch
                 Tapped?.Invoke(new TapInput(existingGesture));
             }
 
-            DebugInfo(existingGesture);
+            //DebugInfo(existingGesture);
         }
 
         private void DebugInfo(ActiveGesture gesture)
