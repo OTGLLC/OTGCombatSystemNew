@@ -370,7 +370,14 @@ namespace OTG.CombatSM.EditorTools
         {
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.PassThrough>());
             TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.MatchesAnimationEvent>());
-           
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.HasLeftTapInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.HasRightTapInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.HasSwipeDownInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.HasSwipeInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.HasSwipeUpInput>());
+            TransitionsAvailable.Add(ScriptableObject.CreateInstance<OTG.InfiniteRunner.HasTapInput>());
+
+
         }
         #endregion
 

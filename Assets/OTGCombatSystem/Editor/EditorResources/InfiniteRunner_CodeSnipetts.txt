@@ -12,7 +12,8 @@ namespace OTG.InfiniteRunner
     {
         public override bool Decide(OTGCombatSMC _controller)
         {
-             AnimationHandler animHandler = _controller.Handler_Animation;
+             //AnimationHandler animHandler = _controller.Handler_Animation;
+             //InfiniteRunnerInput infInput = _controller.Handler_Input.RunnerInput;
             return true;
         }
     }
